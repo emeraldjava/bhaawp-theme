@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." default="copy">
+	<target name="copy">
+		<echo message="copy"/>
+		<copy todir="/Users/pauloconnell/projects/MAMP/bhaaie/wp-content/themes/Avada/" overwrite="true" verbose="true">
+			<fileset dir=".">
+				<include name="**/*.php"/>
+				<include name="**/*.js"/>
+				<include name="**/*.css"/>
+				<include name="**/*.png"/>
+			</fileset>
+		</copy>
+	</target>
+</project>
