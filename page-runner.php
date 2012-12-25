@@ -11,6 +11,16 @@ global $loader;
 $user = get_user_by('slug', $_REQUEST['user_nicename']);
 
 echo '<h2>'.$user->display_name.'</h2></br>';
+
+if( current_user_can('manage_options') )
+{
+	var_dump(get_user_meta($user->ID));
+}
+else
+{
+	echo 'Not Admin';
+}
+
 echo '<h4>Results</h4>';
 echo $loader->raceresult->getTable()->renderRunnerTable($user->ID);
 

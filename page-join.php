@@ -1,14 +1,13 @@
 <?php
 /**
  * Template Name: BHAA Join
- * A custom BHAA membership page
- * - will tell non registers to register
- * - for registered users it displays the annual ticket.
  */
+get_header(); 
 ?>
 
-<?php get_header(); ?>
-
+	<div id="primary" class="site-content">
+		<div id="content" role="main">
+		
 <?php
 // query for the membership page for its content
 $your_query = new WP_Query('pagename=join');
@@ -47,21 +46,24 @@ else
 	$status = get_user_meta(get_current_user_id(),'bhaa_runner_status',true);
 	$dateofrenewal = get_user_meta(get_current_user_id(),'bhaa_runner_dateofrenewal',true);
 	
-	if($status=="M" || $status=="I")
+	if($status=="X" || $status=="Y")
 	{
 		echo '<div>'.
 			'<h3>Hi '.$current_user->display_name.'</h3>'.
 			'<p>You are an existing BHAA member and renewals will be open from January 1st 2013. Thanks for your patience</p>'.
 			'</div>';
 	}
-// 	else
-// 	{
-// 		echo $event->output(
-// 			'<div id="annualmembership">
-// 			{has_bookings}
-// 			#_BOOKINGFORM
-// 			{/has_bookings}
-// 			</div>');
-// 	}
+ 	else
+ 	{
+ 		echo $event->output(
+ 			'<div id="annualmembership">
+ 			{has_bookings}
+ 			#_BOOKINGFORM
+ 			{/has_bookings}
+ 			</div>');
+ 	}
 }
 ?>
+
+		</div><!-- #content -->
+	</div><!-- #primary -->

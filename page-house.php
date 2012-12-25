@@ -31,5 +31,3 @@ wp_tag_cloud($args);
 		
 		</div><!-- #content -->
 	</div><!-- #primary -->
-
-<?php get_footer(); ?>

@@ -32,23 +32,28 @@ echo '<section id="primary">';
 if( $EM_Event->end >= time() )
 {
 	echo $EM_Event->output(
-		'<div id="details" style="float:right; margin:0px 0px 15px 15px;">#_MAP</div>'.
-		'<p>'.
-			'<strong>Date/Time</strong><br/>'.
-			'Date(s) - #_EVENTDATES<br /><i>#_EVENTTIMES</i>'.
-		'</p>'.
-		'{has_location}'.
-			'<p>'.
-				'<strong>Location</strong><br/>'.
-				'#_LOCATIONLINK'.
-			'</p>'.
-		'{/has_location}'.
-		'<br style="clear:both"/>'.
-		'<p>#_EVENTNOTES</p>'.
+		'[two_third last="no"]<p>#_EVENTNOTES</p>[/two_third]'.
+		'[one_third last="yes"]<strong>Date/Time</strong><br/>Date - #_EVENTDATES<br/><i>#_EVENTTIMES</i>[/one_third]'.
 		'{has_bookings}'.
-			'<div id="register"><h3>Register</h3></div>'.
+		'[tagline_box title="Register" description="The simple and quick way to ensure your race place."]'.
+		'<div id="register"> #_BOOKINGFORM </div>'.
+		'[/tagline_box]'.
+		'{/has_bookings}'.
+		
+			'{has_bookings}'.
+			'<div id="register">Register</div>'.
 			'#_BOOKINGFORM'.
-		'{/has_bookings}');	
+			'{/has_bookings}'.
+			
+		'{has_location}'.
+		'<p>'.
+		'<strong>Location</strong><br/>'.
+		'#_LOCATIONLINK'.
+		'</p>'.
+		'<div id="details" style="float:right; margin:0px 0px 15px 15px;">#_MAP</div>'.
+		'{/has_location}'.
+		'</hr>'
+		);	
 }
 else
 {

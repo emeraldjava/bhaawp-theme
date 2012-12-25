@@ -14,8 +14,8 @@
 	?>
 	<div id="content" style="<?php echo $content_css; ?>">
 		<div class="single-navigation clearfix">
-			<?php previous_post_link('%link', __('Previous', 'Avada')); ?>
-			<?php next_post_link('%link', __('Next', 'Avada')); ?>
+			<?php previous_post_link('%link', __('Previous Event', 'Avada')); ?>
+			<?php next_post_link('%link', __('Next Event', 'Avada')); ?>
 		</div>
 		<?php while(have_posts()): the_post(); ?>
 		<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -119,7 +119,7 @@
 			<?php endif; ?>
 			<?php endif; ?>
 			<?php if($data['blog_post_title']): ?>
-			<h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+			<h1><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
 			<?php endif; ?>
 			<div class="post-content">
 				<?php the_content(); ?>
