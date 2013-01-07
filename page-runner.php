@@ -12,6 +12,11 @@ $user = get_user_by('slug', $_REQUEST['user_nicename']);
 
 echo '<h2>'.$user->display_name.'</h2></br>';
 
+$st = '[one_fourth last="no"]'.$user->display_name.'[/one_fourth][three_fourth last="true"]3/4[/three_fourth]';
+echo do_shortcode($st);
+
+
+
 if( current_user_can('manage_options') )
 {
 	var_dump(get_user_meta($user->ID));

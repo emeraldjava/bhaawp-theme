@@ -31,18 +31,19 @@ echo '<section id="primary">';
 
 if( $EM_Event->end >= time() )
 {
+	$booking = $EM_Event->output('{has_bookings}#_BOOKINGFORM{/has_bookings}');
 	echo $EM_Event->output(
 		'[two_third last="no"]<p>#_EVENTNOTES</p>[/two_third]'.
 		'[one_third last="yes"]<strong>Date/Time</strong><br/>Date - #_EVENTDATES<br/><i>#_EVENTTIMES</i>[/one_third]'.
-		'{has_bookings}'.
-		'[tagline_box title="Register" description="The simple and quick way to ensure your race place."]'.
-		'<div id="register"> #_BOOKINGFORM </div>'.
+		//'{has_bookings}'.
+		'[tagline_box title="Register" description="'.$booking.'"]'.
+//		'<div id="register"> #_BOOKINGFORM </div>'.
 		'[/tagline_box]'.
-		'{/has_bookings}'.
+		//'{/has_bookings}'.
 		
 			'{has_bookings}'.
 			'<div id="register">Register</div>'.
-			'#_BOOKINGFORM'.
+		//	'#_BOOKINGFORM'.
 			'{/has_bookings}'.
 			
 		'{has_location}'.

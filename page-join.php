@@ -53,6 +53,16 @@ else
 			'<p>You are an existing BHAA member and renewals will be open from January 1st 2013. Thanks for your patience</p>'.
 			'</div>';
 	}
+	else if (current_user_can( strtolower('administrator') ))
+	{
+ 		echo $event->output(
+ 			'<div id="annualmembership">
+ 			{has_bookings}
+ 			#_BOOKINGFORM
+ 			{/has_bookings}
+ 			</div>');
+		
+	}
  	else
  	{
  		echo $event->output(
