@@ -15,6 +15,20 @@ register_nav_menu('404_pages', '404 Useful Pages');
 // bhaa custom
 remove_action('wp_head','wp_generator');
 
+// update logo on the login page
+add_action("login_head", "bhaa_login_head");
+function bhaa_login_head() {
+	echo "
+	<style>
+	body.login #login h1 a {
+		background: url('http://bhaa.ie/wp-content/uploads/2012/11/headerlogo.jpg') no-repeat center top transparent;
+		height: 120px;
+		width: 400px;
+	}
+	</style>
+	";
+}
+
 // Content Width
 if (!isset( $content_width )) $content_width = 1000;
 
