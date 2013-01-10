@@ -29,6 +29,60 @@ function bhaa_login_head() {
 	";
 }
 
+function bhaa_house_drop_down_list() {
+	print '
+		<script>function addOption(selectbox,text,value,selected)
+		{
+		var optn = document.createElement("OPTION");
+		optn.text = text;
+		optn.value = value;
+		if(selected=="1")
+			optn.selected="selected";
+		selectbox.options.add(optn);
+		};</script>
+		';
+	global $wpdb;//$current_user->user_id
+	global $current_user;
+	$c = get_user_meta (get_current_user_id(), 'bhaa_runner_companyname', true);
+	//get's the current users row with company info
+	$query = "SELECT post_title FROM ".$wpdb->prefix ."posts WHERE post_status = 'publish' AND post_type = 'house' order by post_title ASC";
+	print '<!-- '.$query.'-->';
+	$items = $wpdb->get_results($query);//get items as assoc array.
+	print '<script>
+ 	if(document.getElementsByName("bhaa_runner_house")[0])
+	{';
+	foreach ($items as $row) {//give individual items
+		print 'addOption( document.getElementsByName("bhaa_runner_house")[0],"'.$row->post_title.'","'.$row->post_title.'"';
+		if ($row->post_title==$c) {
+			print',"1");';
+		}else {
+			print',"0");';
+		}
+	}
+	print '}</script>';
+}
+add_action('wp_footer', 'bhaa_house_drop_down_list');
+add_action('admin_footer', 'bhaa_house_drop_down_list');
+
+
+// add_filter('frm_setup_new_fields_vars', 'frm_set_checked', 20, 2);
+// add_filter('frm_setup_edit_fields_vars', 'frm_set_checked', 20, 2);
+
+// function frm_set_checked($values, $field){
+// 	if($field->id == 'bhaa_runner_company'){ //change 125 to the ID of your drop-down field
+// 		global $wpdb;
+// 		$post_ids = $wpdb->get_col("SELECT tr.object_id FROM $wpdb->posts AS t WHERE t.type = 'house'");
+// 		$posts = get_posts(array('include' => $post_ids));
+
+// 		$values['options'] = array();
+// 		foreach($posts as $p){
+// 			$values['options'][$p->ID] = $p->post_title;
+// 		}
+// 	}
+// 	return $values;
+// }
+
+
 // Content Width
 if (!isset( $content_width )) $content_width = 1000;
 
