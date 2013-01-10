@@ -31,37 +31,55 @@ echo '<section id="primary">';
 
 if( $EM_Event->end >= time() )
 {
-	$booking = $EM_Event->output('{has_bookings}#_BOOKINGFORM{/has_bookings}');
+	//$booking = $EM_Event->output('{has_bookings}#_BOOKINGFORM{/has_bookings}');
 	echo $EM_Event->output(
-		'[two_third last="no"]<p>#_EVENTNOTES</p>[/two_third]'.
-		'[one_third last="yes"]<strong>Date/Time</strong><br/>Date - #_EVENTDATES<br/><i>#_EVENTTIMES</i>[/one_third]'.
+			
+		'[one_third last="no"]<p>#_EVENTEXCERPT</p>[/one_third]'.
+		'[one_third last="no"]<strong>Date/Time</strong><br/>Date - #_EVENTDATES<br/><i>#_EVENTTIMES</i>[/one_third]'.
+		'[one_third last="yes"]
+			<a href="#details">Details</a>
+			<a href="#register">Register</a>
+			<a href="#location">Location</a>
+		[/one_third]'.
+
+		// details
+		'<div id="details">'.
+		'<h3>Details</h3>'.
+		'#_EVENTNOTES'.
+		'</div>'.
+
+		'<div id="register">'.
 		//'{has_bookings}'.
 		'[tagline_box title="Register" description="'.$booking.'"]'.
 //		'<div id="register"> #_BOOKINGFORM </div>'.
 		'[/tagline_box]'.
 		//'{/has_bookings}'.
-		
-			'{has_bookings}'.
-			'<div id="register">Register</div>'.
-		//	'#_BOOKINGFORM'.
-			'{/has_bookings}'.
+		'{has_bookings}'.
+		'#_BOOKINGFORM'.
+		'{/has_bookings}'.
+		'</div>'.
 			
+		'<div id="location">'.
 		'{has_location}'.
 		'<p>'.
 		'<strong>Location</strong><br/>'.
 		'#_LOCATIONLINK'.
 		'</p>'.
+
 		'<div id="details" style="float:right; margin:0px 0px 15px 15px;">#_MAP</div>'.
 		'{/has_location}'.
-		'</hr>'
+		'</div>'
 		);	
 }
 else
 {
+	// past event
 	echo $EM_Event->output(
 			//'<h1>BHAA #_EVENTNAME : #_EVENTDATES</h1>'.
 			'<br style="clear:both"/>'.
-			'<p>#_EVENTNOTES</p>'.
+			'POC1 #_EVENTEXCERPT'.
+			'<br/>'.
+			'POC2 #_EVENTNOTES'.
 			'<div id="details" style="float:right; margin:0px 0px 15px 15px;">#_MAP</div>'.
 			'<p>'.
 				'<strong>Date/Time</strong><br/>'.
