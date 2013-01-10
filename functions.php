@@ -43,17 +43,17 @@ function bhaa_house_drop_down_list() {
 		';
 	global $wpdb;//$current_user->user_id
 	global $current_user;
-	$c = get_user_meta (get_current_user_id(), 'bhaa_runner_companyname', true);
+	$c = get_user_meta (get_current_user_id(), 'bhaa_runner_company', true);
 	//get's the current users row with company info
-	$query = "SELECT post_title FROM ".$wpdb->prefix ."posts WHERE post_status = 'publish' AND post_type = 'house' order by post_title ASC";
+	$query = "SELECT ID,post_title FROM ".$wpdb->prefix ."posts WHERE post_status = 'publish' AND post_type = 'house' order by post_title ASC";
 	print '<!-- '.$query.'-->';
 	$items = $wpdb->get_results($query);//get items as assoc array.
 	print '<script>
- 	if(document.getElementsByName("bhaa_runner_house")[0])
+ 	if(document.getElementsByName("bhaa_runner_company")[0])
 	{';
 	foreach ($items as $row) {//give individual items
-		print 'addOption( document.getElementsByName("bhaa_runner_house")[0],"'.$row->post_title.'","'.$row->post_title.'"';
-		if ($row->post_title==$c) {
+		print 'addOption( document.getElementsByName("bhaa_runner_company")[0],"'.$row->post_title.'",'.$row->ID;
+		if ($row->ID==$c) {
 			print',"1");';
 		}else {
 			print',"0");';
