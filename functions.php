@@ -19,28 +19,28 @@ remove_action('wp_head','wp_generator');
 add_action("login_head", "bhaa_login_head");
 function bhaa_login_head() {
 	echo "
-	<style>
-	body.login #login h1 a {
-		background: url('http://bhaa.ie/wp-content/uploads/2012/11/headerlogo.jpg') no-repeat center top transparent;
-		height: 120px;
-		width: 400px;
-	}
-	</style>
-	";
+			<style>
+			body.login #login h1 a {
+			background: url('http://bhaa.ie/wp-content/uploads/2012/11/headerlogo.jpg') no-repeat center top transparent;
+			height: 120px;
+			width: 400px;
+}
+			</style>
+			";
 }
 
 function bhaa_house_drop_down_list() {
 	print '
-		<script>function addOption(selectbox,text,value,selected)
-		{
-		var optn = document.createElement("OPTION");
-		optn.text = text;
-		optn.value = value;
-		if(selected=="1")
+			<script>function addOption(selectbox,text,value,selected)
+			{
+			var optn = document.createElement("OPTION");
+			optn.text = text;
+			optn.value = value;
+			if(selected=="1")
 			optn.selected="selected";
-		selectbox.options.add(optn);
-		};</script>
-		';
+			selectbox.options.add(optn);
+};</script>
+			';
 	global $wpdb;//$current_user->user_id
 	global $current_user;
 	$c = get_user_meta (get_current_user_id(), 'bhaa_runner_company', true);
@@ -49,8 +49,8 @@ function bhaa_house_drop_down_list() {
 	print '<!-- '.$query.'-->';
 	$items = $wpdb->get_results($query);//get items as assoc array.
 	print '<script>
- 	if(document.getElementsByName("bhaa_runner_company")[0])
-	{';
+			if(document.getElementsByName("bhaa_runner_company")[0])
+			{';
 	foreach ($items as $row) {//give individual items
 		print 'addOption( document.getElementsByName("bhaa_runner_company")[0],"'.$row->post_title.'",'.$row->ID;
 		if ($row->ID==$c) {
@@ -94,46 +94,46 @@ require_once(TEMPLATEPATH.'/framework/class-tgm-plugin-activation.php');
 add_action('tgmpa_register', 'avada_register_required_plugins');
 function avada_register_required_plugins() {
 	$plugins = array(
-		array(
-			'name'     				=> 'LayerSlider', // The plugin name
-			'slug'     				=> 'LayerSlider', // The plugin slug (typically the folder name)
-			'source'   				=> get_bloginfo('template_directory') . '/framework/plugins/LayerSlider_WP_3.0.1.zip', // The plugin source
-			'required' 				=> true, // If false, the plugin is only 'recommended' instead of required
-			'version' 				=> '3.0.1', // E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented
-			'force_activation' 		=> false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch
-			'force_deactivation' 	=> false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins
-			'external_url' 			=> '', // If set, overrides default API URL and points to an external URL
-		),
-		array(
-			'name'     				=> 'FlexSlider', // The plugin name
-			'slug'     				=> 'tf-flexslider', // The plugin slug (typically the folder name)
-			'source'   				=> get_bloginfo('template_directory') . '/framework/plugins/tf-flexslider.zip', // The plugin source
-			'required' 				=> true, // If false, the plugin is only 'recommended' instead of required
-			'version' 				=> '1.0.5', // E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented
-			'force_activation' 		=> false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch
-			'force_deactivation' 	=> false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins
-			'external_url' 			=> '', // If set, overrides default API URL and points to an external URL
-		),
-		array(
-			'name'     				=> 'Revolution Slider', // The plugin name
-			'slug'     				=> 'revslider', // The plugin slug (typically the folder name)
-			'source'   				=> get_bloginfo('template_directory') . '/framework/plugins/revslider.zip', // The plugin source
-			'required' 				=> true, // If false, the plugin is only 'recommended' instead of required
-			'version' 				=> '1.5.4', // E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented
-			'force_activation' 		=> true, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch
-			'force_deactivation' 	=> false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins
-			'external_url' 			=> '', // If set, overrides default API URL and points to an external URL
-		),
-		array(
-			'name'     				=> 'Post Types Order', // The plugin name
-			'slug'     				=> 'post-types-order', // The plugin slug (typically the folder name)
-			'source'   				=> get_bloginfo('template_directory') . '/framework/plugins/post-types-order.zip', // The plugin source
-			'required' 				=> true, // If false, the plugin is only 'recommended' instead of required
-			'version' 				=> '1.5.4', // E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented
-			'force_activation' 		=> true, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch
-			'force_deactivation' 	=> false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins
-			'external_url' 			=> '', // If set, overrides default API URL and points to an external URL
-		)
+			array(
+					'name'     				=> 'LayerSlider', // The plugin name
+					'slug'     				=> 'LayerSlider', // The plugin slug (typically the folder name)
+					'source'   				=> get_bloginfo('template_directory') . '/framework/plugins/LayerSlider_WP_3.0.1.zip', // The plugin source
+					'required' 				=> true, // If false, the plugin is only 'recommended' instead of required
+					'version' 				=> '3.0.1', // E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented
+					'force_activation' 		=> false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch
+					'force_deactivation' 	=> false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins
+					'external_url' 			=> '', // If set, overrides default API URL and points to an external URL
+			),
+			array(
+					'name'     				=> 'FlexSlider', // The plugin name
+					'slug'     				=> 'tf-flexslider', // The plugin slug (typically the folder name)
+					'source'   				=> get_bloginfo('template_directory') . '/framework/plugins/tf-flexslider.zip', // The plugin source
+					'required' 				=> true, // If false, the plugin is only 'recommended' instead of required
+					'version' 				=> '1.0.5', // E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented
+					'force_activation' 		=> false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch
+					'force_deactivation' 	=> false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins
+					'external_url' 			=> '', // If set, overrides default API URL and points to an external URL
+			),
+			array(
+					'name'     				=> 'Revolution Slider', // The plugin name
+					'slug'     				=> 'revslider', // The plugin slug (typically the folder name)
+					'source'   				=> get_bloginfo('template_directory') . '/framework/plugins/revslider.zip', // The plugin source
+					'required' 				=> true, // If false, the plugin is only 'recommended' instead of required
+					'version' 				=> '1.5.4', // E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented
+					'force_activation' 		=> true, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch
+					'force_deactivation' 	=> false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins
+					'external_url' 			=> '', // If set, overrides default API URL and points to an external URL
+			),
+			array(
+					'name'     				=> 'Post Types Order', // The plugin name
+					'slug'     				=> 'post-types-order', // The plugin slug (typically the folder name)
+					'source'   				=> get_bloginfo('template_directory') . '/framework/plugins/post-types-order.zip', // The plugin source
+					'required' 				=> true, // If false, the plugin is only 'recommended' instead of required
+					'version' 				=> '1.5.4', // E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented
+					'force_activation' 		=> true, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch
+					'force_deactivation' 	=> false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins
+					'external_url' 			=> '', // If set, overrides default API URL and points to an external URL
+			)
 	);
 
 	// Change this to your theme text domain, used for internationalising strings
@@ -147,15 +147,15 @@ function avada_register_required_plugins() {
 	 * end of each line for what each argument will be.
 	 */
 	$config = array(
-		'domain'       		=> $theme_text_domain,         	// Text domain - likely want to be the same as your theme.
-		'default_path' 		=> '',                         	// Default absolute path to pre-packaged plugins
-		'parent_menu_slug' 	=> 'themes.php', 				// Default parent menu slug
-		'parent_url_slug' 	=> 'themes.php', 				// Default parent URL slug
-		'menu'         		=> 'install-required-plugins', 	// Menu slug
-		'has_notices'      	=> true,                       	// Show admin notices or not
-		'is_automatic'    	=> true,					   	// Automatically activate plugins after installation or not
-		'message' 			=> '',							// Message to output right before the plugins table
-		'strings'      		=> array(
+			'domain'       		=> $theme_text_domain,         	// Text domain - likely want to be the same as your theme.
+			'default_path' 		=> '',                         	// Default absolute path to pre-packaged plugins
+			'parent_menu_slug' 	=> 'themes.php', 				// Default parent menu slug
+			'parent_url_slug' 	=> 'themes.php', 				// Default parent URL slug
+			'menu'         		=> 'install-required-plugins', 	// Menu slug
+			'has_notices'      	=> true,                       	// Show admin notices or not
+			'is_automatic'    	=> true,					   	// Automatically activate plugins after installation or not
+			'message' 			=> '',							// Message to output right before the plugins table
+			'strings'      		=> array(
 			'page_title'                       			=> __( 'Install Required Plugins', $theme_text_domain ),
 			'menu_title'                       			=> __( 'Install Plugins', $theme_text_domain ),
 			'installing'                       			=> __( 'Installing Plugin: %s', $theme_text_domain ), // %1$s = plugin name
@@ -174,7 +174,7 @@ function avada_register_required_plugins() {
 			'plugin_activated'                 			=> __( 'Plugin activated successfully.', $theme_text_domain ),
 			'complete' 									=> __( 'All plugins installed and activated successfully. %s', $theme_text_domain ), // %1$s = dashboard link
 			'nag_type'									=> 'updated' // Determines admin notice type - can only be 'updated' or 'error'
-		)
+	)
 	);
 
 	tgmpa($plugins, $config);
@@ -212,43 +212,43 @@ add_image_size('recent-works-thumbnail', 66, 66, true);
 // Register widgetized locations
 if(function_exists('register_sidebar')) {
 	register_sidebar(array(
-		'name' => 'Blog Sidebar',
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget' => '</div>',
-		'before_title' => '<div class="heading"><h3>',
-		'after_title' => '</h3></div>',
+	'name' => 'Blog Sidebar',
+	'before_widget' => '<div id="%1$s" class="widget %2$s">',
+	'after_widget' => '</div>',
+	'before_title' => '<div class="heading"><h3>',
+	'after_title' => '</h3></div>',
 	));
 
 	register_sidebar(array(
-		'name' => 'Footer Widget 1',
-		'before_widget' => '<div id="%1$s" class="footer-widget-col">',
-		'after_widget' => '</div>',
-		'before_title' => '<h3>',
-		'after_title' => '</h3>',
+	'name' => 'Footer Widget 1',
+	'before_widget' => '<div id="%1$s" class="footer-widget-col">',
+	'after_widget' => '</div>',
+	'before_title' => '<h3>',
+	'after_title' => '</h3>',
 	));
 
 	register_sidebar(array(
-		'name' => 'Footer Widget 2',
-		'before_widget' => '<div id="%1$s" class="footer-widget-col">',
-		'after_widget' => '</div>',
-		'before_title' => '<h3>',
-		'after_title' => '</h3>',
+	'name' => 'Footer Widget 2',
+	'before_widget' => '<div id="%1$s" class="footer-widget-col">',
+	'after_widget' => '</div>',
+	'before_title' => '<h3>',
+	'after_title' => '</h3>',
 	));
 
 	register_sidebar(array(
-		'name' => 'Footer Widget 3',
-		'before_widget' => '<div id="%1$s" class="footer-widget-col">',
-		'after_widget' => '</div>',
-		'before_title' => '<h3>',
-		'after_title' => '</h3>',
+	'name' => 'Footer Widget 3',
+	'before_widget' => '<div id="%1$s" class="footer-widget-col">',
+	'after_widget' => '</div>',
+	'before_title' => '<h3>',
+	'after_title' => '</h3>',
 	));
 
 	register_sidebar(array(
-		'name' => 'Footer Widget 4',
-		'before_widget' => '<div id="%1$s" class="footer-widget-col">',
-		'after_widget' => '</div>',
-		'before_title' => '<h3>',
-		'after_title' => '</h3>',
+	'name' => 'Footer Widget 4',
+	'before_widget' => '<div id="%1$s" class="footer-widget-col">',
+	'after_widget' => '</div>',
+	'before_title' => '<h3>',
+	'after_title' => '</h3>',
 	));
 }
 
@@ -257,36 +257,36 @@ add_action('init', 'pyre_init');
 function pyre_init() {
 	global $data;
 	register_post_type(
-		'avada_portfolio',
-		array(
-			'labels' => array(
-				'name' => 'Portfolio',
-				'singular_name' => 'Portfolio'
+	'avada_portfolio',
+	array(
+	'labels' => array(
+	'name' => 'Portfolio',
+	'singular_name' => 'Portfolio'
 			),
 			'public' => true,
 			'has_archive' => true,
 			'rewrite' => array('slug' => $data['portfolio_slug']),
 			'supports' => array('title', 'editor', 'thumbnail','comments'),
 			'can_export' => true,
-		)
+	)
 	);
 
 	register_taxonomy('portfolio_category', 'avada_portfolio', array('hierarchical' => true, 'label' => 'Categories', 'query_var' => true, 'rewrite' => true));
 	register_taxonomy('portfolio_skills', 'avada_portfolio', array('hierarchical' => true, 'label' => 'Skills', 'query_var' => true, 'rewrite' => true));
 
 	register_post_type(
-		'avada_faq',
-		array(
-			'labels' => array(
-				'name' => 'FAQs',
-				'singular_name' => 'FAQ'
+	'avada_faq',
+	array(
+	'labels' => array(
+	'name' => 'FAQs',
+	'singular_name' => 'FAQ'
 			),
 			'public' => true,
 			'has_archive' => true,
 			'rewrite' => array('slug' => 'faq-items'),
 			'supports' => array('title', 'editor', 'thumbnail','comments'),
 			'can_export' => true,
-		)
+	)
 	);
 
 	register_taxonomy('faq_category', 'avada_faq', array('hierarchical' => true, 'label' => 'Categories', 'query_var' => true, 'rewrite' => true));
@@ -295,37 +295,38 @@ function pyre_init() {
 // How comments are displayed
 function avada_comment($comment, $args, $depth) {
 	$GLOBALS['comment'] = $comment; ?>
-	<?php $add_below = ''; ?>
-	<li <?php comment_class(); ?> id="comment-<?php comment_ID() ?>">
-	
-		<div class="the-comment">
-			<div class="avatar">
-				<?php echo get_avatar($comment, 54); ?>
-			</div>
-			
-			<div class="comment-box">
-			
-				<div class="comment-author meta">
-					<strong><?php echo get_comment_author_link() ?></strong>
-					<?php printf(__('%1$s at %2$s', 'Avada'), get_comment_date(),  get_comment_time()) ?></a><?php edit_comment_link(__(' - Edit'),'  ','') ?><?php comment_reply_link(array_merge( $args, array('reply_text' => ' - Reply', 'add_below' => $add_below, 'depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
-				</div>
-			
-				<div class="comment-text">
-					<?php if ($comment->comment_approved == '0') : ?>
-					<em><?php echo __('Your comment is awaiting moderation.', 'Avada') ?></em>
-					<br />
-					<?php endif; ?>
-					<?php comment_text() ?>
-				</div>
-			
-			</div>
-			
+<?php $add_below = ''; ?>
+<li <?php comment_class(); ?> id="comment-<?php comment_ID() ?>">
+
+	<div class="the-comment">
+		<div class="avatar">
+			<?php echo get_avatar($comment, 54); ?>
 		</div>
 
-<?php }
+		<div class="comment-box">
 
-/*function pyre_SearchFilter($query) {
-	if ($query->is_search) {
+			<div class="comment-author meta">
+				<strong><?php echo get_comment_author_link() ?> </strong>
+				<?php printf(__('%1$s at %2$s', 'Avada'), get_comment_date(),  get_comment_time()) ?>
+				</a>
+				<?php edit_comment_link(__(' - Edit'),'  ','') ?>
+				<?php comment_reply_link(array_merge( $args, array('reply_text' => ' - Reply', 'add_below' => $add_below, 'depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
+			</div>
+
+			<div class="comment-text">
+				<?php if ($comment->comment_approved == '0') : ?>
+				<em><?php echo __('Your comment is awaiting moderation.', 'Avada') ?>
+				</em> <br />
+				<?php endif; ?>
+				<?php comment_text() ?>
+			</div>
+
+		</div>
+
+	</div> <?php }
+
+	/*function pyre_SearchFilter($query) {
+	 if ($query->is_search) {
 		$query->set('post_type', 'post');
 	}
 	return $query;
@@ -423,47 +424,47 @@ function avada_scripts() {
         if($_SERVER['HTTPS']=='on') {
             $protocol='https:';
         }
-    wp_enqueue_script( 'jquery' );
+        wp_enqueue_script( 'jquery' );
 
-    wp_deregister_script( 'modernizr' );
-    wp_register_script( 'modernizr', get_bloginfo('template_directory').'/js/modernizr.js');
-	wp_enqueue_script( 'modernizr' );
+        wp_deregister_script( 'modernizr' );
+        wp_register_script( 'modernizr', get_bloginfo('template_directory').'/js/modernizr.js');
+        wp_enqueue_script( 'modernizr' );
 
-    wp_deregister_script( 'modernizr' );
-    wp_register_script( 'modernizr', get_bloginfo('template_directory').'/js/modernizr.js');
-	wp_enqueue_script( 'modernizr' );
+        wp_deregister_script( 'modernizr' );
+        wp_register_script( 'modernizr', get_bloginfo('template_directory').'/js/modernizr.js');
+        wp_enqueue_script( 'modernizr' );
 
-    wp_deregister_script( 'jtwt' );
-    wp_register_script( 'jtwt', get_bloginfo('template_directory').'/js/jtwt.js');
-	wp_enqueue_script( 'jtwt' );
+        wp_deregister_script( 'jtwt' );
+        wp_register_script( 'jtwt', get_bloginfo('template_directory').'/js/jtwt.js');
+        wp_enqueue_script( 'jtwt' );
 
-    wp_deregister_script( 'jquery.elastislide' );
-    wp_register_script( 'jquery.elastislide', get_bloginfo('template_directory').'/js/jquery.elastislide.js');
-	wp_enqueue_script( 'jquery.elastislide' );
+        wp_deregister_script( 'jquery.elastislide' );
+        wp_register_script( 'jquery.elastislide', get_bloginfo('template_directory').'/js/jquery.elastislide.js');
+        wp_enqueue_script( 'jquery.elastislide' );
 
-    wp_deregister_script( 'jquery.prettyPhoto' );
-    wp_register_script( 'jquery.prettyPhoto', get_bloginfo('template_directory').'/js/jquery.prettyPhoto.js');
-	wp_enqueue_script( 'jquery.prettyPhoto' );
+        wp_deregister_script( 'jquery.prettyPhoto' );
+        wp_register_script( 'jquery.prettyPhoto', get_bloginfo('template_directory').'/js/jquery.prettyPhoto.js');
+        wp_enqueue_script( 'jquery.prettyPhoto' );
 
-    wp_deregister_script( 'jquery.isotope' );
-    wp_register_script( 'jquery.isotope', get_bloginfo('template_directory').'/js/jquery.isotope.min.js');
-	wp_enqueue_script( 'jquery.isotope' );
+        wp_deregister_script( 'jquery.isotope' );
+        wp_register_script( 'jquery.isotope', get_bloginfo('template_directory').'/js/jquery.isotope.min.js');
+        wp_enqueue_script( 'jquery.isotope' );
 
-    wp_deregister_script( 'jquery.flexslider' );
-    wp_register_script( 'jquery.flexslider', get_bloginfo('template_directory').'/js/jquery.flexslider-min.js');
-	wp_enqueue_script( 'jquery.flexslider' );
+        wp_deregister_script( 'jquery.flexslider' );
+        wp_register_script( 'jquery.flexslider', get_bloginfo('template_directory').'/js/jquery.flexslider-min.js');
+        wp_enqueue_script( 'jquery.flexslider' );
 
-    wp_deregister_script( 'jquery.cycle' );
-    wp_register_script( 'jquery.cycle', get_bloginfo('template_directory').'/js/jquery.cycle.lite.js');
-	wp_enqueue_script( 'jquery.cycle' );
+        wp_deregister_script( 'jquery.cycle' );
+        wp_register_script( 'jquery.cycle', get_bloginfo('template_directory').'/js/jquery.cycle.lite.js');
+        wp_enqueue_script( 'jquery.cycle' );
 
-    wp_deregister_script( 'jquery.fitvids' );
-    wp_register_script( 'jquery.fitvids', get_bloginfo('template_directory').'/js/jquery.fitvids.js');
-	wp_enqueue_script( 'jquery.fitvids' );
+        wp_deregister_script( 'jquery.fitvids' );
+        wp_register_script( 'jquery.fitvids', get_bloginfo('template_directory').'/js/jquery.fitvids.js');
+        wp_enqueue_script( 'jquery.fitvids' );
 
-    wp_deregister_script( 'avada' );
-    wp_register_script( 'avada', get_bloginfo('template_directory').'/js/main.js');
-	wp_enqueue_script( 'avada' );
+        wp_deregister_script( 'avada' );
+        wp_register_script( 'avada', get_bloginfo('template_directory').'/js/main.js');
+        wp_enqueue_script( 'avada' );
 	}
 }
 add_action('init', 'avada_scripts');

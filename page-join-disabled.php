@@ -2,7 +2,7 @@
 /**
  * Template Name: BHAA Join Disabled
  */
-get_header(); 
+get_header();
 
 // query for the membership page for its content
 $your_query = new WP_Query('pagename=join');
