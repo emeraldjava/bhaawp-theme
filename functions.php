@@ -1,5 +1,8 @@
 <?php
 // Translation
+remove_filter( 'the_content', 'wpautop' );
+remove_filter( 'the_excerpt', 'wpautop' );
+
 load_theme_textdomain('Avada', TEMPLATEPATH.'/languages');
 
 // Default RSS feed links
@@ -14,6 +17,9 @@ register_nav_menu('404_pages', '404 Useful Pages');
 
 // bhaa custom
 remove_action('wp_head','wp_generator');
+
+//remove_filter( 'the_content', 'wpautop' );
+//remove_filter( 'the_excerpt', 'wpautop' );
 
 // update logo on the login page
 add_action("login_head", "bhaa_login_head");
