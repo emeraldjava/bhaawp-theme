@@ -47,28 +47,31 @@ if( $EM_Event->end >= time() )
 			'<h3>Details</h3>'.
 			'#_EVENTNOTES'.
 			'</div>'.
+			'</br>'.
 
+			// register
 			'<div id="register">'.
-			//'{has_bookings}'.
-			'[tagline_box title="Register" description="'.$booking.'"]'.
-			//		'<div id="register"> #_BOOKINGFORM </div>'.
-			'[/tagline_box]'.
-			//'{/has_bookings}'.
+			'<h3>Register</h3>'.
 			'{has_bookings}'.
 			'#_BOOKINGFORM'.
 			'{/has_bookings}'.
 			'</div>'.
-				
+			'</br>'.
+			
+			// location
 			'<div id="location">'.
+			'<h3>Location</h3>'.
 			'{has_location}'.
-			'<p>'.
-			'<strong>Location</strong><br/>'.
-			'#_LOCATIONLINK'.
-			'</p>'.
-
-			'<div id="details" style="float:right; margin:0px 0px 15px 15px;">#_MAP</div>'.
+			'[one_third last="no"]<p>'.
+			'<strong>Address</strong><br/>'.
+			'#_LOCATIONADDRESS<br/>'.
+			'#_LOCATIONTOWN<br/>'.
+			'#_LOCATIONCOUNTRY<br/>'.
+			'</p>[/one_third]'.
+			'[two_third last="yes"]<div id="details" style="float:right; margin:0px 0px 15px 15px;">#_MAP</div>[/two_third]'.
 			'{/has_location}'.
-			'</div>'
+			'</div>'.
+			'</br>'
 					);
 }
 else
