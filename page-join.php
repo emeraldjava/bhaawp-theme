@@ -2,30 +2,26 @@
 /**
  * Template Name: BHAA Join
  */
+global $EM_Event;
+
 get_header();
-?>
 
-<div id="primary" class="site-content">
-	<div id="content" role="main">
+echo '<section id="primary">';
 
-		<?php
 		// query for the membership page for its content
 		$your_query = new WP_Query('pagename=join');
 		while ( $your_query->have_posts() ) : $your_query->the_post();
 		echo the_content();
 		endwhile;
-		wp_reset_postdata();
-		?>
+		//
 
-
-		<?php 
 		/**
 		 * check the status of the runner - determine options
 		 */
 		/**
 		 * display the annual booking ticket and registration form.
 		 */
-		$bhaa_annual_event_id = get_option( 'bhaa_annual_event_id',0);
+		$bhaa_annual_event_id = get_option( 'bhaa_annual_event_id');
 		$event = em_get_event($bhaa_annual_event_id,'post_id');
 		if(!is_user_logged_in())
 		{
@@ -53,31 +49,29 @@ get_header();
 						'<p>You are an existing BHAA member and renewals will be open from January 1st 2013. Thanks for your patience</p>'.
 						'</div>';
 			}
-			else if (current_user_can( strtolower('administrator') ))
-			{
-				echo $event->output(
- 			'<div id="annualmembership">
- 			{has_bookings}
- 			#_BOOKINGFORM
- 			{/has_bookings}
- 			</div>');
-
-			}
+// 			else if (current_user_can( strtolower('administrator') ))
+// 			{
+// 				echo $event->output(
+//  			'<div id="annualmembership">
+//  			{has_bookings}
+//  			#_BOOKINGFORM
+//  			{/has_bookings}
+//  			</div>');
+// 			}
 			else
 			{
 				echo $event->output(
- 			'<div id="annualmembership">
+ 			'<div id="join">
  			{has_bookings}
  			#_BOOKINGFORM
  			{/has_bookings}
- 			</div>');
+ 			</div>
+			<br/>');
 			}
 		}
-		?>
+echo '</section>';
 
-	</div>
-	<!-- #content -->
-</div>
-<!-- #primary -->
+wp_reset_postdata();
 
-<?php get_footer(); ?>
+get_footer();
+?>
