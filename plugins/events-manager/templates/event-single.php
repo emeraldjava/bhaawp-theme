@@ -80,9 +80,9 @@ else
 	echo $EM_Event->output(
 			//'<h1>BHAA #_EVENTNAME : #_EVENTDATES</h1>'.
 			'<br style="clear:both"/>'.
-			'POC1 #_EVENTEXCERPT'.
+			'#_EVENTEXCERPT'.
 			'<br/>'.
-			'POC2 #_EVENTNOTES'.
+			'#_EVENTNOTES'.
 			'<div id="details" style="float:right; margin:0px 0px 15px 15px;">#_MAP</div>'.
 			'<p>'.
 			'<strong>Date/Time</strong><br/>'.
