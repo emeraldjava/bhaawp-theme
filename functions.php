@@ -24,34 +24,32 @@ remove_action('wp_head','wp_generator');
 // update logo on the login page
 add_action("login_head", "bhaa_login_head");
 function bhaa_login_head() {
-	echo "
-			<style>
-			body.login #login h1 a {
-			background: url('http://bhaa.ie/wp-content/uploads/2012/11/headerlogo.jpg') no-repeat center top transparent;
-			height: 120px;
-			width: 400px;
+echo "
+<style>
+	body.login #login h1 a {
+	background: url('http://bhaa.ie/wp-content/uploads/2012/11/headerlogo.jpg') no-repeat center top transparent;
+	height: 120px;
+	width: 400px;
 }
-			</style>
-			";
+</style>
+";
 }
 
 function bhaa_house_drop_down_list() {
-	print '
-			<script>function addOption(selectbox,text,value,selected)
-			{
-			var optn = document.createElement("OPTION");
-			optn.text = text;
-			optn.value = value;
-			if(selected=="1")
-			optn.selected="selected";
-			selectbox.options.add(optn);
-};</script>
-			';
+	print '<script>function addOption(selectbox,text,value,selected)
+{
+var optn = document.createElement("OPTION");
+optn.text = text;
+optn.value = value;
+if(selected=="1")
+optn.selected="selected";
+selectbox.options.add(optn);
+};</script>';
 	global $wpdb;//$current_user->user_id
 	global $current_user;
 	$c = get_user_meta (get_current_user_id(), 'bhaa_runner_company', true);
 	//get's the current users row with company info
-	$query = "SELECT ID,post_title FROM ".$wpdb->prefix ."posts WHERE post_status = 'publish' AND post_type = 'house' order by post_title ASC";
+	$query = "SELECT ID,post_title FROM wp_posts WHERE post_status = 'publish' AND post_type = 'house' order by post_title ASC";
 	print '<!-- '.$query.'-->';
 	$items = $wpdb->get_results($query);//get items as assoc array.
 	print '<script>
