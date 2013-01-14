@@ -45,7 +45,6 @@ echo '</tr>';
 
 <?php
 if($membershipDetails) {
-//<!-- BHAA ID -->
 echo '<tr><td style="padding: 0 1em 10px 0; font-family: Arial, Sans-serif; font-size: 13px; color: #888; white-space: nowrap" valign="top">';
 echo '<div><i style="font-style: normal">BHAA ID</i></div></td>';
 echo '<td style="padding-bottom: 10px; font-family: Arial, Sans-serif; font-size: 13px; color: #222" valign="top">#_BHAAID</td>';
@@ -66,6 +65,15 @@ echo '</tr>';
 <div><i style="font-style: normal">Gender</i></div></td>
 <td	style="padding-bottom: 10px; font-family: Arial, Sans-serif; font-size: 13px; color: #222" valign="top">#_BOOKINGFORMCUSTOM{bhaa_runner_gender}</td>
 </tr>
+
+<!-- Company -->
+<!-- 
+<tr>
+<td	style="padding: 0 1em 10px 0; font-family: Arial, Sans-serif; font-size: 13px; color: #888; white-space: nowrap" valign="top">
+<div><i style="font-style: normal">Company</i></div></td>
+<td	style="padding-bottom: 10px; font-family: Arial, Sans-serif; font-size: 13px; color: #222" valign="top">#_BOOKINGFORMCUSTOM{bhaa_runner_company}</td>
+</tr>
+-->
 
 <?php if($eventDetails) {
 // <!-- Thank you for registering for the BHAA #_EVENTLINK event.  -->
