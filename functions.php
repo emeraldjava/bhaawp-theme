@@ -36,25 +36,25 @@ echo "
 }
 
 function bhaa_house_drop_down_list() {
-	print '<script>function addOption(selectbox,text,value,selected)
+print '<script>function addOption(selectbox,text,value,selected)
 {
-var optn = document.createElement("OPTION");
-optn.text = text;
-optn.value = value;
-if(selected=="1")
-optn.selected="selected";
-selectbox.options.add(optn);
+	var optn = document.createElement("OPTION");
+	optn.text = text;
+	optn.value = value;
+	if(selected=="1")
+	optn.selected="selected";
+	selectbox.options.add(optn);
 };</script>';
 	global $wpdb;//$current_user->user_id
 	global $current_user;
 	$c = get_user_meta (get_current_user_id(), 'bhaa_runner_company', true);
 	//get's the current users row with company info
 	$query = "SELECT ID,post_title FROM wp_posts WHERE post_status = 'publish' AND post_type = 'house' order by post_title ASC";
-	print '<!-- '.$query.'-->';
+	//print '<!-- '.$query.'-->';
 	$items = $wpdb->get_results($query);//get items as assoc array.
-	print '<script>
-			if(document.getElementsByName("bhaa_runner_company")[0])
-			{';
+print '<script>
+if(document.getElementsByName("bhaa_runner_company")[0])
+{';
 	foreach ($items as $row) {//give individual items
 		print 'addOption( document.getElementsByName("bhaa_runner_company")[0],"'.$row->post_title.'",'.$row->ID;
 		if ($row->ID==$c) {
@@ -63,7 +63,7 @@ selectbox.options.add(optn);
 			print',"0");';
 		}
 	}
-	print '}</script>';
+print '}</script>';
 }
 add_action('wp_footer', 'bhaa_house_drop_down_list');
 add_action('admin_footer', 'bhaa_house_drop_down_list');
