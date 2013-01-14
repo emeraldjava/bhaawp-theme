@@ -10,23 +10,17 @@ global $loader;
 //echo 'BHAA Runner Page : Name = '.$_REQUEST['user_nicename'];
 $user = get_user_by('slug', $_REQUEST['user_nicename']);
 
-echo '<h2>'.$user->display_name.'</h2></br>';
+//echo '<h2>'.$user->display_name.'</h2></br>';
 
-$st = '[one_fourth last="no"]'.$user->display_name.'[/one_fourth][three_fourth last="true"]3/4[/three_fourth]';
+$st = '[one_fourth last="yes"]<h2>'.$user->display_name.'</h2>[/one_fourth]';
 echo do_shortcode($st);
-
-
 
 if( current_user_can('manage_options') )
 {
 	var_dump(get_user_meta($user->ID));
 }
-else
-{
-	echo 'Not Admin';
-}
 
-echo '<h4>Results</h4>';
+echo '<br/><h3>Results</h3>';
 echo $loader->raceresult->getTable()->renderRunnerTable($user->ID);
 
 // echo do_shortcode('[one_half last="no"]'.
@@ -36,4 +30,6 @@ echo $loader->raceresult->getTable()->renderRunnerTable($user->ID);
 // echo do_shortcode('[content_box title="Results"]'
 // 	.$loader->raceresult->getTable()->renderRunnerTable($user->ID).
 // 	'[/content_box]');
+
+get_footer();
 ?>
