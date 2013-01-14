@@ -1,8 +1,5 @@
 <?php
 // Translation
-remove_filter( 'the_content', 'wpautop' );
-remove_filter( 'the_excerpt', 'wpautop' );
-
 load_theme_textdomain('Avada', TEMPLATEPATH.'/languages');
 
 // Default RSS feed links
@@ -17,9 +14,6 @@ register_nav_menu('404_pages', '404 Useful Pages');
 
 // bhaa custom
 remove_action('wp_head','wp_generator');
-
-//remove_filter( 'the_content', 'wpautop' );
-//remove_filter( 'the_excerpt', 'wpautop' );
 
 // update logo on the login page
 add_action("login_head", "bhaa_login_head");
@@ -52,7 +46,8 @@ print '<script>function addOption(selectbox,text,value,selected)
 	$query = "SELECT ID,post_title FROM wp_posts WHERE post_status = 'publish' AND post_type = 'house' order by post_title ASC";
 	//print '<!-- '.$query.'-->';
 	$items = $wpdb->get_results($query);//get items as assoc array.
-print '<script>
+print '
+<script>
 if(document.getElementsByName("bhaa_runner_company")[0])
 {';
 	foreach ($items as $row) {//give individual items
@@ -63,7 +58,9 @@ if(document.getElementsByName("bhaa_runner_company")[0])
 			print',"0");';
 		}
 	}
-print '}</script>';
+print '}
+</script>
+';
 }
 add_action('wp_footer', 'bhaa_house_drop_down_list');
 add_action('admin_footer', 'bhaa_house_drop_down_list');
