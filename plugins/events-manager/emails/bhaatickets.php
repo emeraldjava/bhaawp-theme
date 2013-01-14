@@ -6,7 +6,6 @@
 <tr>
 <td>
 <div style="padding: 2px">
-<img class="bhaa-logo" src="http://bhaa.ie/wp-content/uploads/2012/11/headerlogo.jpg" width="97" height="100" alt="BHAA Logo" style="float: left; padding: 20px 20px" />
 
 <?php 
 // http://wp-events-plugin.com/documentation/placeholders/
@@ -17,7 +16,7 @@ if($EM_Ticket_Booking->get_ticket()->name=='Annual Membership')
 {
 	$header = '#_EVENTNAME : #_BOOKINGTICKETNAME';
 	$eventDetails = false;
-	$membershipDetails = false;
+	$membershipDetails = true;
 }
 else
 {
@@ -27,10 +26,14 @@ else
 }
 
 echo '<table cellpadding="0" cellspacing="0" border="0" summary="details">';
+
+echo '<tr><td span=1 style="padding: 0 1em 10px 0; font-family: Arial, Sans-serif; font-size: 13px; color: #888; white-space: nowrap" valign="top">';
+echo '<img class="bhaa-logo" src="http://bhaa.ie/wp-content/uploads/2012/11/headerlogo.jpg" width="97" height="100" alt="BHAA Logo" style="float: left; padding: 20px 20px" />';
+echo '</tr>';
+
 echo '<tr><td span=2 style="padding: 0 1em 10px 0; font-family: Arial, Sans-serif; font-size: 13px; color: #888; white-space: nowrap" valign="top">';
 echo '<h3 style="padding:0 0 6px 0;margin:0;font-family:Arial,Sans-serif;font-size:16px;font-weight:bold;color:#222">'.$header.'</h3>';
 echo '</tr>';
-
 ?>
 
 <!-- Who -->
@@ -39,6 +42,16 @@ echo '</tr>';
 <div><i style="font-style: normal">Name</i></div></td>
 <td	style="padding-bottom: 10px; font-family: Arial, Sans-serif; font-size: 13px; color: #222" valign="top">#_BOOKINGNAME</td>
 </tr>
+
+<?php
+if($membershipDetails) {
+//<!-- BHAA ID -->
+echo '<tr><td style="padding: 0 1em 10px 0; font-family: Arial, Sans-serif; font-size: 13px; color: #888; white-space: nowrap" valign="top">';
+echo '<div><i style="font-style: normal">BHAA ID</i></div></td>';
+echo '<td style="padding-bottom: 10px; font-family: Arial, Sans-serif; font-size: 13px; color: #222" valign="top">#_BHAAID</td>';
+echo '</tr>';
+}
+?>
 
 <!-- Date Of Birth -->
 <tr>
@@ -53,17 +66,6 @@ echo '</tr>';
 <div><i style="font-style: normal">Gender</i></div></td>
 <td	style="padding-bottom: 10px; font-family: Arial, Sans-serif; font-size: 13px; color: #222" valign="top">#_BOOKINGFORMCUSTOM{bhaa_runner_gender}</td>
 </tr>
-
-<?php
-if($membershipDetails) {
-//<!-- BHAA ID -->
-//echo '<tr><td style="padding: 0 1em 10px 0; font-family: Arial, Sans-serif; font-size: 13px; color: #888; white-space: nowrap" valign="top">';
-//echo '<div><i style="font-style: normal">BHAA Number</i></div></td>';
-//echo '<td style="padding-bottom: 10px; font-family: Arial, Sans-serif; font-size: 13px; color: #222" valign="top">#_BOOKING_USER_ID</td>';
-//echo '</tr>';
-}
-
-?>
 
 <?php if($eventDetails) {
 // <!-- Thank you for registering for the BHAA #_EVENTLINK event.  -->
