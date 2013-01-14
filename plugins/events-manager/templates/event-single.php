@@ -22,109 +22,101 @@ global $EM_Event;
 get_header();
 
 echo '<section id="primary">';
-//echo '<div id="eventmenu"><ul>'.
-//	'<li><a href="#details">Details</a></li>'.
-//	'<li><a href="#register">Register</a></li>'.
-//	'<li><a href="#results">Results</a></li>'.
-//	'<li><a href="#teams">Teams</a></li>'.
-//	'</ul>';
 
 if( $EM_Event->end >= time() )
 {
-	//$booking = $EM_Event->output('{has_bookings}#_BOOKINGFORM{/has_bookings}');
 	echo $EM_Event->output(
 				
-			'[one_third last="no"]<p>#_EVENTEXCERPT</p>[/one_third]'.
-			'[one_third last="no"]<strong>Date/Time</strong><br/>Date - #_EVENTDATES<br/><i>#_EVENTTIMES</i>[/one_third]'.
-			'[one_third last="yes"]
-			<a href="#details">Details</a>
-			<a href="#register">Register</a>
-			<a href="#location">Location</a>
-			[/one_third]'.
+		'[one_third last="no"]<p>#_EVENTEXCERPT</p>[/one_third]'.
+		'[one_third last="no"]<strong>Date/Time</strong><br/>Date - #_EVENTDATES<br/><i>#_EVENTTIMES</i>[/one_third]'.
+		'[one_third last="yes"]
+		<a href="#details">Details</a>
+		<a href="#register">Register</a>
+		<a href="#location">Location</a>
+		[/one_third]'.
 
-			// details
-			'<div id="details">'.
-			'<h3>Details</h3>'.
-			'#_EVENTNOTES'.
-			'</div>'.
-			'</br>'.
+		// details
+		'<div id="details">'.
+		'<h3>Details</h3>'.
+		'#_EVENTNOTES'.
+		'</div>'.
+		'</br>'.
 
-			// register
-			'<div id="register">'.
-			'<h3>Register</h3>'.
-			'{has_bookings}'.
-			'#_BOOKINGFORM'.
-			'{/has_bookings}'.
-			'</div>'.
-			'</br>'.
+		// register
+		'<div id="register">'.
+		'<h3>Register</h3>'.
+		'{has_bookings}'.
+		'#_BOOKINGFORM'.
+		'{/has_bookings}'.
+		'</div>'.
+		'</br>'.
 			
-			// location
-			'<div id="location">'.
-			'<h3>Location</h3>'.
-			'{has_location}'.
-			'[one_third last="no"]<p>'.
-			'<strong>Address</strong><br/>'.
-			'#_LOCATIONADDRESS<br/>'.
-			'#_LOCATIONTOWN<br/>'.
-			'#_LOCATIONCOUNTRY<br/>'.
-			'</p>[/one_third]'.
-			'[two_third last="yes"]<div id="details" style="float:right; margin:0px 0px 15px 15px;">#_MAP</div>[/two_third]'.
-			'{/has_location}'.
-			'</div>'.
-			'</br>'
-					);
+		// location
+		'<div id="location">'.
+		'<h3>Location</h3>'.
+		'{has_location}'.
+		'[one_third last="no"]<p>'.
+		'<strong>Address</strong><br/>'.
+		'#_LOCATIONADDRESS<br/>'.
+		'#_LOCATIONTOWN<br/>'.
+		'#_LOCATIONCOUNTRY<br/>'.
+		'</p>[/one_third]'.
+		'[two_third last="yes"]<div id="details" style="float:right; margin:0px 0px 15px 15px;">#_MAP</div>[/two_third]'.
+		'{/has_location}'.
+		'</div>'.
+		'</br>'
+		);
 }
 else
 {
 	// past event
 	echo $EM_Event->output(
-			//'<h1>BHAA #_EVENTNAME : #_EVENTDATES</h1>'.
-			'<br style="clear:both"/>'.
-			'#_EVENTEXCERPT'.
-			'<br/>'.
-			'#_EVENTNOTES'.
-			'<div id="details" style="float:right; margin:0px 0px 15px 15px;">#_MAP</div>'.
-			'<p>'.
-			'<strong>Date/Time</strong><br/>'.
-			'Date(s) - #_EVENTDATES<br /><i>#_EVENTTIMES</i>'.
-			'</p>'.
-			'{has_location}'.
-			'<p>'.
-			'<strong>Location</strong><br/>'.
-			'#_LOCATIONLINK'.
-			'</p>'.
-			'{/has_location}');
-	//'{has_bookings}'.
-	//'<div id="register"><h3>Register</h3></div>'.
-	//'#_BOOKINGFORM'.
-	//'{/has_bookings}'
+		'[one_third last="no"]<p>#_EVENTEXCERPT</p>[/one_third]'.
+		'[one_third last="no"]<strong>Date/Time</strong><br/>Date - #_EVENTDATES<br/><i>#_EVENTTIMES</i>[/one_third]'.
+		'[one_third last="yes"]
+		<a href="#details">Details</a>
+		<a href="#results">Results</a>
+		<a href="#teams">Teams</a>
+		[/one_third]');
 
 	// Find connected pages
 	$connected = new WP_Query( array(
-			'connected_type' => 'event_to_race',
-			'connected_items' => get_queried_object(),
-			'nopaging' => true,
+		'connected_type' => 'event_to_race',
+		'connected_items' => get_queried_object(),
+		'nopaging' => true,
 	));
 
 	global $loader;
+	// results
+	echo '<div id="results">';
+	echo '<h3>Results</h3>';
 	if ( $connected->have_posts() ) :
 
 	//echo '<h2 id="results">Full Race Results</h2>';
 	while ( $connected->have_posts() ) :
 	$connected->the_post();
 	//echo 'race id'.get_the_ID();
+	echo '<h4>'.the_title().'</h4>';
 	echo $loader->raceresult->getTable()->renderTable(get_the_ID());
 	endwhile;
 
 	// Prevent weirdness
 	wp_reset_postdata();
-
-	echo '<div id="teams"><h3>Teams</h3></div>';
-	echo $loader->teamresult->getTable()->renderTable(get_the_ID());
-
+	
 	else :
 	echo "No races have been linked to this event yet.";
 	endif;
+	echo '</div>';
+	
+	// teams
+	echo '<div id="teams">';
+	echo '<h3>Teams</h3>';
+	//echo $loader->teamresult->getTable()->renderTable(get_the_ID());
+	echo '</div>';
+		
+	// TODO - media links
+	//<iframe align="center" src="http://www.flickr.com/slideShow/index.gne?user_id=34896940@N06&set_id=72157631974777245" frameBorder="0" width="90%" height="600" scrolling="no"></iframe>
+	
 }
 echo '</section>';
 ?>
