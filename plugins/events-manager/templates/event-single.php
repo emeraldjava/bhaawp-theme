@@ -73,9 +73,8 @@ else
 		'[one_third last="no"]<p>#_EVENTEXCERPT</p>[/one_third]'.
 		'[one_third last="no"]<strong>Date/Time</strong><br/>Date - #_EVENTDATES<br/><i>#_EVENTTIMES</i>[/one_third]'.
 		'[one_third last="yes"]
-		<a href="#details">Details</a>
 		<a href="#results">Results</a>
-		<a href="#teams">Teams</a>
+		<a href="#details">Details</a>
 		[/one_third]');
 
 	// Find connected pages
@@ -95,7 +94,7 @@ else
 	while ( $connected->have_posts() ) :
 	$connected->the_post();
 	//echo 'race id'.get_the_ID();
-	echo '<h4>'.the_title().'</h4>';
+	//echo '<h4>'.the_title().'</h4>';
 	echo $loader->raceresult->getTable()->renderTable(get_the_ID());
 	endwhile;
 
@@ -116,6 +115,12 @@ else
 	// TODO - media links
 	//<iframe align="center" src="http://www.flickr.com/slideShow/index.gne?user_id=34896940@N06&set_id=72157631974777245" frameBorder="0" width="90%" height="600" scrolling="no"></iframe>
 	
+	// details
+	echo $EM_Event->output(
+		'<div id="details">'.
+		'<h3>Details</h3>'.
+		'#_EVENTNOTES'.
+		'</div></br>');
 }
 echo '</section>';
 ?>
