@@ -1,41 +1,8 @@
-.menu {
-	margin-top: 30px;
-	font-size: 20px;
-	margin-right: 85px;
-}
-
-.nav {
-	font-size: 20px;
-}
-
-h2 {
-	display: block;
-	font-size: 1.5em;
-	-webkit-margin-before: 0.83em;
-	-webkit-margin-after: 0.83em;
-	-webkit-margin-start: 0px;
-	-webkit-margin-end: 0px;
-	font-weight: bold;
-	color: #002a50;
-}
-
-h6 {
-	display: block;
-	font-size: 50px;
-	font-weight: bold;
-	color: rgb(0, 42, 80);
-}
-
-#sidebar .widget h3 {
-	font-size: 17px !important;
-	font-weight: bold;
-}
-
 .bhaatables {
 	margin: 0px;
 	padding: 0px;
 	width: 100%;
-	box-shadow: 10px 10px 5px #888888;
+	box-shadow: 2px 2px 1px #888888;
 	border: 1px solid #000000;
 	-moz-border-radius-bottomleft: 0px;
 	-webkit-border-bottom-left-radius: 0px;
@@ -87,7 +54,7 @@ h6 {
 }
 
 .bhaatables tr:nth-child(odd) {
-	background-color: #cccccc;
+	background-color: #edebeb;
 }
 
 .bhaatables tr:nth-child(even) {
@@ -96,10 +63,9 @@ h6 {
 
 .bhaatables td {
 	vertical-align: middle;
-	border: 1px solid #000000;
 	border-width: 0px 1px 1px 0px;
 	text-align: left;
-	padding: 7px;
+	padding: 1px;
 	font-size: 10px;
 	font-family: Arial;
 	font-weight: normal;
@@ -130,7 +96,7 @@ h6 {
 	border: 0px solid #000000;
 	text-align: center;
 	border-width: 0px 0px 1px 1px;
-	font-size: 14px;
+	font-size: 12px;
 	font-family: Arial;
 	font-weight: bold;
 	color: #ffffff;
