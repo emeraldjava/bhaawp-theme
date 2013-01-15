@@ -44,12 +44,10 @@ echo '</tr>';
 </tr>
 
 <?php
-if($membershipDetails) {
 echo '<tr><td style="padding: 0 1em 10px 0; font-family: Arial, Sans-serif; font-size: 13px; color: #888; white-space: nowrap" valign="top">';
 echo '<div><i style="font-style: normal">BHAA ID</i></div></td>';
 echo '<td style="padding-bottom: 10px; font-family: Arial, Sans-serif; font-size: 13px; color: #222" valign="top">#_BHAAID</td>';
 echo '</tr>';
-}
 ?>
 
 <!-- Date Of Birth -->
@@ -94,22 +92,16 @@ echo '</tr>';
 
 <!-- Price -->
 <tr>
-	<td	style="padding: 0 1em 10px 0; font-family: Arial, Sans-serif; font-size: 13px; color: #888; white-space: nowrap"									valign="top">
-		<div>
-			<i style="font-style: normal">Paid Online</i>
-		</div>
-	</td>
-	<td	style="padding-bottom: 10px; font-family: Arial, Sans-serif; font-size: 13px; color: #222" valign="top">#_BOOKINGTICKETPRICE</td>
+<td	style="padding: 0 1em 10px 0; font-family: Arial, Sans-serif; font-size: 13px; color: #888; white-space: nowrap"									valign="top">
+<div><i style="font-style: normal">Paid Online</i></div></td>
+<td	style="padding-bottom: 10px; font-family: Arial, Sans-serif; font-size: 13px; color: #222" valign="top">#_BOOKINGTICKETPRICE</td>
 </tr>
 
 <!-- Booking ID -->
 <tr>
-	<td	style="padding: 0 1em 10px 0; font-family: Arial, Sans-serif; font-size: 13px; color: #888; white-space: nowrap"									valign="top">
-		<div>
-			<i style="font-style: normal">BOOKING ID</i>
-		</div>
-	</td>
-	<td	style="padding-bottom: 10px; font-family: Arial, Sans-serif; font-size: 13px; color: #222"	valign="top">#_BOOKINGID | #_BOOKINGTXNID</td>
+<td	style="padding: 0 1em 10px 0; font-family: Arial, Sans-serif; font-size: 13px; color: #888; white-space: nowrap"									valign="top">
+<div><i style="font-style: normal">BOOKING ID</i></div></td>
+<td	style="padding-bottom: 10px; font-family: Arial, Sans-serif; font-size: 13px; color: #222"	valign="top">#_BOOKINGID | #_BOOKINGTXNID</td>
 </tr>
 
 <?php if($membershipDetails) {
@@ -143,10 +135,10 @@ echo '</tr>';
 }
 ?>
 
-						</table>
-					</div>
-				</td>
-			</tr>
+</table>
+</div>
+</td>
+</tr>
 
 <!-- Footer -->
 <tr>
@@ -159,8 +151,8 @@ echo '</tr>';
 <td	style="background-color: #f6f6f6; color: #888; border-top: 1px Solid #ccc; font-family: Arial, Sans-serif; font-size: 11px">
 </td>
 </tr>
-		</table>
-	</div>
+</table>
+</div>
 </body>
 </html>
 <?php endforeach; ?>
