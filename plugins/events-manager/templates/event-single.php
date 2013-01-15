@@ -45,9 +45,8 @@ if( $EM_Event->end >= time() )
 		// register
 		'<div id="register">'.
 		'<h3>Register</h3>'.
-		'{has_bookings}'.
-		'#_BOOKINGFORM'.
-		'{/has_bookings}'.
+		'{has_bookings}#_BOOKINGFORM{/has_bookings}'.
+		'{no_bookings}Online registion will be available closer to the event date and can be done on the day of event at the registration location.{/no_bookings}'.
 		'</div>'.
 		'</br>'.
 			
@@ -109,10 +108,10 @@ else
 	echo '</div>';
 	
 	// teams
-	echo '<div id="teams">';
-	echo '<h3>Teams</h3>';
+	//echo '<div id="teams">';
+	//echo '<h3>Teams</h3>';
 	//echo $loader->teamresult->getTable()->renderTable(get_the_ID());
-	echo '</div>';
+	//echo '</div>';
 		
 	// TODO - media links
 	//<iframe align="center" src="http://www.flickr.com/slideShow/index.gne?user_id=34896940@N06&set_id=72157631974777245" frameBorder="0" width="90%" height="600" scrolling="no"></iframe>
