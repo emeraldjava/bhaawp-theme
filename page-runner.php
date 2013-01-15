@@ -8,8 +8,10 @@
 <?php 
 global $loader;
 //echo 'BHAA Runner Page : Name = '.$_REQUEST['user_nicename'];
-$user = get_user_by('slug', $_REQUEST['user_nicename']);
-
+if(isset($_REQUEST['user_nicename']))
+	$user = get_user_by('slug', $_REQUEST['user_nicename']);
+else
+	$user = get_user_by('id', $_REQUEST['id']);
 //echo '<h2>'.$user->display_name.'</h2></br>';
 
 $st = '[one_fourth last="yes"]<h2>'.$user->display_name.'</h2>[/one_fourth]';
