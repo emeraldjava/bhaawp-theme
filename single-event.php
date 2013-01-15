@@ -1,21 +1,9 @@
 <?php get_header(); ?>
-	<?php
-	if(get_post_meta($post->ID, 'pyre_full_width', true) == 'yes') {
-		$content_css = 'width:100%';
-		$sidebar_css = 'display:none';
-	}
-	elseif(get_post_meta($post->ID, 'pyre_sidebar_position', true) == 'left') {
-		$content_css = 'float:right;';
-		$sidebar_css = 'float:left;';
-	} elseif(get_post_meta($post->ID, 'pyre_sidebar_position', true) == 'right') {
-		$content_css = 'float:left;';
-		$sidebar_css = 'float:right;';
-	}
-	?>
-	<div id="content" style="<?php echo $content_css; ?>">
+	<div id="content" style="width:90%">
+		<h1><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
 		<div class="single-navigation clearfix">
-			<?php previous_post_link('%link', __('Previous', 'Avada')); ?>
-			<?php next_post_link('%link', __('Next', 'Avada')); ?>
+			<?php previous_post_link('%link', __('Last Event', 'Avada')); ?>
+			<?php next_post_link('%link', __('Next Event', 'Avada')); ?>
 		</div>
 		<?php while(have_posts()): the_post(); ?>
 		<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -117,9 +105,6 @@
 			</div>
 			<?php endif; ?>
 			<?php endif; ?>
-			<?php endif; ?>
-			<?php if($data['blog_post_title']): ?>
-			<h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
 			<?php endif; ?>
 			<div class="post-content">
 				<?php the_content(); ?>
@@ -279,8 +264,5 @@
 			<?php endif; ?>
 		</div>
 		<?php endwhile; ?>
-	</div>
-	<div id="sidebar" style="<?php echo $sidebar_css; ?>">
-	<?php generated_dynamic_sidebar(); ?>
 	</div>
 <?php get_footer(); ?>

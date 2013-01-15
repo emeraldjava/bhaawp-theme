@@ -1,3 +1,12 @@
+.single-navigation{
+	height:30px;
+	line-height:30px;
+	border-top:1px solid #e7e6e6;
+	border-bottom:1px solid #e7e6e6;
+	margin-bottom:20px;
+	text-align:right;
+}
+
 .bhaatables {
 	margin: 0px;
 	padding: 0px;
