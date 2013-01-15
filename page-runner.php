@@ -12,17 +12,22 @@ if(isset($_REQUEST['user_nicename']))
 	$user = get_user_by('slug', $_REQUEST['user_nicename']);
 else
 	$user = get_user_by('id', $_REQUEST['id']);
-//echo '<h2>'.$user->display_name.'</h2></br>';
 
-$st = '[one_fourth last="yes"]<h2>'.$user->display_name.'</h2>[/one_fourth]';
-echo do_shortcode($st);
+$content = apply_filters('the_content',
+		'[one_half last="no"]<h1>'.$user->display_name.'</h1>'.
+		//'<p>'.get_the_term_list(get_the_ID(), 'sector', 'Sector: ', ', ', '').'</p>'.
+		'[/one_half]');
+		//'[one_half last="yes"]<img src="'.get_post_meta(get_the_ID(),'bhaa_company_image',true).'"/>[/one_half]');
+echo $content;
+
+//$st = '[one_fourth last="yes"]<h2>'.$user->display_name.'</h2>[/one_fourth]';
+//echo do_shortcode($st);
 
 if( current_user_can('manage_options') )
 {
 	var_dump(get_user_meta($user->ID));
 }
 
-echo '<br/><h3>Results</h3>';
 echo $loader->raceresult->getTable()->renderRunnerTable($user->ID);
 
 // echo do_shortcode('[one_half last="no"]'.
