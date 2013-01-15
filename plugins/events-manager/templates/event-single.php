@@ -74,6 +74,7 @@ else
 		'[one_third last="no"]<strong>Date/Time</strong><br/>Date - #_EVENTDATES<br/><i>#_EVENTTIMES</i>[/one_third]'.
 		'[one_third last="yes"]
 		<a href="#results">Results</a>
+		<a href="#photos">Photos</a>
 		<a href="#details">Details</a>
 		[/one_third]');
 
@@ -111,9 +112,15 @@ else
 	//echo '<h3>Teams</h3>';
 	//echo $loader->teamresult->getTable()->renderTable(get_the_ID());
 	//echo '</div>';
-		
-	// TODO - media links
-	//<iframe align="center" src="http://www.flickr.com/slideShow/index.gne?user_id=34896940@N06&set_id=72157631974777245" frameBorder="0" width="90%" height="600" scrolling="no"></iframe>
+	
+	// photo / media links
+	$photoset = get_post_meta(get_the_ID(),'flickr',true);
+	echo '<div id="photos"><h3>Photos</h3>';
+	if($photoset!="")
+		echo '<iframe align="center" src="http://www.flickr.com/slideShow/index.gne?user_id=34896940@N06&set_id='.$photoset.'" frameBorder="0" width="90%" height="600" scrolling="no"></iframe>';
+	else
+		echo 'No photos have been linked to this event yet';
+	echo '</div></br>';
 	
 	// details
 	echo $EM_Event->output(
