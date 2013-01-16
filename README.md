@@ -9,7 +9,6 @@ Events > Settings > Formatting
 
 ## Default event list format header
 
-``
 	<table class="events-table" >
 	    <thead>
 	        <tr>
@@ -17,8 +16,8 @@ Events > Settings > Formatting
 				<th class="event-description" width="*">Event</th>
 			</tr>
 	   	</thead>
-    <tbody>
-``
+	<tbody>
+
         
 ## Default event list format
 
