@@ -114,7 +114,7 @@ else
 	//echo '</div>';
 	
 	// photo / media links
-	$photoset = get_post_meta(get_the_ID(),'flickr',true);
+	$photoset = get_post_meta(get_the_ID(),'flickr_photoset',true);
 	echo '<div id="photos"><h3>Photos</h3>';
 	if($photoset!="")
 		echo '<iframe align="center" src="http://www.flickr.com/slideShow/index.gne?user_id=34896940@N06&set_id='.$photoset.'" frameBorder="0" width="90%" height="600" scrolling="no"></iframe>';
