@@ -7,6 +7,16 @@
 	text-align:right;
 }
 
+.event-table {
+	padding: 0px;
+}
+th.event-time {
+	text-align:left;
+}
+th.event-description {
+	text-align:left;
+}
+
 .bhaatables {
 	margin: 0px;
 	padding: 0px;
