@@ -69,28 +69,9 @@ echo '<script type="text/javascript">
 jQuery(document).ready( 
 	function($){
 		var availableTags = [
-		"ActionScript",
-		"AppleScript",
-		"Asp",
-		"BASIC",
-		"C",
-		"C++",
-		"Clojure",
-		"COBOL",
-		"ColdFusion",
-		"Erlang",
-		"Fortran",
-		"Groovy",
-		"Haskell",
-		"Java",
-		"JavaScript",
-		"Lisp",
-		"Perl",
-		"PHP",
-		"Python",
-		"Ruby",
-		"Scala",
-		"Scheme"
+			{ value: 0, label: "Java"},
+			{ value: 1, label: "ActionScript"},
+			{ value: 2, label: "AppleScript"}
 		];
 		$("#bhaa_runner_company").autocomplete({
 			source: availableTags
