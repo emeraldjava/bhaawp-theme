@@ -31,7 +31,9 @@ get_header();
 		<!-- #nav-single -->
 <?php 
 $content = apply_filters('the_content', 
-	'[one_half last="no"]<h1>'.get_the_title().'</h1><p>'.get_the_term_list(get_the_ID(), 'sector', 'Sector: ', ', ', '').'</p>[/one_half]'.
+	'[one_half last="no"]<h1>'.get_the_title().'</h1>'.
+	'<p>'.get_the_term_list(get_the_ID(), 'sector', 'Sector: ', ', ', '').'</p>'.
+	'[/one_half]'.
 	'[one_half last="yes"]<img src="'.get_post_meta(get_the_ID(),'bhaa_company_image',true).'"/>[/one_half]');
 echo $content;
 ?>
