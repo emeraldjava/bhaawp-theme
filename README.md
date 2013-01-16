@@ -21,7 +21,6 @@ Events > Settings > Formatting
         
 ## Default event list format
 
-`
 	<tr class="event-details">
 	<td>
 	\#_EVENTDATES
@@ -32,5 +31,4 @@ Events > Settings > Formatting
 	</td>
 	</tr>
 	<tr class="spacer"><td></td></tr>
-`
 
