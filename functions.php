@@ -30,70 +30,42 @@ echo "
 }
 
 function bhaa_house_drop_down_list() {
-print '<script>function addOption(selectbox,text,value,selected)
-{
-	var optn = document.createElement("OPTION");
-	optn.text = text;
-	optn.value = value;
-	if(selected=="1")
-	optn.selected="selected";
-	selectbox.options.add(optn);
-};</script>';
-	global $wpdb;//$current_user->user_id
-	global $current_user;
-	$c = get_user_meta (get_current_user_id(), 'bhaa_runner_company', true);
-	//get's the current users row with company info
-	$query = "SELECT ID,post_title FROM wp_posts WHERE post_status = 'publish' AND post_type = 'house' order by post_title ASC";
-	//print '<!-- '.$query.'-->';
-	$items = $wpdb->get_results($query);//get items as assoc array.
-print '
-<script>
-if(document.getElementsByName("bhaa_runner_company")[0])
-{';
-	foreach ($items as $row) {//give individual items
-		print 'addOption( document.getElementsByName("bhaa_runner_company")[0],"'.$row->post_title.'",'.$row->ID;
-		if ($row->ID==$c) {
-			print',"1");';
-		}else {
-			print',"0");';
-		}
-	}
-print '}
-</script>
-';
-}
-
-function bhaa_house_drop_down_listx() {
 echo '<script type="text/javascript">
 jQuery(document).ready( 
 	function($){
-		var availableTags = [
-			{ value:0, label: "Java"},
-			{ value:1, label: "ActionScript"},
-			{ value:2, label: "AppleScript"}
-		];
-		$("#bhaa_runner_company").autocomplete({
+		var availableTags = [';
+global $wpdb;//$current_user->user_id
+global $current_user;
+$c = get_user_meta (get_current_user_id(), 'bhaa_runner_company', true);
+$query = "SELECT ID,post_title FROM wp_posts WHERE post_status = 'publish' AND post_type = 'house' order by post_title ASC";
+$items = $wpdb->get_results($query);
+
+foreach ($items as $row) {
+	if($row->ID==$c)
+		$name=$row->post_title;		
+	echo '{ value:'.$row->ID.', label: "'.$row->post_title.'"},';
+}
+echo '{value:0, label: ""}];
+		$("#bhaa_runner_company_name").autocomplete({
 			source: availableTags,
+		 	minLength: 2,
 			focus: function(event, ui) {
-            	$("#bhaa_runner_company").val(ui.item.label);
+            	$("#bhaa_runner_company_name").val(ui.item.label);
             	return false;
         	},
 			select: function(event, ui) {
 				//alert(ui.item.value);
 				//console.debug(ui);
-	        	$("#bhaa_runner_company").val(ui.item.label);
-				$("#bhaa_runner_companyid").val(ui.item.value);
+	        	$("#bhaa_runner_company_name").val(ui.item.label);
+				$("#bhaa_runner_company").val(ui.item.value);
 				return false;
     		}
 		});
-});	
+;})
 </script>';
 }
-add_action('wp_footer', 'bhaa_house_drop_down_listx');
-add_action('admin_footer', 'bhaa_house_drop_down_listx');
-
-//add_action('wp_footer', 'bhaa_house_drop_down_listx');
-//add_action('admin_footer', 'bhaa_house_drop_down_list');
+add_action('wp_footer', 'bhaa_house_drop_down_list');
+add_action('admin_footer', 'bhaa_house_drop_down_list');
 
 // add_filter('frm_setup_new_fields_vars', 'frm_set_checked', 20, 2);
 // add_filter('frm_setup_edit_fields_vars', 'frm_set_checked', 20, 2);
