@@ -63,18 +63,28 @@ print '}
 ';
 }
 
-
 function bhaa_house_drop_down_listx() {
 echo '<script type="text/javascript">
 jQuery(document).ready( 
 	function($){
 		var availableTags = [
-			{ value: 0, label: "Java"},
-			{ value: 1, label: "ActionScript"},
-			{ value: 2, label: "AppleScript"}
+			{ value:0, label: "Java"},
+			{ value:1, label: "ActionScript"},
+			{ value:2, label: "AppleScript"}
 		];
 		$("#bhaa_runner_company").autocomplete({
-			source: availableTags
+			source: availableTags,
+			focus: function(event, ui) {
+            	$("#bhaa_runner_company").val(ui.item.label);
+            	return false;
+        	},
+			select: function(event, ui) {
+				//alert(ui.item.value);
+				//console.debug(ui);
+	        	$("#bhaa_runner_company").val(ui.item.label);
+				$("#bhaa_runner_companyid").val(ui.item.value);
+				return false;
+    		}
 		});
 });	
 </script>';
