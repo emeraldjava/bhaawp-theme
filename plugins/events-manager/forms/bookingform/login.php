@@ -34,7 +34,8 @@
 		<a href="<?php echo $register_link ?>"><?php _e('Sign Up','dbem') ?></a>&nbsp;&nbsp;|&nbsp;&nbsp; 
 		<?php
 	}
-	?>	                    
+	?>	       
+	<p>If your are an existing or previous BHAA member you can reset your password by entering your email address here.</p>       
 	<a href="<?php echo site_url('wp-login.php?action=lostpassword', 'login') ?>" title="<?php _e('Password Lost and Found', 'dbem') ?>"><?php _e('Lost your password?', 'dbem') ?></a>                        
   </form>
 </div>
