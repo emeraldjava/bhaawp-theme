@@ -62,9 +62,47 @@ print '}
 </script>
 ';
 }
-add_action('wp_footer', 'bhaa_house_drop_down_list');
-add_action('admin_footer', 'bhaa_house_drop_down_list');
 
+
+function bhaa_house_drop_down_listx() {
+echo '<script type="text/javascript">
+jQuery(document).ready( 
+	function($){
+		var availableTags = [
+		"ActionScript",
+		"AppleScript",
+		"Asp",
+		"BASIC",
+		"C",
+		"C++",
+		"Clojure",
+		"COBOL",
+		"ColdFusion",
+		"Erlang",
+		"Fortran",
+		"Groovy",
+		"Haskell",
+		"Java",
+		"JavaScript",
+		"Lisp",
+		"Perl",
+		"PHP",
+		"Python",
+		"Ruby",
+		"Scala",
+		"Scheme"
+		];
+		$("#bhaa_runner_company").autocomplete({
+			source: availableTags
+		});
+});	
+</script>';
+}
+add_action('wp_footer', 'bhaa_house_drop_down_listx');
+add_action('admin_footer', 'bhaa_house_drop_down_listx');
+
+//add_action('wp_footer', 'bhaa_house_drop_down_listx');
+//add_action('admin_footer', 'bhaa_house_drop_down_list');
 
 // add_filter('frm_setup_new_fields_vars', 'frm_set_checked', 20, 2);
 // add_filter('frm_setup_edit_fields_vars', 'frm_set_checked', 20, 2);
