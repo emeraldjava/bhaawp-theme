@@ -65,13 +65,12 @@ echo '</tr>';
 </tr>
 
 <!-- Company -->
-<!-- 
 <tr>
 <td	style="padding: 0 1em 10px 0; font-family: Arial, Sans-serif; font-size: 13px; color: #888; white-space: nowrap" valign="top">
 <div><i style="font-style: normal">Company</i></div></td>
-<td	style="padding-bottom: 10px; font-family: Arial, Sans-serif; font-size: 13px; color: #222" valign="top">#_BOOKINGFORMCUSTOM{bhaa_runner_company}</td>
+<td	style="padding-bottom: 10px; font-family: Arial, Sans-serif; font-size: 13px; color: #222" valign="top">#_BOOKINGFORMCUSTOM{bhaa_runner_company_name}</td>
 </tr>
--->
+
 
 <?php if($eventDetails) {
 // <!-- Thank you for registering for the BHAA #_EVENTLINK event.  -->
@@ -109,9 +108,14 @@ echo '</tr>';
 echo '<tr><td style="padding: 0 1em 10px 0; font-family: Arial, Sans-serif; font-size: 13px; color: #888; white-space: nowrap" valign="top">';
 echo '<div><i style="font-style: normal">Note</i></div></td>';
 echo '<td style="padding-bottom: 10px; font-family: Arial, Sans-serif; font-size: 13px; color: #222" valign="top">
-<pre>
-Thank you for renewing your membership online. You are now entitled to enter all BHAA races for the discounted rate of 10e per event.
-</pre>
+<p>
+Thank you for renewing your membership online.
+</p>
+<ul>
+<li>Your entitled to run all BHAA events for an entry of 10e.</li>
+<li>Your race results will be counted towards the BHAA league.</li>
+<li>You can run with your company or sector team.</li>
+</ul>
 </td>';
 echo '</tr>';
 }
@@ -122,14 +126,15 @@ echo '<tr><td style="padding: 0 1em 10px 0; font-family: Arial, Sans-serif; font
 echo '<div><i style="font-style: normal">Note</i></div></td>';
 echo '<td style="padding-bottom: 10px; font-family: Arial, Sans-serif; font-size: 13px; color: #222" valign="top">
 <p>
+Thank you for using the BHAA Day Membership form.
+</p>
 <ul>
-<li>Thank you for using the BHAA Day Membership form.</li>
-<li>Please aim to turn up one hour before the first race to collect your race number.</li>
+<li>Please aim to arrive at the venue one hour before the first race to collect your race number.</li>
 <li>Your race number contains the RFID chip which allows our chip timing system to record your time and position, and you will be asked to return it at the end of the race.</li>
 <li>The use of Headphones to strictly forbidden at BHAA races on safety grounds.</li>
 <li>The BHAA is totally voluntary organisation.</li>
-<ul>
-</p>
+<li><b style="color: red">You MUST PRINT and bring this email to the event registration.</b><li>
+</ul>
 </td>';
 echo '</tr>';
 }
@@ -145,7 +150,6 @@ echo '</tr>';
 <td	style="background-color: #f6f6f6; color: #888; border-top: 1px Solid #ccc; font-family: Arial, Sans-serif; font-size: 11px">
 <p>Reminder from <a href="https://www.bhaa.ie/" target="_blank" style="">Business Houses Athletic Association</a></p>
 <p>You are receiving this email at the account '#_BOOKINGEMAIL' because you just used the BHAA payments system.</p>
-<p><b style="color: red">You must PRINT and bring this email to the event registration.</b></p>
 <p>Please email #_CONTACTEMAIL with any booking queries</p>
 </td>
 <td	style="background-color: #f6f6f6; color: #888; border-top: 1px Solid #ccc; font-family: Arial, Sans-serif; font-size: 11px">
