@@ -4,6 +4,7 @@ load_theme_textdomain('Avada', TEMPLATEPATH.'/languages');
 
 // Default RSS feed links
 add_theme_support('automatic-feed-links');
+add_action( 'init', 'session_start', 0 );
 
 // Allow shortcodes in widget text
 add_filter('widget_text', 'do_shortcode');
