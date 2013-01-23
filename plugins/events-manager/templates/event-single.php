@@ -25,6 +25,7 @@ echo '<section id="primary">';
 
 if( $EM_Event->end >= time() )
 {
+	echo '<h1>POC</h1>';
 	echo $EM_Event->output(
 				
 		'[one_third last="no"]<p>#_EVENTEXCERPT</p>[/one_third]'.
@@ -40,7 +41,7 @@ if( $EM_Event->end >= time() )
 		'<h3>Details</h3>'.
 		'#_EVENTNOTES'.
 		'</div>'.
-		'</br>'.
+		'<div class="clearboth"></div>'.
 
 		// register
 		'<div id="register">'.
@@ -48,7 +49,7 @@ if( $EM_Event->end >= time() )
 		'{has_bookings}#_BOOKINGFORM{/has_bookings}'.
 		'{no_bookings}Online registion will be available closer to the event date and can be done on the day of event at the registration location.{/no_bookings}'.
 		'</div>'.
-		'</br>'.
+		'<div class="clearboth"></div>'.
 			
 		// location
 		'<div id="location">'.
@@ -63,7 +64,7 @@ if( $EM_Event->end >= time() )
 		'[two_third last="yes"]<div id="details" style="float:right; margin:0px 0px 15px 15px;">#_MAP</div>[/two_third]'.
 		'{/has_location}'.
 		'</div>'.
-		'</br>'
+		'<div class="clearboth"></div>'
 		);
 }
 else
@@ -105,7 +106,7 @@ else
 	else :
 	echo "No races have been linked to this event yet.";
 	endif;
-	echo '</div>';
+	echo '</div><div class="clearboth"></div>';
 	
 	// teams
 	//echo '<div id="teams">';
@@ -120,14 +121,14 @@ else
 		echo '<iframe align="center" src="http://www.flickr.com/slideShow/index.gne?user_id=34896940@N06&set_id='.$photoset.'" frameBorder="0" width="90%" height="600" scrolling="no"></iframe>';
 	else
 		echo 'No photos have been linked to this event yet';
-	echo '</div></br>';
+	echo '</div><div class="clearboth"></div>';
 	
 	// details
 	echo $EM_Event->output(
 		'<div id="details">'.
 		'<h3>Details</h3>'.
 		'#_EVENTNOTES'.
-		'</div></br>');
+		'</div><div class="clearboth"></div>');
 }
 echo '</section>';
 ?>
