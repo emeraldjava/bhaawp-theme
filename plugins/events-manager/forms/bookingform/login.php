@@ -35,8 +35,8 @@
 		<?php
 	}
 	// general, error, success, notice
-	$content = apply_filters('the_content','<br/>[alert type="error"]Existing or previous BHAA members have an account already set up, it should mean the form will be pre-populated with your details. Read about <a href="http://bhaa.ie/user-accounts/">resetting your password</a> to avoid creating duplicate accounts.[/alert]');
-	echo $content;
+	//$content = apply_filters('the_content','<br/>[alert type="error"]Existing or previous BHAA members have an account already set up, it should mean the form will be pre-populated with your details. Read about <a href="http://bhaa.ie/user-accounts/">resetting your password</a> to avoid creating duplicate accounts.[/alert]');
+	//echo $content;
 	?>	      
 	<a href="<?php echo site_url('wp-login.php?action=lostpassword', 'login') ?>" title="<?php _e('Password Lost and Found', 'dbem') ?>"><?php _e('Lost your password?', 'dbem') ?></a>                        
   </form>
