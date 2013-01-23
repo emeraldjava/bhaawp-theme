@@ -13,30 +13,58 @@ if(isset($_REQUEST['user_nicename']))
 else
 	$user = get_user_by('id', $_REQUEST['id']);
 
-$content = apply_filters('the_content',
-		'[one_half last="no"]<h1>'.$user->display_name.'</h1>'.
-		//'<p>'.get_the_term_list(get_the_ID(), 'sector', 'Sector: ', ', ', '').'</p>'.
-		'[/one_half]');
-		//'[one_half last="yes"]<img src="'.get_post_meta(get_the_ID(),'bhaa_company_image',true).'"/>[/one_half]');
+$metadata = get_user_meta($user->ID);
+
+echo '<h1>'.$user->display_name.'</h1>';
+
+// first section - general info
+$content = apply_filters(
+	'the_content',
+	'[one_third last="no"]'.
+	'<h2>BHAA Details</h2>'.
+	'<ul>'.
+	'<li><b>BHAA ID</b> : '.$user->ID.'</li>'.
+	'<li>Standard : '.$metadata['bhaa_runner_standard'][0].'</li>'.
+	'</ul>'.
+	'[/one_third]');
 echo $content;
 
-//$st = '[one_fourth last="yes"]<h2>'.$user->display_name.'</h2>[/one_fourth]';
-//echo do_shortcode($st);
+// second section - personal
+if(is_user_logged_in()||current_user_can('manage_options'))
+{
+	$content = apply_filters(
+		'the_content',
+		'[one_third last="no"]'.
+		'<h2>Your Details</h2>'.
+		'<ul>'.	
+		'<li>dateofbirth : '.$metadata['bhaa_runner_dateofbirth'][0].'</li>'.
+		'<li>mobilephone : '.$metadata['bhaa_runner_mobilephone'][0].'</li>'.
+		'<li>email : '.$user->user_email.'</li>'.
+		'</ul>'.
+		'[/one_third]');
+	echo $content;
+}
+
+if(current_user_can('manage_options'))
+{
+	// third section - admin
+	$content = apply_filters(
+		'the_content',
+		'[one_third last="yes"]'.
+		'<h2>Admin Details</h2>'.
+		'<ul>'.
+		'<li>Status : '.$metadata['bhaa_runner_status'][0].'</li>'.
+		'<li>dateofrenewal : '.$metadata['bhaa_runner_dateofrenewal'][0].'</li>'.
+		'[/one_third]');
+	echo $content;
+}
 
 if( current_user_can('manage_options') )
 {
-	var_dump(get_user_meta($user->ID));
+// 	/var_dump(get_user_meta($user->ID));
 }
 
 echo $loader->raceresult->getTable()->renderRunnerTable($user->ID);
-
-// echo do_shortcode('[one_half last="no"]'.
-// 	'[person name="'.$user->display_name.'"]plicabo. Nemo enim.[/person]'.
-// 	'[/one_half]');
-
-// echo do_shortcode('[content_box title="Results"]'
-// 	.$loader->raceresult->getTable()->renderRunnerTable($user->ID).
-// 	'[/content_box]');
 
 get_footer();
 ?>
