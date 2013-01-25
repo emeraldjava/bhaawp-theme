@@ -1,0 +1,15 @@
+[one_third last="no"]
+<img alt="" src="http://bhaa.ie/wp-content/uploads/2012/08/feature1.jpg" width="205" height="108" />
+<h2><a href="./events/">Upcoming Races</a></h2>
+Click to view upcoming races and to book your entry.
+[/one_third]
+[one_third last="no"]
+<img alt="" src="http://bhaa.ie/wp-content/uploads/2012/08/feature2.jpg" width="205" height="108" />
+<h2><a href="./results/">Results</a></h2>
+See past race results for houses and runners.
+[/one_third]
+[one_third last="yes"]
+<img alt="" src="http://bhaa.ie/wp-content/uploads/2012/08/feature3.jpg" width="205" height="108" />
+<h2><a href="./join/">Join</a></h2>
+Find out how to register and join the BHAA.
+[/one_third]
