@@ -6,7 +6,6 @@
 <?php get_header();?>
 
 <?php 
-global $loader;
 //echo 'BHAA Runner Page : Name = '.$_REQUEST['user_nicename'];
 if(isset($_REQUEST['user_nicename']))
 	$user = get_user_by('slug', $_REQUEST['user_nicename']);
@@ -14,6 +13,7 @@ else
 	$user = get_user_by('id', $_REQUEST['id']);
 
 $metadata = get_user_meta($user->ID);
+$status = $metadata['bhaa_runner_status'][0];
 
 echo '<h1>'.$user->display_name.'</h1>';
 
@@ -61,10 +61,10 @@ if(current_user_can('manage_options'))
 
 if( current_user_can('manage_options') )
 {
-// 	/var_dump(get_user_meta($user->ID));
+	var_dump(get_user_meta($user->ID));
 }
 
-echo $loader->raceresult->getTable()->renderRunnerTable($user->ID);
+echo $BHAA->raceresult->getTable()->renderRunnerTable($user->ID);
 
 get_footer();
 ?>

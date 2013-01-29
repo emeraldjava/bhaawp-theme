@@ -86,7 +86,7 @@ else
 		'nopaging' => true,
 	));
 
-	global $loader;
+	
 	// results
 	echo '<div id="results">';
 	echo '<h3>Results</h3>';
@@ -97,7 +97,8 @@ else
 	$connected->the_post();
 	//echo 'race id'.get_the_ID();
 	//echo '<h4>'.the_title().'</h4>';
-	echo $loader->raceresult->getTable()->renderTable(get_the_ID());
+	global $BHAA;
+	echo $BHAA->raceresult->getTable()->renderTable(get_the_ID());
 	endwhile;
 
 	// Prevent weirdness

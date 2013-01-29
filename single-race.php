@@ -68,7 +68,7 @@ if ( $connected->have_posts() ) :
 				<?php the_meta(); ?>
 
 				<?php 
-				echo $loader->raceresult->getTable()->renderTable(get_the_ID());
+				echo $BHAA->raceresult->getTable()->renderTable(get_the_ID());
 				//echo $loader->raceresult->getTable()->renderTable(get_post_meta(get_the_ID(),'bhaa_race_id',true));
 ?>
 				<hr />
