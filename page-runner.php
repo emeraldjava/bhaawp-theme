@@ -26,7 +26,7 @@ $content = apply_filters(
 	'<ul>'.
 	'<li><b>BHAA ID</b> : '.$user->ID.'</li>'.
 	'<li>Standard : '.$metadata['bhaa_runner_standard'][0].'</li>'.
-	(isset($company) ? '<li>Company : '. get_post($company)->post_name.'</li>':'').//:
+	(isset($company) ? '<li>Company : '.sprintf('<a href="/?post_type=house&p=%d"><b>%s</b></a>',$company,get_post($company)->post_title).'</li>':'').//:
 	'</ul>'.
 	'[/one_third]');
 echo $content;
