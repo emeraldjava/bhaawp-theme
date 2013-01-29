@@ -14,6 +14,7 @@ else
 
 $metadata = get_user_meta($user->ID);
 $status = $metadata['bhaa_runner_status'][0];
+$company = $metadata['bhaa_runner_company'][0];
 
 echo '<h1>'.$user->display_name.'</h1>';
 
@@ -25,6 +26,7 @@ $content = apply_filters(
 	'<ul>'.
 	'<li><b>BHAA ID</b> : '.$user->ID.'</li>'.
 	'<li>Standard : '.$metadata['bhaa_runner_standard'][0].'</li>'.
+	(isset($company) ? '<li>Company : '. get_post($company)->post_name.'</li>':'').//:
 	'</ul>'.
 	'[/one_third]');
 echo $content;
