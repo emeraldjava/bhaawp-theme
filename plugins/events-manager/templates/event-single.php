@@ -25,7 +25,6 @@ echo '<section id="primary">';
 
 if( $EM_Event->end >= time() )
 {
-	echo '<h1>POC</h1>';
 	echo $EM_Event->output(
 				
 		'[one_third last="no"]<p>#_EVENTEXCERPT</p>[/one_third]'.
