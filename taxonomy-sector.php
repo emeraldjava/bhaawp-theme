@@ -36,7 +36,7 @@
 				//   'separator'                 => \\"\n\\",
 				'orderby'                   => 'name',
 				'order'                     => 'ASC',
-				//    'exclude'                   => null,
+				'exclude'                   => '5',
 				//    'include'                   => null,
 				//    'topic_count_text_callback' => default_topic_count_text,
 				//    'link'                      => 'view',
