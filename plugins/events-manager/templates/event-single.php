@@ -97,7 +97,7 @@ else
 	//echo 'race id'.get_the_ID();
 	//echo '<h4>'.the_title().'</h4>';
 	global $BHAA;
-	echo $BHAA->raceresult->getTable()->renderTable(get_the_ID());
+	echo $BHAA->getIndividualResultTable()->renderTable(get_the_ID());
 	endwhile;
 
 	// Prevent weirdness
