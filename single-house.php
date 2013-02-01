@@ -31,22 +31,39 @@ get_header();
 		<!-- #nav-single -->
 <?php 
 $content = apply_filters('the_content', 
-	'[one_half last="no"]<h1>'.get_the_title().'</h1>'.
-	'<p>'.get_the_term_list(get_the_ID(), 'sector', 'Sector: ', ', ', '').'</p>'.
-	'[/one_half]'.
-	'[one_half last="yes"]<img src="'.get_post_meta(get_the_ID(),'bhaa_company_image',true).'"/>[/one_half]');
+	'[one_third last="no"]<h1>'.get_the_title().'</h1>'.
+	'<p>'.get_the_term_list(get_the_ID(), 'sector', 'Sector : ', ', ', '').'</p>'.
+	'<p>'.get_the_term_list(get_the_ID(), 'teamtype', 'TeamType : ', ', ', '').'</p>'.
+	'[/one_third]'.
+	'[one_third last="no"]<a href="'.get_post_meta(get_the_ID(),'bhaa_company_website',true).'">website</a>[/one_third]'.
+	'[one_third last="yes"]<img src="'.get_post_meta(get_the_ID(),'bhaa_company_image',true).'"/>[/one_third]');
 echo $content;
 ?>
 
 <?php
-	// Find connected posts
+	// Find connected users
 	// https://github.com/scribu/wp-posts-to-posts/wiki/Posts-2-Users
-	$users = get_users( array(
-		'connected_type' => Connection::HOUSE_TO_RUNNER,
-		'connected_items' => $post
-) );
+	$terms = wp_get_post_terms($post->ID,'teamtype');
+	//var_dump($terms);
+	
+	if($terms[0]->name=='companyteam')
+	{	
+		echo '<h2>Company Team</h2>';
+		$users = get_users( array(
+			'connected_type' => Connection::HOUSE_TO_RUNNER,
+			'connected_items' => $post
+			));
+	}
+	elseif($terms[0]->name=='sectorteam')
+	{	
+		echo '<h2>Sector Team</h2>';
+		$users = get_users( array(
+			'connected_type' => Connection::SECTORTEAM_TO_RUNNER,
+			'connected_items' => $post
+			));
+	}
 ?>
-<h3>Runners :</h3>
+<h4>Runners</h4>
 <ul>
 	<?php foreach ( $users AS $user ) : ?>
 	<li><?php 
