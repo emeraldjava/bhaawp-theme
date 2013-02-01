@@ -45,22 +45,21 @@ echo $content;
 	// https://github.com/scribu/wp-posts-to-posts/wiki/Posts-2-Users
 	$terms = wp_get_post_terms($post->ID,'teamtype');
 	//var_dump($terms);
-	
-	if($terms[0]->name=='companyteam')
+	if($terms[0]->name=='sectorteam')
+	{
+		echo '<h2>Sector Team</h2>';
+		$users = get_users( array(
+				'connected_type' => Connection::SECTORTEAM_TO_RUNNER,
+				'connected_items' => $post
+		));
+	}
+	else
 	{	
 		echo '<h2>Company Team</h2>';
 		$users = get_users( array(
 			'connected_type' => Connection::HOUSE_TO_RUNNER,
 			'connected_items' => $post
-			));
-	}
-	elseif($terms[0]->name=='sectorteam')
-	{	
-		echo '<h2>Sector Team</h2>';
-		$users = get_users( array(
-			'connected_type' => Connection::SECTORTEAM_TO_RUNNER,
-			'connected_items' => $post
-			));
+		));
 	}
 ?>
 <h4>Runners</h4>
