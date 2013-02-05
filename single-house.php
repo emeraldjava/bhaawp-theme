@@ -37,7 +37,7 @@ if ( has_post_thumbnail() ) { // check if the post has a Post Thumbnail assigned
 $content = apply_filters('the_content', 
 	'[one_third last="no"]<h1>'.get_the_title().'</h1>'.
 	'<p>'.get_the_term_list(get_the_ID(), 'sector', 'Sector : ', ', ', '').'</p>'.
-	'<p>'.get_the_term_list(get_the_ID(), 'teamtype', 'TeamType : ', ', ', '').'</p>'.
+	//'<p>'.get_the_term_list(get_the_ID(), 'teamtype', 'TeamType : ', ', ', '').'</p>'.
 	'[/one_third]'.
 	'[one_third last="yes"]<a href="'.get_post_meta(get_the_ID(),'bhaa_company_website',true).'">website</a>[/one_third]');
 	//'[one_third last="yes"]'.the_post_thumbnail().'[/one_third]');
