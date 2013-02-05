@@ -35,45 +35,33 @@ echo '<script type="text/javascript">
 jQuery(document).ready( 
 	function($){
 		var availableTags = [';
-global $wpdb;//$current_user->user_id
+global $wpdb;
 global $current_user;
 $c = get_user_meta (get_current_user_id(), 'bhaa_runner_company', true);
-
-$filteredlist = new WP_Query(
+$companyList = new WP_Query(
 	array(
-		'post_type' => 'house',        // only query News post type
+		'post_type' => 'house',
 		'order'		=> 'ASC',
 		'post_status' => 'publish',
 		'orderby' 	=> 'title',
-//		'nopaging' => true,
-		'posts_per_page' =>20
-// 		'tax_query'	=> array(
-// 		array(
-// 			'taxonomy'  => 'news-cat',
-// 			'field'     => 'slug',
-// 			'terms'     => 'media', // exclude media posts in the news-cat custom taxonomy
-// 			'operator'  => 'NOT IN')
-// 				),
-		)
+		'nopaging' => true,
+ 		'tax_query'	=> array(
+		array(
+			'taxonomy'  => 'teamtype',
+			'field'     => 'slug',
+			'terms'     => 'sectorteam', // exclude house posts in the sectorteam custom teamtype taxonomy
+			'operator'  => 'NOT IN')
+		))
 );
-//error_log('found_posts '.$filteredlist->found_posts.' '.$filteredlist->post_count);
-//$query = "SELECT ID,post_title FROM wp_posts WHERE post_status='publish' AND post_type='house' order by post_title ASC";
-//$items = $wpdb->get_results($query);
-
-if( $filteredlist->have_posts() ) :
-	while ($filteredlist->have_posts()) : $filteredlist->the_post();
-		//error_log('found_post '.get_the_title(get_the_ID()).'x');//$filteredlist->the_post()->the_title().' '.$filteredlist->the_post()->the_ID());
+//error_log('found_posts '.$companyList->found_posts.' '.$companyList->post_count);
+if( $companyList->have_posts() ) :
+	while ($companyList->have_posts()) : $companyList->the_post();
 		if(get_the_ID()==$c)
 			$name=$post->post_title;
 		echo '{ value:'.get_the_ID().', label: "'.get_the_title(get_the_ID()).'"},';
 	endwhile;
 endif;
 wp_reset_postdata();
-//foreach ($companies as $row) {
-//	if($row->ID==$c)
-//		$name=$row->post_title;		
-//	echo '{ value:'.$row->ID.', label: "'.$row->post_title.'"},';
-//}
 echo '{value:0, label: ""}];
 		$("#bhaa_runner_company_name").autocomplete({
 			source: availableTags,
@@ -95,24 +83,6 @@ echo '{value:0, label: ""}];
 }
 add_action('wp_footer', 'bhaa_house_drop_down_list');
 add_action('admin_footer', 'bhaa_house_drop_down_list');
-
-// add_filter('frm_setup_new_fields_vars', 'frm_set_checked', 20, 2);
-// add_filter('frm_setup_edit_fields_vars', 'frm_set_checked', 20, 2);
-
-// function frm_set_checked($values, $field){
-// 	if($field->id == 'bhaa_runner_company'){ //change 125 to the ID of your drop-down field
-// 		global $wpdb;
-// 		$post_ids = $wpdb->get_col("SELECT tr.object_id FROM $wpdb->posts AS t WHERE t.type = 'house'");
-// 		$posts = get_posts(array('include' => $post_ids));
-
-// 		$values['options'] = array();
-// 		foreach($posts as $p){
-// 			$values['options'][$p->ID] = $p->post_title;
-// 		}
-// 	}
-// 	return $values;
-// }
-
 
 // Content Width
 if (!isset( $content_width )) $content_width = 1000;
