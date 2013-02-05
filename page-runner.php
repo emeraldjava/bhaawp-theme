@@ -66,7 +66,7 @@ if( current_user_can('manage_options') )
 	//var_dump(get_user_meta($user->ID));
 }
 
-echo $BHAA->raceresult->getTable()->renderRunnerTable($user->ID);
+echo $BHAA->getIndividualResultTable()->renderRunnerTable($user->ID);
 
 get_footer();
 ?>
