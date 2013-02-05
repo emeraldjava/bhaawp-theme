@@ -38,14 +38,42 @@ jQuery(document).ready(
 global $wpdb;//$current_user->user_id
 global $current_user;
 $c = get_user_meta (get_current_user_id(), 'bhaa_runner_company', true);
-$query = "SELECT ID,post_title FROM wp_posts WHERE post_status = 'publish' AND post_type = 'house' order by post_title ASC";
-$items = $wpdb->get_results($query);
 
-foreach ($items as $row) {
-	if($row->ID==$c)
-		$name=$row->post_title;		
-	echo '{ value:'.$row->ID.', label: "'.$row->post_title.'"},';
-}
+$filteredlist = new WP_Query(
+	array(
+		'post_type' => 'house',        // only query News post type
+		'order'		=> 'ASC',
+		'post_status' => 'publish',
+		'orderby' 	=> 'title',
+//		'nopaging' => true,
+		'posts_per_page' =>20
+// 		'tax_query'	=> array(
+// 		array(
+// 			'taxonomy'  => 'news-cat',
+// 			'field'     => 'slug',
+// 			'terms'     => 'media', // exclude media posts in the news-cat custom taxonomy
+// 			'operator'  => 'NOT IN')
+// 				),
+		)
+);
+//error_log('found_posts '.$filteredlist->found_posts.' '.$filteredlist->post_count);
+//$query = "SELECT ID,post_title FROM wp_posts WHERE post_status='publish' AND post_type='house' order by post_title ASC";
+//$items = $wpdb->get_results($query);
+
+if( $filteredlist->have_posts() ) :
+	while ($filteredlist->have_posts()) : $filteredlist->the_post();
+		//error_log('found_post '.get_the_title(get_the_ID()).'x');//$filteredlist->the_post()->the_title().' '.$filteredlist->the_post()->the_ID());
+		if(get_the_ID()==$c)
+			$name=$post->post_title;
+		echo '{ value:'.get_the_ID().', label: "'.get_the_title(get_the_ID()).'"},';
+	endwhile;
+endif;
+wp_reset_postdata();
+//foreach ($companies as $row) {
+//	if($row->ID==$c)
+//		$name=$row->post_title;		
+//	echo '{ value:'.$row->ID.', label: "'.$row->post_title.'"},';
+//}
 echo '{value:0, label: ""}];
 		$("#bhaa_runner_company_name").autocomplete({
 			source: availableTags,
