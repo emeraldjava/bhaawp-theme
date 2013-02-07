@@ -57,6 +57,7 @@ if(current_user_can('manage_options'))
 		'<ul>'.
 		'<li>Status : '.$metadata['bhaa_runner_status'][0].'</li>'.
 		'<li>dateofrenewal : '.$metadata['bhaa_runner_dateofrenewal'][0].'</li>'.
+		'<li><a href="'.get_site_url().'/wp-admin/edit.php?post_type=event&action=bhaa_runner_renew&id='.$user->ID.'">Renew</a></li>'.
 		'[/one_third]');
 	echo $content;
 }
