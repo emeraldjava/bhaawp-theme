@@ -74,6 +74,7 @@ else
 		'[one_third last="no"]<strong>Date/Time</strong><br/>Date - #_EVENTDATES<br/><i>#_EVENTTIMES</i>[/one_third]'.
 		'[one_third last="yes"]
 		<a href="#results">Results</a>
+		<a href="#teams">Teams</a>
 		<a href="#photos">Photos</a>
 		<a href="#details">Details</a>
 		[/one_third]');
@@ -84,6 +85,7 @@ else
 		'connected_items' => get_queried_object(),
 		'nopaging' => true,
 	));
+
 
 	
 	// results
@@ -109,10 +111,10 @@ else
 	echo '</div><div class="clearboth"></div>';
 	
 	// teams
-	//echo '<div id="teams">';
-	//echo '<h3>Teams</h3>';
-	//echo $loader->teamresult->getTable()->renderTable(get_the_ID());
-	//echo '</div>';
+	echo '<div id="teams">';
+	echo '<h3>Teams</h3>';
+	echo $BHAA->getTeamResultTable()->renderTable(get_the_ID());
+	echo '</div>';
 	
 	// photo / media links
 	$photoset = get_post_meta(get_the_ID(),'flickr_photoset',true);
@@ -129,6 +131,14 @@ else
 		'<h3>Details</h3>'.
 		'#_EVENTNOTES'.
 		'</div><div class="clearboth"></div>');
+	
+// 	$tabs = '[tabs tab1="Tab 1" tab2="Tab 2" tab3="Tab 3"]
+// 	[tab id=1]Tab content 1[/tab]
+// 	[tab id=2]Tab content 2[/tab]
+// 	[tab id=3]Tab content 3[/tab]
+// 	[/tabs]';
+// 	$content = do_shortcode($tabs);
+// 	echo $content;
 }
 echo '</section>';
 ?>
