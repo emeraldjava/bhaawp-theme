@@ -27,6 +27,9 @@ class PyreThemeFrameworkMetaboxes {
 	{
 		$this->add_meta_box('post_options', 'Post Options', 'post');
 		$this->add_meta_box('page_options', 'Page Options', 'page');
+		// enable page options on the bhaa cpt's
+		$this->add_meta_box('page_options', 'Page Options', 'event');
+		$this->add_meta_box('page_options', 'Page Options', 'house');
 		$this->add_meta_box('portfolio_options', 'Portfolio Options', 'avada_portfolio');
 	}
 	
