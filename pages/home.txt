@@ -15,18 +15,16 @@ Find out how to register and join the BHAA.
 [/one_third]
 
 [one_third last="no"]
-<h2><a href="./events/">Search</a></h2>
-<form class="search_form" action="http://localhost/" method="get">
-<fieldset>
-<span class="text"><input id="runner_search" type="text" value="User Search"/></span>
-</fieldset>
-</form>
+<h2></h2>
 [/one_third]
 [one_third last="no"]
-<h2><a href="./results/">About</a></h2>
-See past race results for houses and runners.
+<h2></h2>
 [/one_third]
 [one_third last="yes"]
-<h2><a href="./join/">BHAA</a></h2>
-Find out how to register and join the BHAA.
+<h2><a href="./events/">Runner Search</a></h2>
+<form class="search_form" action="http://localhost/" method="get">
+<fieldset>
+<span class="text"><input id="runner_search" type="text"/></span>
+</fieldset>
+</form>
 [/one_third]
