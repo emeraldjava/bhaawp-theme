@@ -47,7 +47,7 @@ if(is_user_logged_in()||current_user_can('manage_options'))
 	echo $content;
 }
 
-if(current_user_can('manage_options'))
+if(current_user_can('editor'))
 {
 	// third section - admin
 	$content = apply_filters(
