@@ -21,8 +21,11 @@ global $EM_Event;
 
 get_header();
 
+global $BHAA;
+
 echo '<section id="primary">';
 
+$standardTable = $BHAA->standardCalculator->getEventStandardTable(get_the_ID());
 if( $EM_Event->end >= time() )
 {
 	echo $EM_Event->output(
@@ -33,6 +36,7 @@ if( $EM_Event->end >= time() )
 		<a href="#details">Details</a>
 		<a href="#register">Register</a>
 		<a href="#location">Location</a>
+		<a href="#standards">Standards</a>
 		[/one_third]'.
 
 		// details
@@ -63,7 +67,10 @@ if( $EM_Event->end >= time() )
 		'[two_third last="yes"]<div id="details" style="float:right; margin:0px 0px 15px 15px;">#_MAP</div>[/two_third]'.
 		'{/has_location}'.
 		'</div>'.
-		'<div class="clearboth"></div>'
+		'<div class="clearboth"></div>'.
+			
+		'<div id="standards">'.
+		'<h3>BHAA Standard Table</h3>'.$standardTable.'</div>'				
 		);
 }
 else
@@ -76,6 +83,7 @@ else
 		<a href="#results">Results</a>
 		<a href="#teams">Teams</a>
 		<a href="#photos">Photos</a>
+		<a href="#standards">Standards</a>
 		<a href="#details">Details</a>
 		[/one_third]');
 
@@ -98,7 +106,6 @@ else
 	$connected->the_post();
 	//echo 'race id'.get_the_ID();
 	//echo '<h4>'.the_title().'</h4>';
-	global $BHAA;
 	echo $BHAA->getIndividualResultTable()->renderTable(get_the_ID());
 	endwhile;
 
@@ -124,6 +131,8 @@ else
 	else
 		echo 'No photos have been linked to this event yet';
 	echo '</div><div class="clearboth"></div>';
+	
+	echo '<div id="standards"><h3>BHAA Standard Table</h3>'.$standardTable.'</div><div class="clearboth"/>';
 	
 	// details
 	echo $EM_Event->output(
