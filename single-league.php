@@ -8,10 +8,23 @@ echo '<h1>'.get_the_title().'</h1>';
 
 $leagueSummary = new LeagueSummary(get_the_ID());
 
-//echo '<h2>'.$leagueSummary->getName().''.get_the_ID().'</h2>';
+echo '<h2>'.$leagueSummary->getName().''.get_the_ID().'</h2>';
 
-$limit=25;
-$leaguesummary=$leagueSummary->getLeagueSummary($limit);
+//var_dump(get_terms('division'));
+//echo get_the_term_list( get_the_ID(), 'division', 'Divisions: ', ', ', '' );
+//$terms = get_the_terms( get_the_ID(), 'division' );
+//$taxonomies=get_taxonomies('','division');
+
+$terms = get_terms('division');
+echo '<ul>';
+foreach ($terms as $term) {
+	echo '<li><a href="'.get_term_link($term->slug, 'division').'">'.$term->name.'</a></li>';
+}
+echo '</ul>';
+
+//var_dump($taxonomies,1);
+
+$leaguesummary=$leagueSummary->getLeageSummary();
 
 $i = 0;
 $division='';
@@ -25,23 +38,15 @@ if($summary->leaguedivision!=$division)
 	
 	echo '<table>';
 	echo '<tr>
-    <th>Position</th>
-	<th>Name</th>
+    <th>Name</th>
     <th>Points</th>
 	<th>Races</th>
-  	</tr>';
-	echo '<tr>
-	<td>'.$summary->leagueposition.'</td>
-    <td>'.$summary->display_name.'</td>
-    <td>'.$summary->leaguepoints.'</td>
-	<td>'.$summary->leaguescorecount.'</td>
   	</tr>';
 }
 else
 {
 	// specific row
 	echo '<tr>
-	<td>'.$summary->leagueposition.'</td>
     <td>'.$summary->display_name.'</td>
     <td>'.$summary->leaguepoints.'</td>
 	<td>'.$summary->leaguescorecount.'</td>
@@ -49,7 +54,7 @@ else
 }
 
 // close the table
-if($summary->leagueposition==$limit)
+if($summary->leagueposition==10)
 {
 	echo '</table>';
 }
@@ -61,15 +66,5 @@ endforeach;
 endwhile;
 
 echo '</section>';
-
-echo '<hr/>';
-
-comments_template( '', true );
-
-//$comments = get_comments('post_id='.get_the_ID());
-//foreach($comments as $comment) :
-//echo($comment->comment_author);
-//endforeach;
-
 get_footer();
 ?>
