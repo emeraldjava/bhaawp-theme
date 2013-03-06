@@ -18,13 +18,13 @@ echo '<h2>'.$leagueSummary->getName().''.get_the_ID().'</h2>';
 $terms = get_terms('division');
 echo '<ul>';
 foreach ($terms as $term) {
-	echo '<li><a href="'.get_term_link($term->slug, 'division').'">'.$term->name.'</a></li>';
+	echo '<li><a href="'.get_term_link($term->slug, 'division').'">Division '.$term->name.'</a></li>';
 }
 echo '</ul>';
 
 //var_dump($taxonomies,1);
 
-$leaguesummary=$leagueSummary->getLeageSummary();
+$leaguesummary=$leagueSummary->getLeagueSummary();
 
 $i = 0;
 $division='';
