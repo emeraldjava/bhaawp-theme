@@ -13,7 +13,7 @@
 	
 	$leagueSummary = new LeagueSummary(get_the_ID());
 	$division = strtoupper( get_query_var('division'));
-	$table = $leagueSummary->getDivisionSummary('A');
+	$table = $leagueSummary->getDivisionSummary($division);
 	?>
 	<div id="content" style="<?php echo $content_css; ?>">
 	
