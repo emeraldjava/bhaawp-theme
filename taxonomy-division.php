@@ -65,7 +65,7 @@ else
 	echo '<tr>
 	<td>'.$row->leagueposition.'</td>
     <td>'.$row->display_name.'</td>
-	<td></td>
+	<td>'.$row->post_title.'</td>
     <td>'.$row->leaguestandard.'</td>';
 	$points = json_decode(html_entity_decode($row->leaguesummary));
  	foreach ( $points as $point )
