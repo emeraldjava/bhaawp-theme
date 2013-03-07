@@ -105,9 +105,7 @@ echo '</tr>';
 
 <?php if($membershipDetails) {
 //<!-- Notes -->
-echo '<tr><td style="padding: 0 1em 10px 0; font-family: Arial, Sans-serif; font-size: 13px; color: #888; white-space: nowrap" valign="top">';
-echo '<div><i style="font-style: normal">Note</i></div></td>';
-echo '<td style="padding-bottom: 10px; font-family: Arial, Sans-serif; font-size: 13px; color: #222" valign="top">
+echo '<td rowspan="2" style="padding-bottom: 10px; font-family: Arial, Sans-serif; font-size: 13px; color: #222" valign="top">
 <p>
 Thank you for renewing your membership online.
 </p>
@@ -122,9 +120,7 @@ echo '</tr>';
 ?>
 
 <?php if($eventDetails) {
-echo '<tr><td style="padding: 0 1em 10px 0; font-family: Arial, Sans-serif; font-size: 13px; color: #888; white-space: nowrap" valign="top">';
-echo '<div><i style="font-style: normal">Note</i></div></td>';
-echo '<td style="padding-bottom: 10px; font-family: Arial, Sans-serif; font-size: 13px; color: #222" valign="top">
+echo '<tr><td rowspan="2" style="padding-bottom: 10px; font-family: Arial, Sans-serif; font-size: 13px; color: #222" valign="top">
 <p>
 Thank you for using the BHAA Day Membership form.
 </p>
