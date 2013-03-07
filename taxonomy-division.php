@@ -67,14 +67,16 @@ else
 	echo '<tr>
 	<td>'.$row->leagueposition.'</td>
     <td>'.$row->display_name.'</td>
-	<td></td>
+	<td>'.$row->leaguesummary.'</td>
     <td>'.$row->leaguestandard.'</td>';
 	
-	foreach ( $events as $event )
-	{
-		//  [lid] => 2492 [post_title] => Winter League 2012/2013 [eid] => 2121 [etitle] => South Dublin County Council 2013 [rid] => 2359 [rtitle] => sdcc2013_4M_M [rtype] => M
-		echo '<td>??</td>';
-	}
+	$points = json_decode(html_entity_decode($row->leaguesummary));
+	//echo '<td>'.var_dump($points).'</td>';
+ 	foreach ( $points as $point )
+ 	{
+// 		//  [lid] => 2492 [post_title] => Winter League 2012/2013 [eid] => 2121 [etitle] => South Dublin County Council 2013 [rid] => 2359 [rtitle] => sdcc2013_4M_M [rtype] => M
+  		echo '<td>'.$point->leaguepoints.'</td>';
+ 	}
 	
 	echo '<td>'.$row->leaguescorecount.'</td>
     <td>'.$row->leaguepoints.'</td>
