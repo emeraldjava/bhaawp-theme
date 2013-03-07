@@ -64,8 +64,8 @@ else
 	// specific row
 	echo '<tr>
 	<td>'.$row->leagueposition.'</td>
-    <td>'.$row->display_name.'</td>
-	<td>'.$row->post_title.'</td>
+    <td>'.sprintf('<a href="/runner/?id=%d"><b>%s</b></a>',$row->leagueparticipant,$row->display_name).'</td>
+	<td>'.sprintf('<a href="/?post_type=house&p=%d"><b>%s</b></a>',$row->ID,$row->post_title).'</td>
     <td>'.$row->leaguestandard.'</td>';
 	$points = json_decode(html_entity_decode($row->leaguesummary));
  	foreach ( $points as $point )
