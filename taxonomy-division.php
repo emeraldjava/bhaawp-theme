@@ -21,15 +21,13 @@
 	?>
 	<div id="content" style="<?php echo $content_css; ?>">
 	
-		<div class="portfolio-content">
-			<h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-			<h4><?php echo get_the_term_list($post->ID, 'division', '', ', ', ''); ?></h4>
-			<?php the_excerpt(); ?>
-			<div class="buttons"></div>
-		</div>
-		Division <?php echo $division; ?>
+	<div class="portfolio-content">
+		<h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+		<h4><?php echo get_the_term_list($post->ID, 'division', '', ', ', ''); ?></h4>
+		<div class="buttons"></div>
+	</div>
 
-<?php echo var_dump($events); ?>
+<?php //echo var_dump($events); ?>
 
 <?php 
 echo '<table>';
@@ -41,7 +39,7 @@ echo '<tr>
 	foreach ( $events as $event )
 	{
 		//  [lid] => 2492 [post_title] => Winter League 2012/2013 [eid] => 2121 [etitle] => South Dublin County Council 2013 [rid] => 2359 [rtitle] => sdcc2013_4M_M [rtype] => M
-		echo '<th>'.$event->post_title.'</th>';
+		echo '<th>'.substr($event->etitle,0,8).'</th>';
 	}
 echo '<th>Races</th>
   	<th>Points</th>
@@ -67,17 +65,14 @@ else
 	echo '<tr>
 	<td>'.$row->leagueposition.'</td>
     <td>'.$row->display_name.'</td>
-	<td>'.$row->leaguesummary.'</td>
+	<td></td>
     <td>'.$row->leaguestandard.'</td>';
-	
 	$points = json_decode(html_entity_decode($row->leaguesummary));
-	//echo '<td>'.var_dump($points).'</td>';
  	foreach ( $points as $point )
  	{
 // 		//  [lid] => 2492 [post_title] => Winter League 2012/2013 [eid] => 2121 [etitle] => South Dublin County Council 2013 [rid] => 2359 [rtitle] => sdcc2013_4M_M [rtype] => M
   		echo '<td>'.$point->leaguepoints.'</td>';
  	}
-	
 	echo '<td>'.$row->leaguescorecount.'</td>
     <td>'.$row->leaguepoints.'</td>
   	</tr>';
@@ -86,7 +81,5 @@ else
 endforeach;
 echo '</table>';
 ?>
-		
-		
-	</div>
+</div>
 <?php get_footer(); ?>
