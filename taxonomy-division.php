@@ -14,6 +14,10 @@
 	$leagueSummary = new LeagueSummary(get_the_ID());
 	$division = strtoupper( get_query_var('division'));
 	$table = $leagueSummary->getDivisionSummary($division);
+	if(strpos($division, 'L'))
+		$events = $leagueSummary->getLeagueRaces('W');
+	else
+		$events = $leagueSummary->getLeagueRaces('M');
 	?>
 	<div id="content" style="<?php echo $content_css; ?>">
 	
@@ -24,15 +28,22 @@
 			<div class="buttons"></div>
 		</div>
 		Division <?php echo $division; ?>
-	
-<?php 
 
+<?php echo var_dump($events); ?>
+
+<?php 
 echo '<table>';
 echo '<tr>
 	<th>Position</th>
     <th>Name</th>
-    <th>Standard</th>
-	<th>Races</th>
+    <th>Company</th>
+    <th>Standard</th>';
+	foreach ( $events as $event )
+	{
+		//  [lid] => 2492 [post_title] => Winter League 2012/2013 [eid] => 2121 [etitle] => South Dublin County Council 2013 [rid] => 2359 [rtitle] => sdcc2013_4M_M [rtype] => M
+		echo '<th>'.$event->post_title.'</th>';
+	}
+echo '<th>Races</th>
   	<th>Points</th>
 	</tr>';
 
@@ -56,8 +67,16 @@ else
 	echo '<tr>
 	<td>'.$row->leagueposition.'</td>
     <td>'.$row->display_name.'</td>
-    <td>'.$row->leaguestandard.'</td>
-	<td>'.$row->leaguescorecount.'</td>
+	<td></td>
+    <td>'.$row->leaguestandard.'</td>';
+	
+	foreach ( $events as $event )
+	{
+		//  [lid] => 2492 [post_title] => Winter League 2012/2013 [eid] => 2121 [etitle] => South Dublin County Council 2013 [rid] => 2359 [rtitle] => sdcc2013_4M_M [rtype] => M
+		echo '<td>??</td>';
+	}
+	
+	echo '<td>'.$row->leaguescorecount.'</td>
     <td>'.$row->leaguepoints.'</td>
   	</tr>';
 }
@@ -65,7 +84,7 @@ else
 endforeach;
 echo '</table>';
 ?>
-		<?php //echo print_r($table); ?>
+		
 		
 	</div>
 <?php get_footer(); ?>
