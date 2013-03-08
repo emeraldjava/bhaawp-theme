@@ -68,11 +68,27 @@ else
 	<td>'.sprintf('<a href="/?post_type=house&p=%d"><b>%s</b></a>',$row->ID,$row->post_title).'</td>
     <td>'.$row->leaguestandard.'</td>';
 	$points = json_decode(html_entity_decode($row->leaguesummary));
- 	foreach ( $points as $point )
- 	{
-// 		//  [lid] => 2492 [post_title] => Winter League 2012/2013 [eid] => 2121 [etitle] => South Dublin County Council 2013 [rid] => 2359 [rtitle] => sdcc2013_4M_M [rtype] => M
-  		echo '<td>'.$point->leaguepoints.'</td>';
- 	}
+	// for each event id - look for a matching json row
+	foreach ( $events as $event )
+	{
+		// 9925 {"0":{"eid":"2123","race":"2362","leaguepoints":"10"}}
+		// nasty - loops the points
+		if(!empty($points))
+		{
+			//echo $points;
+			foreach ( $points as $point )
+		  	{
+				if($event->eid==$point->eid)
+			  		echo '<td>'.$point->leaguepoints.'</td>';
+				else
+					echo '<td>-</td>';
+		  	}
+		}
+		else
+		{
+			echo '<td>-</td>';
+		}
+	}
 	echo '<td>'.$row->leaguescorecount.'</td>
     <td>'.$row->leaguepoints.'</td>
   	</tr>';
