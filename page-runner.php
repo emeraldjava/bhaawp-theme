@@ -40,6 +40,7 @@ if(is_user_logged_in()||current_user_can('manage_options'))
 		'<h2>Your Details</h2>'.
 		'<ul>'.	
 		'<li>dateofbirth : '.$metadata['bhaa_runner_dateofbirth'][0].'</li>'.
+		'<li>gender : '.$metadata['bhaa_runner_gender'][0].'</li>'.
 		'<li>mobilephone : '.$metadata['bhaa_runner_mobilephone'][0].'</li>'.
 		'<li>email : '.$user->user_email.'</li>'.
 		'</ul>'.
