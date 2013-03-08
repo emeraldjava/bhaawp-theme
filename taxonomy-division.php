@@ -75,18 +75,21 @@ else
 		// nasty - loops the points
 		if(!empty($points))
 		{
-			//echo $points;
+			$r = 0;
 			foreach ( $points as $point )
 		  	{
 				if($event->eid==$point->eid)
-			  		echo '<td>'.$point->leaguepoints.'</td>';
-				else
-					echo '<td>-</td>';
+					$r = $point->leaguepoints;
+					break;
 		  	}
+		  	if($r!=0)
+		  		echo '<td>'.$r.'</td>';
+		  	else
+		  		echo '<td>-</td>';
 		}
 		else
 		{
-			echo '<td>-</td>';
+			//echo '<td>e</td>';
 		}
 	}
 	echo '<td>'.$row->leaguescorecount.'</td>
