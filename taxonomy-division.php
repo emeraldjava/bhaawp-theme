@@ -44,7 +44,7 @@ echo '<tr>
 echo '<th>Races</th>
   	<th>Points</th>
 	</tr>';
-
+$i=1;
 foreach($table as $row) 
 {
 //[ID] => 1600 [user_login] => martin.prunty 
@@ -64,7 +64,7 @@ else
 {
 	// specific row
 	echo '<tr>
-	<td>'.$row->leagueposition.'</td>
+	<td>'.($i++).'</td>
     <td>'.sprintf('<a href="/runner/?id=%d"><b>%s</b></a>',$row->leagueparticipant,$row->display_name).'</td>
 	<td>'.sprintf('<a href="/?post_type=house&p=%d"><b>%s</b></a>',$row->ID,$row->post_title).'</td>
     <td>'.$row->leaguestandard.'</td>';
