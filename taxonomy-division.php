@@ -19,7 +19,7 @@
 	else
 		$events = $leagueSummary->getLeagueRaces('M');
 	?>
-	<div id="content" style="<?php echo $content_css; ?>">
+	<div id="content" style="width:100%">
 	
 	<div class="portfolio-content">
 		<h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
@@ -45,7 +45,8 @@ echo '<th>Races</th>
   	<th>Points</th>
 	</tr>';
 
-foreach($table as $row) :
+foreach($table as $row) 
+{
 //[ID] => 1600 [user_login] => martin.prunty 
 // [user_pass] => $.8/ 
 // [user_nicename] => martin-prunty 
@@ -73,31 +74,46 @@ else
 	{
 		// 9925 {"0":{"eid":"2123","race":"2362","leaguepoints":"10"}}
 		// nasty - loops the points
+		$match = false;
 		if(!empty($points))
 		{
 			$r = 0;
 			foreach ( $points as $point )
 		  	{
 				if($event->eid==$point->eid)
+				{
 					$r = $point->leaguepoints;
-					break;
+					if($r!=0)
+					{
+						echo '<td>'.$r.'</td>';
+						$match=true;
+						break;
+					}
+					//break;
+				}
 		  	}
-		  	if($r!=0)
-		  		echo '<td>'.$r.'</td>';
-		  	else
-		  		echo '<td>-</td>';
+		  	//if($r!=0)
+		  	//	echo '<td>'.$r.'</td>';
+		  	//else
+		  		//echo '<td>-</td>';
 		}
-		else
+		//else
+		if(!$match)
 		{
-			//echo '<td>e</td>';
+			echo '<td>-</td>';
+			$match=false;
 		}
+		//else
+		//{
+			//echo '<td>e</td>';
+		//}
 	}
 	echo '<td>'.$row->leaguescorecount.'</td>
     <td>'.$row->leaguepoints.'</td>
   	</tr>';
 }
 
-endforeach;
+}//endforeach;
 echo '</table>';
 ?>
 </div>
