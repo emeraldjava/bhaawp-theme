@@ -1,0 +1,12 @@
+[tagline_box title="Houses" description="Your team is based around where you work within the BHAA and registration is free. Once your team has three runners at an event, you then have a chance of getting one of the 15 team prizes."]
+
+[content_boxes]
+
+[content_box title="Sectors"]Allow the BHAA to group sets of companies into group based on the type of work they do.[/content_box]
+
+[content_box title="Companies"]A company team can have as many members as you like, and these will be grouped into sets of three to form teams at races.[/content_box]
+[content_box title="Sector Teams"]For smaller companies where there is no chance of getting three runners together, we allow people to group up with other runners from companies in the same sector. This allows teachers, nurses and tradesmen to form teams[/content_box]
+[content_box last="yes" title="Leagues"]At each race we group teams into 4 divisions for men and 1 ladies division. Points are awarded from 6 to 1.[/content_box]
+[/content_boxes]
+
+Please use the contact form if you want to register a new company.
