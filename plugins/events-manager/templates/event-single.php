@@ -58,49 +58,6 @@ if( $EM_Event->end >= time() )
 				'.$standardTable.'
 			[/tab]
 		[/tabs]');
-				
-// 		'[one_third last="no"]<p>#_EVENTEXCERPT</p>[/one_third]'.
-// 		'[one_third last="no"]<strong>Date/Time</strong><br/>Date - #_EVENTDATES<br/><i>#_EVENTTIMES</i>[/one_third]'.
-// 		'[one_third last="yes"]
-// 		<a href="#details">Details</a>
-// 		<a href="#register">Register</a>
-// 		<a href="#location">Location</a>
-// 		<a href="#standards">Standards</a>
-// 		[/one_third]'.
-
-// 		// details
-// 		'<div id="details">'.
-// 		'<h3>Details</h3>'.
-// 		'#_EVENTNOTES'.
-// 		'</div>'.
-// 		'<div class="clearboth"></div>'.
-
-// 		// register
-// 		'<div id="register">'.
-// 		'<h3>Register</h3>'.
-// 		'{has_bookings}#_BOOKINGFORM{/has_bookings}'.
-// 		'{no_bookings}Online registion will be available closer to the event date and can be done on the day of event at the registration location.{/no_bookings}'.
-// 		'</div>'.
-// 		'<div class="clearboth"></div>'.
-			
-// 		// location
-// 		'<div id="location">'.
-// 		'<h3>Location</h3>'.
-// 		'{has_location}'.
-// 		'[one_third last="no"]<p>'.
-// 		'<strong>Address</strong><br/>'.
-// 		'#_LOCATIONADDRESS<br/>'.
-// 		'#_LOCATIONTOWN<br/>'.
-// 		'#_LOCATIONCOUNTRY<br/>'.
-// 		'</p>[/one_third]'.
-// 		'[two_third last="yes"]<div id="details" style="float:right; margin:0px 0px 15px 15px;">#_MAP</div>[/two_third]'.
-// 		'{/has_location}'.
-// 		'</div>'.
-// 		'<div class="clearboth"></div>'.
-			
-// 		'<div id="standards">'.
-// 		'<h3>BHAA Standard Table</h3>'.$standardTable.'</div>'				
-	//	);
 }
 else
 {
