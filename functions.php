@@ -84,6 +84,16 @@ echo '{value:0, label: ""}];
 add_action('wp_footer', 'bhaa_house_drop_down_list');
 add_action('admin_footer', 'bhaa_house_drop_down_list');
 
+// [pdf href="xx" id="foo-value"]
+function pdf_shortcode( $atts ) {
+	extract( shortcode_atts( array(
+		'href' => '',
+		'id' => 'id'
+	), $atts ) );
+	return '<embed src="'.$href.'" width="95%" height="675" "application/pdf"/>';
+}
+add_shortcode( 'pdf', 'pdf_shortcode' );
+
 // Content Width
 if (!isset( $content_width )) $content_width = 1000;
 
