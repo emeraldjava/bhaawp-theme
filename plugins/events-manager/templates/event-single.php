@@ -34,7 +34,7 @@ if( $EM_Event->end >= time() )
 				[one_half last="no"]<p>#_EVENTEXCERPT</p>[/one_half]
 				[one_half last="yes"]<strong>Date/Time</strong><br/>Date - #_EVENTDATES<br/><i>#_EVENTTIMES</i>[/one_half]
 				<h3>Details</h3>
-				 	#_EVENTNOTES
+				<div>#_EVENTNOTES</div>
 			 	<h3>Location</h3>
 				{has_location}
 					[one_third last="no"]
@@ -44,7 +44,7 @@ if( $EM_Event->end >= time() )
 						#_LOCATIONCOUNTRY<br/>
 					[/one_third]
 					[two_third last="yes"]
-						<div id="details" style="float:right; margin:0px 0px 15px 15px;">#_MAP</div>
+						<div id="map" style="float:right; margin:0px 0px 15px 15px;">#_MAP</div>
 					[/two_third]
 				{/has_location}
 			[/tab]
@@ -87,7 +87,7 @@ else
 				[one_half last="no"]<p>#_EVENTEXCERPT</p>[/one_half]
 				[one_half last="yes"]<strong>Date/Time</strong><br/>Date - #_EVENTDATES<br/><i>#_EVENTTIMES</i>[/one_half]
 				<h3>Details</h3>
-				 	#_EVENTNOTES
+				<div>#_EVENTNOTES</div>
 			 	<h3>Location</h3>
 				{has_location}
 					[one_third last="no"]
@@ -97,7 +97,7 @@ else
 						#_LOCATIONCOUNTRY<br/>
 					[/one_third]
 					[two_third last="yes"]
-						<div id="details" style="float:right; margin:0px 0px 15px 15px;">#_MAP</div>
+						<div id="map" style="float:right; margin:0px 0px 15px 15px;">#_MAP</div>
 					[/two_third]
 				{/has_location}
 			[/tab]
