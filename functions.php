@@ -84,13 +84,59 @@ echo '{value:0, label: ""}];
 add_action('wp_footer', 'bhaa_house_drop_down_list');
 add_action('admin_footer', 'bhaa_house_drop_down_list');
 
+//wp_register_script(
+//	'worker_loader',
+//	get_template_directory_uri().'/js/pdf-js/worker_loader.js');
+wp_register_script(
+	'pdf_js',
+	get_template_directory_uri().'/js/pdf-js/pdf-prod.js');
+//wp_enqueue_script('worker_loader');
+wp_enqueue_script('pdf_js');
+
 // [pdf href="xx" id="foo-value"]
 function pdf_shortcode( $atts ) {
 	extract( shortcode_atts( array(
 		'href' => '',
-		'id' => 'id'
+		'id' => 'canvas'
 	), $atts ) );
-	return '<embed src="'.$href.'" width="95%" height="675" "application/pdf"/>';
+	return '[raw]<div><canvas id="canvas" style="border:1px solid black;"/>
+			<script type="text/javascript">
+			PDFJS.workerSrc = "'.get_template_directory_uri().'/js/pdf-js/pdf-prod.js";
+			"use strict";
+
+//
+// Fetch the PDF document from the URL using promices
+//
+PDFJS.getDocument("'.$href.'").then(function(pdf) {
+  // Using promise to fetch the page
+  pdf.getPage(1).then(function(page) {
+    var scale = 1.5;
+    var viewport = page.getViewport(scale);
+
+    //
+    // Prepare canvas using PDF page dimensions
+    //
+    var canvas = document.getElementById("canvas");
+    var context = canvas.getContext("2d");
+    canvas.height = viewport.height;
+    canvas.width = viewport.width;
+
+    //
+    // Render PDF page into canvas context
+    //
+    var renderContext = {
+      canvasContext: context,
+      viewport: viewport
+    };
+    page.render(renderContext);
+  });
+});
+			</script></div>[/raw]
+			';
+	// http://stackoverflow.com/questions/1244788/embed-vs-object
+//	return '<object data="'.$href.'" width="95%" height="675" type="application/pdf">
+//    			<embed src="'.$href.'" width="95%" height="675" type="application/pdf" />
+//			</object>';
 }
 add_shortcode( 'pdf', 'pdf_shortcode' );
 
