@@ -18,6 +18,12 @@ if($EM_Ticket_Booking->get_ticket()->name=='Annual Membership')
 	$eventDetails = false;
 	$membershipDetails = true;
 }
+elseif($EM_Ticket_Booking->get_ticket()->name=='BHAA Member Ticket')
+{
+	$header = '#_EVENTNAME : #_BOOKINGTICKETNAME';
+	$eventDetails = true;
+	$membershipDetails = false;
+}
 else
 {
 	$header = '#_EVENTNAME : #_BOOKINGTICKETNAME';
@@ -93,7 +99,7 @@ echo '</tr>';
 <tr>
 <td	style="padding: 0 1em 10px 0; font-family: Arial, Sans-serif; font-size: 13px; color: #888; white-space: nowrap"									valign="top">
 <div><i style="font-style: normal">Paid Online</i></div></td>
-<td	style="padding-bottom: 10px; font-family: Arial, Sans-serif; font-size: 13px; color: #222" valign="top">#_BOOKINGTICKETPRICE</td>
+<td	style="padding-bottom: 10px; font-family: Arial, Sans-serif; font-size: 13px; color: #222" valign="top">#_BOOKINGPRICE</td>
 </tr>
 
 <!-- Booking ID -->
