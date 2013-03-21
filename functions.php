@@ -30,6 +30,7 @@ echo "
 ";
 }
 
+// http://wordpress.org/support/topic/plugin-events-manager-searching-by-custom-taxonomy?replies=6
 function bhaa_house_drop_down_list() {
 echo '<script type="text/javascript">
 jQuery(document).ready( 
@@ -87,11 +88,11 @@ add_action('admin_footer', 'bhaa_house_drop_down_list');
 //wp_register_script(
 //	'worker_loader',
 //	get_template_directory_uri().'/js/pdf-js/worker_loader.js');
-wp_register_script(
-	'pdf_js',
-	get_template_directory_uri().'/js/pdf-js/pdf-prod.js');
+//wp_register_script(
+//	'pdf_js',
+//	get_template_directory_uri().'/js/pdf-js/pdf-prod.js');
 //wp_enqueue_script('worker_loader');
-wp_enqueue_script('pdf_js');
+//wp_enqueue_script('pdf_js');
 
 // [pdf href="xx"]
 function pdf_shortcode( $atts ) {
