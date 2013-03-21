@@ -49,6 +49,7 @@ echo $content;
 	// Find connected users
 	// https://github.com/scribu/wp-posts-to-posts/wiki/Posts-2-Users
 	// http://scribu.net/wordpress/the-magic-of-wp_user.html
+	// http://mattvarone.com/wordpress/list-users-with-wp_user_query/
 	$teamtype = wp_get_post_terms($post->ID,'teamtype');
 	$connected_type = Connection::HOUSE_TO_RUNNER;
 	if($teamtype[0]->name=='sector')
