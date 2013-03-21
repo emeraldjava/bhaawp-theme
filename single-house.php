@@ -69,22 +69,29 @@ echo $content;
 
 ?>
 <h4>Runners</h4>
-<ul>
+<table border="1">
+	<tr>
+		<th>Name</th>
+		<th>Gender</th>
+		<th>Standard</th>
+		<th>Membership Status</th>
+	</tr>
 	<?php foreach ( $users AS $user ) : ?>
-	<li><?php 
+	<tr>
+	<?php 
 	$page = get_page_by_title('runner');
 	$permalink = get_permalink( $page );
-	echo sprintf('<a href="%s">%s</a> %s %s %s',
+	echo sprintf('<td><b><a href="%s">%s</a></b></td><td>%s</td><td>%s</td><td>%s</td>',
 		add_query_arg(array('id'=>$user->ID), $permalink ),
 		$user->display_name,
 		$user->get('bhaa_runner_gender'),
-		$user->get('bhaa_runner_status'),
-		$user->get('bhaa_runner_standard')
+		$user->get('bhaa_runner_standard'),
+		$user->get('bhaa_runner_status')
 	);
 	?>
-	</li>
+	</tr>
 	<?php endforeach; ?>
-</ul>
+</table>
 
 <?php 
 // Prevent weirdness
