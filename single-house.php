@@ -48,9 +48,10 @@ echo $content;
 <?php
 	// Find connected users
 	// https://github.com/scribu/wp-posts-to-posts/wiki/Posts-2-Users
-	$terms = wp_get_post_terms($post->ID,'teamtype');
-	//var_dump($terms);
-	if($terms[0]->name=='sectorteam')
+	// http://scribu.net/wordpress/the-magic-of-wp_user.html
+	$teamtype = wp_get_post_terms($post->ID,'teamtype');
+	//var_dump($teamtype);
+	if($teamtype[0]->name=='sector')
 	{
 		echo '<h2>Sector Team</h2>';
 		$users = get_users( array(
@@ -73,9 +74,12 @@ echo $content;
 	<li><?php 
 	$page = get_page_by_title('runner');
 	$permalink = get_permalink( $page );
-	echo sprintf('<a href="%s">%s</a>',
-		add_query_arg( array ( 'id'=>$user->ID ), $permalink ),
-		$user->display_name);
+	echo sprintf('<a href="%s">%s</a> %s %s',
+		add_query_arg(array('id'=>$user->ID), $permalink ),
+		$user->display_name,
+		$user->get('bhaa_runner_status'),
+		$user->get('bhaa_runner_standard')
+	);
 
 	//echo $user->display_name.'-'.$user->ID;
 	//echo sprintf('<a href="/?page_id=%d&id=%d">%s</a>',$page->ID,$user->ID,$user->display_name); ?>
