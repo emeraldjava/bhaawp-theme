@@ -16,13 +16,13 @@ Registration is free but we do require a contact name for each team.
 A runner will get a BHAA standard after their first event and will score towards a team at the second race.
 [/content_box]
 
-[content_box title="Company Teams" link="/teamtype/company" linktext="See Company Teams"]
+[content_box title="Company Teams" link="/teamtype/company" linktext="See the Company Teams"]
 A company team can have as multiple runners and there is no upper limit.
 If there are say 9 runners at an event, this will make up three teams on the day.
 We suggest a minimum of four runners should be registered before the team is activated.		
 [/content_box]
 
-[content_box title="Sector Teams" link="/teamtype/sector" linktext="See Sector Teams"]
+[content_box title="Sector Teams" link="/teamtype/sector" linktext="See the Sector Teams"]
 For people working in smaller companies with no other runners there is the option to form a sector team.
 There is a limit of 6 runners on a sector team.
 All the runners should be employed by companies working in the same sector.
