@@ -48,8 +48,13 @@ $standardTable = $BHAA->standardCalculator->generateTableForDistances($distances
 
 echo apply_filters(
 		'the_content','
-[tagline_box title="Standards" description="The BHAA standard is like a golf handicap 
-		and give a runner a target time to aim for at races."]'.$standardTable);
+[tagline_box title="Standards" description="The BHAA standard is like a golf handicap and give a runner a target time to aim for at races."]
+<ul>
+	<li>A runner will get a standard after their first race, based on where their times fits into the table</li>
+	<li>If a person runs faster to slower than their target standard time, an automatic system will adjust the runners standard up or down</li>
+</ul>
+'
+.$standardTable);
 
 echo '</section>';
 get_footer();
