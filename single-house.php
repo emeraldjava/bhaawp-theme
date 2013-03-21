@@ -50,23 +50,23 @@ echo $content;
 	// https://github.com/scribu/wp-posts-to-posts/wiki/Posts-2-Users
 	// http://scribu.net/wordpress/the-magic-of-wp_user.html
 	$teamtype = wp_get_post_terms($post->ID,'teamtype');
-	//var_dump($teamtype);
+	$connected_type = Connection::HOUSE_TO_RUNNER;
 	if($teamtype[0]->name=='sector')
 	{
 		echo '<h2>Sector Team</h2>';
-		$users = get_users( array(
-				'connected_type' => Connection::SECTORTEAM_TO_RUNNER,
-				'connected_items' => $post
-		));
+		$connected_type = Connection::SECTORTEAM_TO_RUNNER;
 	}
 	else
 	{	
 		echo '<h2>Company Team</h2>';
-		$users = get_users( array(
-			'connected_type' => Connection::HOUSE_TO_RUNNER,
-			'connected_items' => $post
-		));
 	}
+	$users = get_users( array(
+			'connected_type' => $connected_type,
+			'connected_items' => $post,
+			'orderby' => 'display_name',
+			'order' => 'ASC'
+	));
+
 ?>
 <h4>Runners</h4>
 <ul>
@@ -74,15 +74,14 @@ echo $content;
 	<li><?php 
 	$page = get_page_by_title('runner');
 	$permalink = get_permalink( $page );
-	echo sprintf('<a href="%s">%s</a> %s %s',
+	echo sprintf('<a href="%s">%s</a> %s %s %s',
 		add_query_arg(array('id'=>$user->ID), $permalink ),
 		$user->display_name,
+		$user->get('bhaa_runner_gender'),
 		$user->get('bhaa_runner_status'),
 		$user->get('bhaa_runner_standard')
 	);
-
-	//echo $user->display_name.'-'.$user->ID;
-	//echo sprintf('<a href="/?page_id=%d&id=%d">%s</a>',$page->ID,$user->ID,$user->display_name); ?>
+	?>
 	</li>
 	<?php endforeach; ?>
 </ul>
