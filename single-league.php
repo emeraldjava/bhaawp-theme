@@ -12,66 +12,58 @@ $divisions = $leagueSummary->getDivisions();
 //echo '<p>After a long delay the league tables are nearly back. There might be an odd sum or two incorrect and we still have to update the Race Organiser points. Hopefully St Patrick will rub a bit of polish onto proceeding over the weekend.</p>';
 //echo '<h2>'.$leagueSummary->getName().''.get_the_ID().'</h2>';
 
-//var_dump(get_terms('division'));
-//echo get_the_term_list( get_the_ID(), 'division', 'Divisions: ', ', ', '' );
-//$terms = get_the_terms( get_the_ID(), 'division' );
-//$taxonomies=get_taxonomies('','division');
-
-// $terms = get_terms('division');
-// echo '<ul>';
-// foreach ($terms as $term) {
-// 	echo '<li><a href="'.get_term_link($term->slug, 'division').'">Division '.$term->name.'</a></li>';
-// }
-// echo '</ul>';
-
-//var_dump($taxonomies,1);
-
 $leagueSummaryByDivision=$leagueSummary->getLeagueSummaryByDivision();
-var_dump($leagueSummaryByDivision);
+//var_dump($leagueSummaryByDivision);
 
 foreach($divisions as $division) :
-	echo $division->code;
+//	echo $division->code;
 endforeach;
 
 $i = 0;
 $division='';
+$divisionTable = '';
 foreach($leagueSummaryByDivision as $summary) :
 
 if($summary->leaguedivision!=$division)
 {
-	$i++;
-	echo '<h3>Division '.$summary->leaguedivision.'</h3>';
 	$division=$summary->leaguedivision;
-	
-	echo '<table>';
-	echo '<tr>
+	$divisionTable = '';
+	$i++;
+	$divisionTable .= '<h3>Division '.$division.'</h3>'.PHP_EOL;
+	$divisionTable .= '<table>'.PHP_EOL;
+	$divisionTable .= '<tr>
+	<th>Position</th>
     <th>Name</th>
     <th>Points</th>
 	<th>Races</th>
-  	</tr>';
+  	</tr>'.PHP_EOL;
+	//error_log("header");
 }
-else
+
+if($division!='')
 {
+	error_log($division.' '.$summary->leagueposition);//.' '.$divisionTable);
 	// specific row
-	echo '<tr>
+	$divisionTable .= '<tr>
+	<td>'.$summary->leagueposition.'</td>
     <td>'.$summary->display_name.'</td>
     <td>'.$summary->leaguepoints.'</td>
 	<td>'.$summary->leaguescorecount.'</td>
-  	</tr>';
+  	</tr>'.PHP_EOL;
 }
 
 // close the table
 if($summary->leagueposition==10)
 {
-	echo '</table>';
+	$divisionTable .= '</table>'.PHP_EOL;
+	$division='';
+	echo $divisionTable;
+	//break;
 }
 
 endforeach;
 
-// //var_dump($summary,1);
-
 endwhile;
-
 
 echo '</section>';
 
