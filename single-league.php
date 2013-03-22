@@ -5,6 +5,14 @@ echo '<section id="primary">';
 while ( have_posts() ) : the_post();
 echo '<h1>'.get_the_title().'</h1>';
 
+//echo '<h2>'.$_GET('division').'</h2>';
+if(isset($wp_query->query_vars['division'])) {
+	$sMsdsCat = urldecode($wp_query->query_vars['division']);
+	echo '<h3>div '.$sMsdsCat.'</h3>';
+}
+else
+	echo '<h3>no div'.$sMsdsCat.'</h3>';
+	
 $leagueSummary = new LeagueSummary(get_the_ID());
 $divisions = $leagueSummary->getDivisions();
 //var_dump($divisions);
@@ -12,7 +20,8 @@ $divisions = $leagueSummary->getDivisions();
 //echo '<p>After a long delay the league tables are nearly back. There might be an odd sum or two incorrect and we still have to update the Race Organiser points. Hopefully St Patrick will rub a bit of polish onto proceeding over the weekend.</p>';
 //echo '<h2>'.$leagueSummary->getName().''.get_the_ID().'</h2>';
 
-$leagueSummaryByDivision=$leagueSummary->getLeagueSummaryByDivision();
+$rows_in_summary=5;
+$leagueSummaryByDivision=$leagueSummary->getLeagueSummaryByDivision($rows_in_summary);
 //var_dump($leagueSummaryByDivision);
 
 foreach($divisions as $division) :
@@ -29,7 +38,11 @@ if($summary->leaguedivision!=$division)
 	$division=$summary->leaguedivision;
 	$divisionTable = '';
 	$i++;
-	$divisionTable .= '<h3>Division '.$division.'</h3>'.PHP_EOL;
+	
+	$divisionTable .= sprintf('<h3><a href="%s">Division %s</a><h3>'.PHP_EOL,
+		add_query_arg(array('division'=>$division)),
+		$division);
+	
 	$divisionTable .= '<table>'.PHP_EOL;
 	$divisionTable .= '<tr>
 	<th>Position</th>
@@ -42,7 +55,6 @@ if($summary->leaguedivision!=$division)
 
 if($division!='')
 {
-	error_log($division.' '.$summary->leagueposition);//.' '.$divisionTable);
 	// specific row
 	$divisionTable .= '<tr>
 	<td>'.$summary->leagueposition.'</td>
@@ -53,12 +65,11 @@ if($division!='')
 }
 
 // close the table
-if($summary->leagueposition==10)
+if($summary->leagueposition==$rows_in_summary)
 {
 	$divisionTable .= '</table>'.PHP_EOL;
 	$division='';
 	echo $divisionTable;
-	//break;
 }
 
 endforeach;
