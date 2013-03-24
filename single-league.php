@@ -20,7 +20,7 @@ if(!isset($wp_query->query_vars['division']))
 	//echo '<p>After a long delay the league tables are nearly back. There might be an odd sum or two incorrect and we still have to update the Race Organiser points. Hopefully St Patrick will rub a bit of polish onto proceeding over the weekend.</p>';
 	//echo '<h2>'.$leagueSummary->getName().''.get_the_ID().'</h2>';
 	
-	$rows_in_summary=5;
+	$rows_in_summary=10;
 	$leagueSummaryByDivision=$leagueSummary->getLeagueSummaryByDivision($rows_in_summary);
 	//var_dump($leagueSummaryByDivision);
 	

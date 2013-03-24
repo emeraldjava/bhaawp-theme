@@ -7,7 +7,7 @@ get_header();
 echo '<section id="primary">';
 echo apply_filters(
 	'the_content','
-[tagline_box title="Houses" description="The basic aim of the BHAA is to encourage people who work together to run together, registration is free and there are a few simple rules."]
+[tagline_box title="Houses" description="The basic aim of the BHAA is to encourage people who work together to run together as a team. Team registration is free and there are a few simple rules."]
 
 [content_boxes]
 [content_box title="Teams"]
@@ -32,7 +32,7 @@ This allows teachers, nurses and tradesmen to form teams
 [/content_boxes]
 
 [content_boxes]
-[content_box title="Sectors"]
+[content_box title="Sectors" link="/sectors" linktext="See the Sectors"]
 Sectors are the way we group companies based on the industry they operate in.
 [/content_box]
 

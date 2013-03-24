@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: BHAA Houses
+ * Template Name: BHAA Sectors
  */
 //http://codex.wordpress.org/Function_Reference/wp_tag_cloud
 get_header();
@@ -12,7 +12,7 @@ get_header();
 
 		<?php 
 		$args = array(
-				'smallest'                  => 8,
+				'smallest'                  => 12,
 				'largest'                   => 22,
 				'unit'                      => 'pt',
 				'number'                    => 45,
@@ -20,7 +20,7 @@ get_header();
 				//   'separator'                 => \\"\n\\",
 				'orderby'                   => 'name',
 				'order'                     => 'ASC',
-				//    'exclude'                   => null,
+				'exclude'                   => '5',
 				//    'include'                   => null,
 				//    'topic_count_text_callback' => default_topic_count_text,
 				//    'link'                      => 'view',

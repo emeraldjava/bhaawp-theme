@@ -1,8 +1,4 @@
 <?php
-/**
- * Template Name: BHAA House Template
- * @package WordPress
- */
 get_header(); 
 ?>
 
