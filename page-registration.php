@@ -14,46 +14,23 @@ get_header();
 
 <?php
 if(isset($_POST['submitted'])) {
-	if(trim($_POST['contactName']) === '') {
-		$nameError = 'Please enter your name.';
+	if(trim($_POST['runner']) === '') {
+		$runnerError = 'Please enter runner id.';
 		$hasError = true;
 	} else {
-		$name = trim($_POST['contactName']);
+		$runner = trim($_POST['runner']);
 	}
 
-	if(trim($_POST['email']) === '')  {
-		$emailError = 'Please enter your email address.';
-		$hasError = true;
-	} else if (!preg_match("/^[[:alnum:]][a-z0-9_.-]*@[a-z0-9.-]+\.[a-z]{2,4}$/i", trim($_POST['email']))) {
-		$emailError = 'You entered an invalid email address.';
+	if(trim($_POST['number']) === '')  {
+		$numberError = 'Please enter a race number.';
 		$hasError = true;
 	} else {
-		$email = trim($_POST['email']);
-	}
-
-	if(trim($_POST['comments']) === '') {
-		$commentError = 'Please enter a message.';
-		$hasError = true;
-	} else {
-		if(function_exists('stripslashes')) {
-			$comments = stripslashes(trim($_POST['comments']));
-		} else {
-			$comments = trim($_POST['comments']);
-		}
+		$number = trim($_POST['number']);
 	}
 
 	if(!isset($hasError)) {
-		$emailTo = get_option('tz_email');
-		if (!isset($emailTo) || ($emailTo == '') ){
-			$emailTo = get_option('admin_email');
-		}
-		$subject = '[PHP Snippets] From '.$name;
-		$body = "Name: $name \n\nEmail: $email \n\nComments: $comments";
-		$headers = 'From: '.$name.' <'.$emailTo.'>' . "\r\n" . 'Reply-To: ' . $email;
-
-		//wp_mail($emailTo, $subject, $body, $headers);
-		error_log($subject.' '.$body);
-		$emailSent = true;
+		error_log($runner.' '.$number);
+		$registrationSubmitted = true;
 	}
 
 } ?>
@@ -67,38 +44,27 @@ if(isset($_POST['submitted'])) {
 		<div id="post-reg">
 			<h1 class="entry-title">Registration</h1>
 				<div class="entry-content">
-					<?php if(isset($emailSent) && $emailSent == true) { ?>
+					<?php if(isset($registrationSubmitted) && $registrationSubmitted == true) { ?>
 						<div class="thanks">
-							<p>Thanks, your email was sent successfully.</p>
+							<p>The runner has been registered.</p>
 						</div>
 					<?php } else { ?>
 					<form action="<?php the_permalink(); ?>" id="contactForm" method="post">
 						<ul class="contactform">
 						<li>
-							<label for="contactName">Name:</label>
-							<input type="text" name="contactName" id="contactName" value="<?php if(isset($_POST['contactName'])) echo $_POST['contactName'];?>" class="required requiredField" />
-							<?php if($nameError != '') { ?>
-								<span class="error"><?=$nameError;?></span>
+							<label for="contactName">Runner:</label>
+							<input type="text" name="runner" id="runner" value="<?php if(isset($_POST['$runner'])) echo $_POST['$runner'];?>" class="required requiredField" />
+							<?php if($runnerError != '') { ?>
+								<span class="error"><?=$runnerError;?></span>
 							<?php } ?>
 						</li>
 
 						<li>
-							<label for="email">Email</label>
-							<input type="text" name="email" id="email" value="<?php if(isset($_POST['email']))  echo $_POST['email'];?>" class="required requiredField email" />
-							<?php if($emailError != '') { ?>
-								<span class="error"><?=$emailError;?></span>
-							<?php } ?>
+							<label for="email">Number</label>
+							<input type="text" name="number" id="number" value="<?php if(isset($_POST['number']))  echo $_POST['number'];?>" class="required requiredField" />
 						</li>
-
-						<li><label for="commentsText">Message:</label>
-							<textarea name="comments" id="commentsText" rows="20" cols="30" class="required requiredField"><?php if(isset($_POST['comments'])) { if(function_exists('stripslashes')) { echo stripslashes($_POST['comments']); } else { echo $_POST['comments']; } } ?></textarea>
-							<?php if($commentError != '') { ?>
-								<span class="error"><?=$commentError;?></span>
-							<?php } ?>
-						</li>
-
 						<li>
-							<input type="submit">Send email</input>
+							<input type="submit">Register</input>
 						</li>
 					</ul>
 					<input type="hidden" name="submitted" id="submitted" value="true" />
