@@ -30,6 +30,15 @@ echo "
 ";
 }
 
+// http://stackoverflow.com/questions/9326315/wordpress-change-default-display-name-publicy-as-for-all-existing-users
+function bhaa_force_pretty_displaynames($user_login, $user) {
+	$outcome = trim(get_user_meta($user->ID, 'first_name', true) . " " . get_user_meta($user->ID, 'last_name', true));
+	if (!empty($outcome) && ($user->data->display_name!=$outcome)) {
+		wp_update_user( array ('ID' => $user->ID, 'display_name' => $outcome));
+	}
+}
+add_action('wp_login','bhaa_force_pretty_displaynames',10,2);
+
 // http://wordpress.org/support/topic/plugin-events-manager-searching-by-custom-taxonomy?replies=6
 function bhaa_house_drop_down_list() {
 echo '<script type="text/javascript">
