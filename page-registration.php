@@ -13,6 +13,7 @@ get_header();
 ?>
 
 <?php
+global $BHAA;
 if(isset($_POST['submitted'])) {
 	if(trim($_POST['runner']) === '') {
 		$runnerError = 'Please enter runner id.';
@@ -30,6 +31,7 @@ if(isset($_POST['submitted'])) {
 
 	if(!isset($hasError)) {
 		error_log($runner.' '.$number);
+		$BHAA->registration->registerRunner($runner,$number);
 		$registrationSubmitted = true;
 	}
 
@@ -47,6 +49,7 @@ if(isset($_POST['submitted'])) {
 					<?php if(isset($registrationSubmitted) && $registrationSubmitted == true) { ?>
 						<div class="thanks">
 							<p>The runner has been registered.</p>
+							<?php var_dump($BHAA->registration->listRegsiteredRunners());?>
 						</div>
 					<?php } else { ?>
 					<form action="<?php the_permalink(); ?>" id="contactForm" method="post">
