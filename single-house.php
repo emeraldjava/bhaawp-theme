@@ -26,8 +26,11 @@ get_header();
 	
 		<!-- #nav-single -->
 <?php 
-if ( has_post_thumbnail() ) { // check if the post has a Post Thumbnail assigned to it.
-	the_post_thumbnail();
+if ( has_post_thumbnail() ) 
+{ // check if the post has a Post Thumbnail assigned to it.
+	echo '<a href="'.get_post_meta(get_the_ID(),'bhaa_company_website',true).'" title="'.the_title_attribute().'" >';
+ 	the_post_thumbnail('thumbnail');
+   	echo '</a>';
 }
 
 $content = apply_filters('the_content', 
