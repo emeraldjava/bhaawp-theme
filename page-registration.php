@@ -96,7 +96,6 @@ jQuery(document).ready(
 			$selected=false;
 			if(key($race)==1)
 				$selected=true;
-			
 			$selectRaces .= sprintf('<option selected="%s" value="%s">%s</option>',$selected,$name,$name);
 		}
 		$selectRaces .= '</select>';
@@ -118,15 +117,10 @@ jQuery(document).ready(
 				Standard<input type="text" name="standard" id="standard"/><br/>
 				Company<input type="text" name="company" id="company"/><br/>
 				[/one_half]
-				<input type="submit">Register</input>
+				<input type="submit" value="Register Runner"/>
 				<input type="hidden" name="submitted" id="submitted" value="true" />
 			</form>');
 	}
 	echo '</div>';
-
-// 	echo '<script type="text/javascript">
-// 	jQuery(function() {
-// 		var runners = '.file_get_contents("registration-header.php").'});
-// 	</script>';	
 ?>
 <?php get_footer(); ?>
