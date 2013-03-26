@@ -36,44 +36,40 @@ if(isset($_POST['submitted'])) {
 	}
 
 } ?>
-<?php get_header(); ?>
+
 <div id="container">
-	<div id="content">
 	
 	<?php 
-	echo include_once 'registration-header.php';
-	?>
-		<div id="post-reg">
-			<h1 class="entry-title">Registration</h1>
-				<div class="entry-content">
-					<?php if(isset($registrationSubmitted) && $registrationSubmitted == true) { ?>
-						<div class="thanks">
-							<p>The runner has been registered.</p>
-							<?php var_dump($BHAA->registration->listRegsiteredRunners());?>
-						</div>
-					<?php } else { ?>
-					<form action="<?php the_permalink(); ?>" id="contactForm" method="post">
-						<ul class="contactform">
-						<li>
-							<label for="contactName">Runner:</label>
-							<input type="text" name="runner" id="runner" value="<?php if(isset($_POST['$runner'])) echo $_POST['$runner'];?>" class="required requiredField" />
-							<?php if($runnerError != '') { ?>
-								<span class="error"><?=$runnerError;?></span>
-							<?php } ?>
-						</li>
+	include_once 'registration-header.php';
 
-						<li>
-							<label for="email">Number</label>
-							<input type="text" name="number" id="number" value="<?php if(isset($_POST['number']))  echo $_POST['number'];?>" class="required requiredField" />
-						</li>
-						<li>
-							<input type="submit">Register</input>
-						</li>
-					</ul>
-					<input type="hidden" name="submitted" id="submitted" value="true" />
-				</form>
-			<?php } ?>
-			</div><!-- .entry-content -->
-		</div><!-- .post -->
-	</div><!-- #content -->
+	if(isset($registrationSubmitted) && $registrationSubmitted == true) 
+	{
+		echo '<div class="thanks">
+ 			<p>The runner has been registered.</p>'.var_dump($BHAA->registration->listRegsiteredRunners()).'</div>';
+	}
+	else
+	{
+						
+		echo apply_filters('the_content','[one_third last="yes"]Search[/one_third]');
+		
+		echo apply_filters('the_content','
+			<form action="'.get_permalink().'" id="contactForm" method="post">
+				[one_half last="no"]
+				Race Details
+				<input type="text" name="runner" id="runner"/>
+				<input type="text" name="number" id="number"/>
+				[/one_half]
+	
+				[one_half last="yes"]
+				Runner Details
+				<input type="text" name="name" id="name"/>
+				<input type="text" name="gender" id="gender"/>
+				[/one_half]
+				<input type="submit">Register</input>
+				<input type="hidden" name="submitted" id="submitted" value="true" />
+			</form>');
+	}
+	?>
+				
 </div><!-- #container -->
+<?php get_footer(); ?>
