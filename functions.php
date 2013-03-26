@@ -94,6 +94,24 @@ echo '{value:0, label: ""}];
 add_action('wp_footer', 'bhaa_house_drop_down_list');
 add_action('admin_footer', 'bhaa_house_drop_down_list');
 
+// function bhaa_registeration_runner_list()
+// {
+// 	echo '<script type="text/javascript">
+// jQuery(document).ready( 
+// 	function($){
+// 	var runners = '.file_get_contents("wp-content/bhaa_runners.json.txt").';
+// 	$("#memberfilter").autocomplete({
+// 		source: runners,
+// 		select: function(event, ui) {
+// 			debug(ui.item.id);
+// 		 	window.location.href=ui.item.link;
+// 		}
+// 	});
+// });
+// </script>';	
+// }
+// add_action('wp_footer', 'bhaa_registeration_runner_list');
+
 //wp_register_script(
 //	'worker_loader',
 //	get_template_directory_uri().'/js/pdf-js/worker_loader.js');
