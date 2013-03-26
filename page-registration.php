@@ -49,6 +49,7 @@ if(isset($_POST['submitted'])) {
 	}
 	else
 	{
+		// http://jqueryui.com/autocomplete/#custom-data
 		// http://stackoverflow.com/questions/11349205/jqueryui-autocomplete-custom-data-and-display
 		echo apply_filters('the_content',
 			'[one_third last="yes"]
@@ -66,14 +67,20 @@ jQuery(document).ready(
         	return false;
       	},
 		select: function(event, ui) {
-			// window.location.href=ui.item.label;
+			$("#id").val( ui.item.id );
+			$("#firstname").val( ui.item.firstname );
+			$("#lastname").val( ui.item.lastname );
+			$("#dob").val( ui.item.dob );
+			$("#company").val( ui.item.company );
+			$("#standard").val( ui.item.standard );
+			$("#gender").val( ui.item.gender );
 			return false;	
 		}
 	})
 	.data( "ui-autocomplete" )._renderItem = function( ul, item ) {
 		return $("<li></li>")
         	.data("item.autocomplete", item)
-        	.append("<a>"+item.label+"</a><br/>"+item.details)
+        	.append("<a>"+item.label+" "+item.id+"</a><br/><small>DOB:"+item.dob+", Status:"+item.status+"</small>")
 			.appendTo(ul);
     };
 });
@@ -83,15 +90,20 @@ jQuery(document).ready(
 		echo apply_filters('the_content','
 			<form action="'.get_permalink().'" id="contactForm" method="post">
 				[one_half last="no"]
-				Race Details
-				<input type="text" name="runner" id="runner"/>
+				Race Details<br/>
+				<input type="text" name="runner" id="runner"/><br/>
 				<input type="text" name="number" id="number"/>
 				[/one_half]
 	
 				[one_half last="yes"]
-				Runner Details
-				<input type="text" name="name" id="name"/>
-				<input type="text" name="gender" id="gender"/>
+				Runner Details<br/>
+				ID<input type="text" name="id" id="id"/><br/>
+				Firstname<input type="text" name="firstname" id="firstname"/><br/>
+				Surname<input type="text" name="lastname" id="lastname"/><br/>
+				Gender<input type="text" name="gender" id="gender"/><br/>
+				DOB<input type="text" name="dob" id="dob"/><br/>
+				Standard<input type="text" name="standard" id="standard"/><br/>
+				Company<input type="text" name="company" id="company"/><br/>
 				[/one_half]
 				<input type="submit">Register</input>
 				<input type="hidden" name="submitted" id="submitted" value="true" />
