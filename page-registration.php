@@ -49,22 +49,35 @@ if(isset($_POST['submitted'])) {
 	}
 	else
 	{
+		// http://stackoverflow.com/questions/11349205/jqueryui-autocomplete-custom-data-and-display
 		echo apply_filters('the_content',
 			'[one_third last="yes"]
 				<div class="navbar-search pull-left" align="left">
 				Full name or ID : <input size="40" type="text" placeholder="Name or ID" id="memberfilter"/>
-				<script type="text/javascript">
+				[raw]<script type="text/javascript">
 jQuery(document).ready( 
 	function($){
 	var runners = '.file_get_contents("wp-content/bhaa_runners.json.txt").';
 	$("#memberfilter").autocomplete({
 		source: runners,
+		minLength: 3,
+		focus: function( event, ui ) {
+        	$( "#memberfilter" ).val( ui.item.label );
+        	return false;
+      	},
 		select: function(event, ui) {
-			window.location.href=ui.item.id;
+			// window.location.href=ui.item.label;
+			return false;	
 		}
-	});
+	})
+	.data( "ui-autocomplete" )._renderItem = function( ul, item ) {
+		return $("<li></li>")
+        	.data("item.autocomplete", item)
+        	.append("<a>"+item.label+"</a><br/>"+item.details)
+			.appendTo(ul);
+    };
 });
-</script>
+</script>[/raw]
 				</div>
 			[/one_third]');
 		echo apply_filters('the_content','
