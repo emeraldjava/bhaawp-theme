@@ -90,13 +90,13 @@ jQuery(document).ready(
 		echo apply_filters('the_content','
 			<form action="'.get_permalink().'" id="contactForm" method="post">
 				[one_half last="no"]
-				Race Details<br/>
-				<input type="text" name="runner" id="runner"/><br/>
-				<input type="text" name="number" id="number"/>
+				<b>Race Details</b><br/>
+				RaceNumber<input type="text" name="racenumber" id="racenumber"/><br/>
+				Race<input type="text" name="race" id="race"/><br/>
+				Fee<input type="text" name="fee" id="fee"/><br/>
 				[/one_half]
-	
 				[one_half last="yes"]
-				Runner Details<br/>
+				<b>Runner Details</b><br/>
 				ID<input type="text" name="id" id="id"/><br/>
 				Firstname<input type="text" name="firstname" id="firstname"/><br/>
 				Surname<input type="text" name="lastname" id="lastname"/><br/>
