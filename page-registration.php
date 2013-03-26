@@ -5,35 +5,33 @@
  * http://www.catswhocode.com/blog/how-to-create-a-built-in-contact-form-for-your-wordpress-theme
  */
 get_header();
-
-//echo '<section id="primary">';
-//echo apply_filters('the_content',do_shortcode('[bhaa_registration]'));
-//echo '</section>';
-
 ?>
 
 <?php
 global $BHAA;
 if(isset($_POST['submitted'])) {
-	if(trim($_POST['runner']) === '') {
+	error_log("form submitted");
+	if(trim($_POST['id']) === '') {
 		$runnerError = 'Please enter runner id.';
 		$hasError = true;
 	} else {
-		$runner = trim($_POST['runner']);
+		$id = trim($_POST['id']);
 	}
 
-	if(trim($_POST['number']) === '')  {
+	if(trim($_POST['racenumber']) === '')  {
 		$numberError = 'Please enter a race number.';
 		$hasError = true;
 	} else {
-		$number = trim($_POST['number']);
+		$racenumber = trim($_POST['racenumber']);
 	}
+	
+	$race = trim($_POST['race']);
 
-	if(!isset($hasError)) {
-		error_log($runner.' '.$number);
-		$BHAA->registration->registerRunner($runner,$number);
+	//if(!isset($hasError)) {
+		error_log($race.' '.$id.' '.$racenumber);
+		$BHAA->registration->registerRunner($race,$id,$racenumber);
 		$registrationSubmitted = true;
-	}
+	//}
 
 } ?>
 
@@ -45,7 +43,7 @@ if(isset($_POST['submitted'])) {
 	if(isset($registrationSubmitted) && $registrationSubmitted == true) 
 	{
 		echo '<div class="thanks">
- 			<p>The runner has been registered.</p>'.var_dump($BHAA->registration->listRegsiteredRunners()).'</div>';
+ 			<p>The runner has been registered.</p>'.var_dump($BHAA->registration->listRegisteredRunners(2278)).'</div>';
 	}
 	else
 	{
@@ -93,10 +91,10 @@ jQuery(document).ready(
 		foreach($races as $race)
 		{
 			$name = $race->dist.$race->unit.'-'.$race->type;
-			$selected=false;
+			$selected="false";
 			if(key($race)==1)
-				$selected=true;
-			$selectRaces .= sprintf('<option selected="%s" value="%s">%s</option>',$selected,$name,$name);
+				$selected="true";
+			$selectRaces .= sprintf('<option selected="%s" value="%d">%s</option>',$selected,$race->id,$name);
 		}
 		$selectRaces .= '</select>';
 		
