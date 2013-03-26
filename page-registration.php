@@ -87,13 +87,26 @@ jQuery(document).ready(
 </script>[/raw]
 				</div>
 			[/one_third]');
+		
+		$races = $BHAA->registration->getNextRaces();
+		$selectRaces = '<select name="race" id="race">';
+		foreach($races as $race)
+		{
+			$name = $race->dist.$race->unit.'-'.$race->type;
+			$selected=false;
+			if(key($race)==1)
+				$selected=true;
+			
+			$selectRaces .= sprintf('<option selected="%s" value="%s">%s</option>',$selected,$name,$name);
+		}
+		$selectRaces .= '</select>';
+		
 		echo apply_filters('the_content','
 			<form action="'.get_permalink().'" id="contactForm" method="post">
 				[one_half last="no"]
 				<b>Race Details</b><br/>
 				RaceNumber<input type="text" name="racenumber" id="racenumber"/><br/>
-				Race<input type="text" name="race" id="race"/><br/>
-				Fee<input type="text" name="fee" id="fee"/><br/>
+				Race'.$selectRaces.'<br/>
 				[/one_half]
 				[one_half last="yes"]
 				<b>Runner Details</b><br/>
