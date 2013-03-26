@@ -49,9 +49,24 @@ if(isset($_POST['submitted'])) {
 	}
 	else
 	{
-						
-		echo apply_filters('the_content','[one_third last="yes"]Search[/one_third]');
-		
+		echo apply_filters('the_content',
+			'[one_third last="yes"]
+				<div class="navbar-search pull-left" align="left">
+				Full name or ID : <input size="40" type="text" placeholder="Name or ID" id="memberfilter"/>
+				<script type="text/javascript">
+jQuery(document).ready( 
+	function($){
+	var runners = '.file_get_contents("wp-content/bhaa_runners.json.txt").';
+	$("#memberfilter").autocomplete({
+		source: runners,
+		select: function(event, ui) {
+			window.location.href=ui.item.id;
+		}
+	});
+});
+</script>
+				</div>
+			[/one_third]');
 		echo apply_filters('the_content','
 			<form action="'.get_permalink().'" id="contactForm" method="post">
 				[one_half last="no"]
@@ -69,7 +84,11 @@ if(isset($_POST['submitted'])) {
 				<input type="hidden" name="submitted" id="submitted" value="true" />
 			</form>');
 	}
-	?>
-				
-</div><!-- #container -->
+	echo '</div>';
+
+// 	echo '<script type="text/javascript">
+// 	jQuery(function() {
+// 		var runners = '.file_get_contents("registration-header.php").'});
+// 	</script>';	
+?>
 <?php get_footer(); ?>
