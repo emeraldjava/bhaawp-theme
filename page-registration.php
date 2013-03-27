@@ -4,26 +4,17 @@
  * 
  * http://www.catswhocode.com/blog/how-to-create-a-built-in-contact-form-for-your-wordpress-theme
  */
-get_header();
 ?>
 
 <?php
 global $BHAA;
-
-$submitted = $_POST['submitted'];
-error_log("form ".$submitted);
-error_log("id ".$_REQUEST['submitted']);
-
-error_log("id ".$_POST['id']);
-error_log("id ".$_REQUEST['id']);
-
-if(isset($submitted)) {
-	
-	if(trim($_POST['id']) === '') {
-		$runnerError = 'Please enter runner id.';
+if(isset($_POST['bhaa-submitted'])) {
+	error_log("form bhaa-submitted");
+	if(trim($_POST['runner']) === '') {
+		$runnerError = 'Please enter runner runner.';
 		$hasError = true;
 	} else {
-		$id = trim($_POST['id']);
+		$runner = trim($_POST['runner']);
 	}
 
 	if(trim($_POST['racenumber']) === '')  {
@@ -36,12 +27,18 @@ if(isset($submitted)) {
 	$race = trim($_POST['race']);
 
 	//if(!isset($hasError)) {
-		error_log($race.' '.$id.' '.$racenumber);
-		$BHAA->registration->registerRunner($race,$id,$racenumber);
+		error_log($race.' '.$runner.' '.$racenumber);
+		$BHAA->registration->registerRunner($race,$runner,$racenumber);
 		$registrationSubmitted = true;
 	//}
 
-} ?>
+}
+// http://stackoverflow.com/questions/11368368/404-when-using-post-get-parameters-in-wordpress-3-4
+get_header();
+echo "<pre>GET "; print_r($_GET); echo "</pre>";
+echo "<pre>POST "; print_r($_POST); echo "</pre>";
+
+?>
 
 <div id="container">
 	
@@ -73,14 +70,14 @@ jQuery(document).ready(
         	return false;
       	},
 		select: function(event, ui) {
-			$("#id").val( ui.item.id );
-			$("#firstname").val( ui.item.firstname );
-			$("#lastname").val( ui.item.lastname );
+			$("#runner").val( ui.item.id );
+			$("#first").val( ui.item.firstname );
+			$("#last").val( ui.item.lastname );
 			$("#dob").val( ui.item.dob );
 			$("#company").val( ui.item.company );
 			$("#standard").val( ui.item.standard );
 			$("#gender").val( ui.item.gender );
-			return false;	
+			return true;	
 		}
 	})
 	.data( "ui-autocomplete" )._renderItem = function( ul, item ) {
@@ -102,13 +99,12 @@ jQuery(document).ready(
 			$selected="false";
 			if(key($race)==1)
 				$selected="true";
-			$selectRaces .= sprintf('<option selected="%s" value="%d">%s</option>',$selected,$race->id,$name);
+			$selectRaces .= sprintf('<option value="%d">%s</option>',$selected,$race->id,$name);
 		}
 		$selectRaces .= '</select>';
 		
-		// http://localhost/registration/  get_permalink()
 		echo apply_filters('the_content','
-			<form action="'.get_permalink().'" method="POST">
+			<form action="'.get_permalink().'" id="contactForm" method="POST">
 				[one_half last="no"]
 				<b>Race Details</b><br/>
 				RaceNumber<input type="text" name="racenumber" id="racenumber"/><br/>
@@ -116,16 +112,16 @@ jQuery(document).ready(
 				[/one_half]
 				[one_half last="yes"]
 				<b>Runner Details</b><br/>
-				ID<input type="text" name="id"/><br/>
-				Firstname<input type="text" name="firstname" id="firstname"/><br/>
-				Surname<input type="text" name="lastname" id="lastname"/><br/>
+				ID<input type="text" name="runner" id="runner"/><br/>
+				Firstname<input type="text" name="first" id="first"/><br/>
+				Surname<input type="text" name="last" id="last"/><br/>
 				Gender<input type="text" name="gender" id="gender"/><br/>
 				DOB<input type="text" name="dob" id="dob"/><br/>
 				Standard<input type="text" name="standard" id="standard"/><br/>
 				Company<input type="text" name="company" id="company"/><br/>
 				[/one_half]
-				<input type="hidden" name="submitted" value="true" />
 				<input type="submit" value="Register Runner"/>
+				<input type="hidden" name="bhaa-submitted" id="bhaa-submitted" value="true" />
 			</form>');
 	}
 	echo '</div>';
