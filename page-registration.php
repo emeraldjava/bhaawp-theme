@@ -9,8 +9,16 @@ get_header();
 
 <?php
 global $BHAA;
-if(isset($_POST['submitted'])) {
-	error_log("form submitted");
+
+$submitted = $_POST['submitted'];
+error_log("form ".$submitted);
+error_log("id ".$_REQUEST['submitted']);
+
+error_log("id ".$_POST['id']);
+error_log("id ".$_REQUEST['id']);
+
+if(isset($submitted)) {
+	
 	if(trim($_POST['id']) === '') {
 		$runnerError = 'Please enter runner id.';
 		$hasError = true;
@@ -98,8 +106,9 @@ jQuery(document).ready(
 		}
 		$selectRaces .= '</select>';
 		
+		// http://localhost/registration/  get_permalink()
 		echo apply_filters('the_content','
-			<form action="'.get_permalink().'" id="contactForm" method="post">
+			<form action="'.get_permalink().'" method="POST">
 				[one_half last="no"]
 				<b>Race Details</b><br/>
 				RaceNumber<input type="text" name="racenumber" id="racenumber"/><br/>
@@ -107,7 +116,7 @@ jQuery(document).ready(
 				[/one_half]
 				[one_half last="yes"]
 				<b>Runner Details</b><br/>
-				ID<input type="text" name="id" id="id"/><br/>
+				ID<input type="text" name="id"/><br/>
 				Firstname<input type="text" name="firstname" id="firstname"/><br/>
 				Surname<input type="text" name="lastname" id="lastname"/><br/>
 				Gender<input type="text" name="gender" id="gender"/><br/>
@@ -115,8 +124,8 @@ jQuery(document).ready(
 				Standard<input type="text" name="standard" id="standard"/><br/>
 				Company<input type="text" name="company" id="company"/><br/>
 				[/one_half]
+				<input type="hidden" name="submitted" value="true" />
 				<input type="submit" value="Register Runner"/>
-				<input type="hidden" name="submitted" id="submitted" value="true" />
 			</form>');
 	}
 	echo '</div>';
