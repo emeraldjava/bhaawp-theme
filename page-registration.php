@@ -4,40 +4,38 @@
  * 
  * http://www.catswhocode.com/blog/how-to-create-a-built-in-contact-form-for-your-wordpress-theme
  */
-?>
 
-<?php
-global $BHAA;
-if(isset($_POST['bhaa-submitted'])) {
-	error_log("form bhaa-submitted");
-	if(trim($_POST['runner']) === '') {
-		$runnerError = 'Please enter runner runner.';
-		$hasError = true;
-	} else {
-		$runner = trim($_POST['runner']);
-	}
 
-	if(trim($_POST['racenumber']) === '')  {
-		$numberError = 'Please enter a race number.';
-		$hasError = true;
-	} else {
-		$racenumber = trim($_POST['racenumber']);
-	}
+if(isset($_POST['form-submitted'])) 
+{
+// 	if(trim($_POST['runner']) === '') {
+// 		$runnerError = 'Please enter runner runner.';
+// 		$hasError = true;
+// 	} else {
+ 		$runner = trim($_POST['runner']);
+// 	}
+
+// 	if(trim($_POST['number']) === '')  {
+// 		$numberError = 'Please enter a race number.';
+// 		$hasError = true;
+// 	} else {
+ 		$number = trim($_POST['number']);
+// 	}
 	
-	$race = trim($_POST['race']);
+ 	$raceid = trim($_POST['raceid']);
 
-	//if(!isset($hasError)) {
-		error_log($race.' '.$runner.' '.$racenumber);
-		$BHAA->registration->registerRunner($race,$runner,$racenumber);
-		$registrationSubmitted = true;
-	//}
-
+// 	//if(!isset($hasError)) {
+ 	error_log($raceid.' '.$runner.' '.$number);
+// 	global $BHAA;
+// 	$BHAA->registration->registerRunner($raceid,$runner,$number);
+ 	//$registrationSubmitted = true;
+// 	//}
 }
+global $BHAA;
 // http://stackoverflow.com/questions/11368368/404-when-using-post-get-parameters-in-wordpress-3-4
 get_header();
 echo "<pre>GET "; print_r($_GET); echo "</pre>";
 echo "<pre>POST "; print_r($_POST); echo "</pre>";
-
 ?>
 
 <div id="container">
@@ -48,7 +46,7 @@ echo "<pre>POST "; print_r($_POST); echo "</pre>";
 	if(isset($registrationSubmitted) && $registrationSubmitted == true) 
 	{
 		echo '<div class="thanks">
- 			<p>The runner has been registered.</p>'.var_dump($BHAA->registration->listRegisteredRunners(2278)).'</div>';
+ 			<p>The runner has been registered.</p></div>';
 	}
 	else
 	{
@@ -92,22 +90,41 @@ jQuery(document).ready(
 			[/one_third]');
 		
 		$races = $BHAA->registration->getNextRaces();
-		$selectRaces = '<select name="race" id="race">';
+		var_dump($races);
+		$selectRaces = '<select name="raceid">';
+		$i=0;
 		foreach($races as $race)
 		{
-			$name = $race->dist.$race->unit.'-'.$race->type;
-			$selected="false";
-			if(key($race)==1)
-				$selected="true";
-			$selectRaces .= sprintf('<option value="%d">%s</option>',$selected,$race->id,$name);
+			$rname = $race->dist.'-'.$race->unit.'-'.$race->type;
+			$selected="";
+			if($i==0)
+			{
+//				$selected='selected="selected"';
+				//$selectRaces .= sprintf('<option value=%d selected="selected">%s</option>',$i++,$rname);
+			}
+			else
+			{
+				//$selectRaces .= sprintf('<option value=%d>%s</option>',$i++,$rname);
+			}
+			// http://stackoverflow.com/questions/5189645/how-to-remember-chosen-form-values-in-php
+			// http://wordpress.stackexchange.com/questions/85607/theme-option-select-values
+			//var_dump('$racez->id '.trim($racez->id));
+			//var_dump(sprintf('%s - %s - %d',$racez->id,trim($racez->id),$racez->id));
+//			$i = intval($racez->id);
+//			$rr = (int) $racez->id;
+			
+			$selectRaces .= sprintf('<option value=%d>%s</option>',$race->id,$rname);// $race->id,$race->id,$rname);
 		}
 		$selectRaces .= '</select>';
 		
+		var_dump('name'.$name);
+		var_dump('get_permalink '.get_permalink());
+		
 		echo apply_filters('the_content','
-			<form action="'.get_permalink().'" id="contactForm" method="POST">
+			<form action="" id="bhaa-registration-form" method="POST">
 				[one_half last="no"]
 				<b>Race Details</b><br/>
-				RaceNumber<input type="text" name="racenumber" id="racenumber"/><br/>
+				RaceNumber<input type="text" name="number" id="number"/><br/>
 				Race'.$selectRaces.'<br/>
 				[/one_half]
 				[one_half last="yes"]
@@ -121,7 +138,7 @@ jQuery(document).ready(
 				Company<input type="text" name="company" id="company"/><br/>
 				[/one_half]
 				<input type="submit" value="Register Runner"/>
-				<input type="hidden" name="bhaa-submitted" id="bhaa-submitted" value="true" />
+				<input type="hidden" name="form-submitted" value="true" />
 			</form>');
 	}
 	echo '</div>';
