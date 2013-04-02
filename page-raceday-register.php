@@ -45,8 +45,7 @@ include_once 'page-raceday-header.php';
 if(isset($registrationSubmitted) && $registrationSubmitted == true) 
 {
 	// redirect to registration page
-	echo '<div class="thanks">
-	<p>The runner has been registered.</p></div>';
+	echo '<div class="thanks"><p>The runner has been registered.</p></div>';
 }
 else
 {
@@ -55,7 +54,7 @@ else
 	echo apply_filters('the_content',
 		'[one_third last="yes"]
 			<div class="navbar-search pull-left" align="left">
-			Full name or ID : <input size="40" type="text" placeholder="Name or ID" id="memberfilter"/>
+			Search for BHAA Member by Name : <input size="40" type="text" placeholder="Name or ID" id="memberfilter"/>
 			[raw]<script type="text/javascript">
 jQuery(document).ready( 
 	function($){
@@ -87,7 +86,7 @@ jQuery(document).ready(
 });
 </script>[/raw]
 		</div>
-	[/one_third]');
+	[/one_third]<hr/><br/>');
 	
 	$races = $BHAA->registration->getNextRaces();
 	//var_dump($races);
@@ -100,6 +99,15 @@ jQuery(document).ready(
 	}
 	$selectRaces .= '</select>';
 		
+	if(isset($hasError) && $hasError==true)
+	{
+		$errorMessages = '';
+		if(isset($runnerError))
+			$errorMessages .=$runnerError.'</br>';
+		if(isset($numberError))
+			$errorMessages .=$numberError.'</br>';
+		echo apply_filters('the_content','[alert type="error"]'.$errorMessages.'[/alert]');
+	}
 	//var_dump('name'.$name);
 	//var_dump('get_permalink '.get_permalink());
 
@@ -107,20 +115,20 @@ jQuery(document).ready(
 		<form action="" id="bhaa-registration-form" method="POST">
 			[one_third last="no"]
 			<b>Race Details</b><br/>
-			RaceNumber<input type="text" name="number" id="number"/><br/>
+			RaceNumber<input type="text" name="number" id="number" value="'.$number.'"/><br/>
 			Race'.$selectRaces.'<br/>
 			<input type="submit" value="Register Runner"/>
 			[/one_third]
 			[one_third]
 			<b>Runner Details</b><br/>
-			Firstname<input type="text" name="firstname" id="firstname"/><br/>
-			Surname<input type="text" name="lastname" id="lastname"/><br/>
+			Firstname<input type="text" name="firstname" id="firstname" value="'.$firstname.'"/><br/>
+			Surname<input type="text" name="lastname" id="lastname" value="'.$lastname.'"/><br/>
 			Gender<input type="checkbox" name="gender" value="M" id="gender">M<input type="checkbox" name="gender" value="W" id="gender">W<br/> 
 			DOB<input type="text" name="dateofbirth" id="dateofbirth"/><br/>
 			[/one_third]
 			[one_third last="yes"]
 			<b>BHAA Details</b><br/>
-			ID<input type="text" name="runner" id="runner"/><br/>
+			ID<input type="text" name="runner" id="runner" value="'.$runner.'"/><br/>
 			Standard<input type="text" name="standard" id="standard"/><br/>
 			Company<input type="text" name="company" id="company"/><br/>
 			[/one_third]
