@@ -48,9 +48,7 @@ get_header();
 //echo "<pre>GET "; print_r($_GET); echo "</pre>";
 //echo "<pre>POST "; print_r($_POST); echo "</pre>";
 ?>
-
 <div id="container">
-	
 <?php 
 include_once 'page-raceday-header.php';
 
