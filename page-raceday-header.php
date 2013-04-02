@@ -1,6 +1,6 @@
 <div id="header">
-<a href="/registration">Registration</a>
-<a href="/newmember">New Member</a>
-<a href="/list">List</a>
-<a href="/export">Export</a>
+	<a href="/raceday-registration">Registration</a>
+	<a href="/raceday-newmember">New Member</a>
+	<a href="/raceday-list">List</a>
+	<a href="/raceday-export">Export</a>
 </div>
