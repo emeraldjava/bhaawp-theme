@@ -113,16 +113,16 @@ jQuery(document).ready(
 			[/one_third]
 			[one_third]
 			<b>Runner Details</b><br/>
-			Firstname<input type="text" name="firstname"/><br/>
-			Surname<input type="text" name="lastname"/><br/>
-			Gender<input type="checkbox" name="gender" value="M">M<input type="checkbox" name="gender" value="W">W<br/> 
-			DOB<input type="text" name="dateofbirth"/><br/>
+			Firstname<input type="text" name="firstname" id="firstname"/><br/>
+			Surname<input type="text" name="lastname" id="lastname"/><br/>
+			Gender<input type="checkbox" name="gender" value="M" id="gender">M<input type="checkbox" name="gender" value="W" id="gender">W<br/> 
+			DOB<input type="text" name="dateofbirth" id="dateofbirth"/><br/>
 			[/one_third]
 			[one_third last="yes"]
 			<b>BHAA Details</b><br/>
-			ID<input type="text" name="runner"/><br/>
-			Standard<input type="text" name="standard"/><br/>
-			Company<input type="text" name="company"/><br/>
+			ID<input type="text" name="runner" id="runner"/><br/>
+			Standard<input type="text" name="standard" id="standard"/><br/>
+			Company<input type="text" name="company" id="company"/><br/>
 			[/one_third]
 			<input type="hidden" name="form-submitted" value="true" />
 		</form>');
