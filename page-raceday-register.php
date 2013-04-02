@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: BHAA Raceday Registration
+ * Template Name: BHAA Raceday Register
  */
 
 global $BHAA;
