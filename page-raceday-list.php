@@ -11,7 +11,6 @@ get_header();
 
 include_once 'page-raceday-header.php';
 
-echo "LIST BHAA RUNNERS";
 echo var_dump($BHAA->registration->listRegisteredRunners());
 
 get_footer(); 
