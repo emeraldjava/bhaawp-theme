@@ -115,7 +115,7 @@ jQuery(document).ready(
 			<b>Runner Details</b><br/>
 			Firstname<input type="text" name="first" id="first"/><br/>
 			Surname<input type="text" name="last" id="last"/><br/>
-			Gender<input type="text" name="gender" id="gender"/><br/>
+			Gender<input type="checkbox" name="gender" value="M">M<input type="checkbox" name="gender" value="W">W<br/> 
 			DOB<input type="text" name="dob" id="dob"/><br/>
 			[/one_third]
 			[one_third last="yes"]
