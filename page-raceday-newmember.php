@@ -7,26 +7,38 @@ global $BHAA;
 
 if(isset($_POST['form-submitted'])) 
 {
- 	if(trim($_POST['runner']) === '') {
- 		$runnerError = 'Please enter runner runner.';
+ 	if(trim($_POST['firstname']) === '') {
+ 		$runnerError = 'Please enter firstname.';
  		$hasError = true;
  	} else {
- 		$runner = trim($_POST['runner']);
+ 		$firstname = trim($_POST['firstname']);
+ 	}
+ 	
+ 	if(trim($_POST['lastname']) === '') {
+ 		$runnerError = 'Please enter lastname.';
+ 		$hasError = true;
+ 	} else {
+ 		$lastname = trim($_POST['lastname']);
  	}
 
- 	if(trim($_POST['number']) === '')  {
- 		$numberError = 'Please enter a race number.';
+ 	if(trim($_POST['gender']) === '')  {
+ 		$numberError = 'Please enter gender.';
  		$hasError = true;
  	} else {
- 		$number = trim($_POST['number']);
+ 		$gender = trim($_POST['gender']);
+ 	}
+ 	
+ 	if(trim($_POST['dateofbirth']) === '')  {
+ 		$numberError = 'Please enter dateofbirth.';
+ 		$hasError = true;
+ 	} else {
+ 		$dateofbirth = trim($_POST['dateofbirth']);
  	}
 	
- 	$raceid = trim($_POST['raceid']);
-
 	if(!isset($hasError))
 	{
- 		error_log($raceid.' '.$runner.' '.$number);
- 		$BHAA->registration->registerRunner($raceid,$runner,$number);
+ 		error_log($firstname.' '.$lastname.' '.$gender.' '.$dateofbirth);
+ 		$runner_id = $BHAA->registration->addNewMember($firstname,$lastname,$gender,$dateofbirth,$email);
  		$registrationSubmitted = true;
 	}
 }
@@ -46,7 +58,7 @@ echo "<h3>BHAA New Member</h3>";
 
 if(isset($registrationSubmitted) && $registrationSubmitted == true) 
 {
-	echo '<div class="thanks"><p>The runner has been registered.</p></div>';
+	echo '<div class="thanks"><p>New runner with ID '.$runner_id.' has been registered.</p></div>';
 }
 else
 {
@@ -56,16 +68,16 @@ else
 		<form action="" id="bhaa-raceday-newmember" method="POST">
 			[one_half last="no"]
 			<b>Runner Details - REQUIRED</b><br/>
-			Firstname<input type="text" name="first" id="first"/><br/>
-			Surname<input type="text" name="last" id="last"/><br/>
-			Gender<input type="text" name="gender" id="gender"/><br/>
-			DOB<input type="text" name="dob" id="dob"/><br/>
+			Firstname<input type="text" name="firstname"/><br/>
+			Surname<input type="text" name="lastname"/><br/>
+			Gender<input type="text" name="gender"/><br/>
+			DOB<input type="text" name="dateofbirth"/><br/>
 			[/one_half]
 			[one_half last="yes"]
 			<b>Extra Details</b><br/>
-			Email<input type="text" name="company" id="company"/><br/>
-			Mobile<input type="text" name="company" id="company"/><br/>
-			Company<input type="text" name="company" id="company"/><br/>
+			Email<input type="text" name="email"/><br/>
+			Mobile<input type="text" name="mobile"/><br/>
+			Company<input type="text" name="company"/><br/>
 			<input type="submit" value="Register New Runner"/>
 			[/one_half]
 			<input type="hidden" name="form-submitted" value="true" />
