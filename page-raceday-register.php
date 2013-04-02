@@ -8,7 +8,7 @@ global $BHAA;
 if(isset($_POST['form-submitted'])) 
 {
  	if(trim($_POST['runner']) === '') {
- 		$runnerError = 'Please enter runner runner.';
+ 		$runnerError = 'Please enter a runner ID.';
  		$hasError = true;
  	} else {
  		$runner = trim($_POST['runner']);
@@ -69,9 +69,9 @@ jQuery(document).ready(
       	},
 		select: function(event, ui) {
 			$("#runner").val( ui.item.id );
-			$("#first").val( ui.item.firstname );
-			$("#last").val( ui.item.lastname );
-			$("#dob").val( ui.item.dob );
+			$("#firstname").val( ui.item.firstname );
+			$("#lastname").val( ui.item.lastname );
+			$("#dateofbirth").val( ui.item.dob );
 			$("#company").val( ui.item.company );
 			$("#standard").val( ui.item.standard );
 			$("#gender").val( ui.item.gender );
@@ -113,16 +113,16 @@ jQuery(document).ready(
 			[/one_third]
 			[one_third]
 			<b>Runner Details</b><br/>
-			Firstname<input type="text" name="first" id="first"/><br/>
-			Surname<input type="text" name="last" id="last"/><br/>
+			Firstname<input type="text" name="firstname"/><br/>
+			Surname<input type="text" name="lastname"/><br/>
 			Gender<input type="checkbox" name="gender" value="M">M<input type="checkbox" name="gender" value="W">W<br/> 
-			DOB<input type="text" name="dob" id="dob"/><br/>
+			DOB<input type="text" name="dateofbirth"/><br/>
 			[/one_third]
 			[one_third last="yes"]
 			<b>BHAA Details</b><br/>
-			ID<input type="text" name="runner" id="runner"/><br/>
-			Standard<input type="text" name="standard" id="standard"/><br/>
-			Company<input type="text" name="company" id="company"/><br/>
+			ID<input type="text" name="runner"/><br/>
+			Standard<input type="text" name="standard"/><br/>
+			Company<input type="text" name="company"/><br/>
 			[/one_third]
 			<input type="hidden" name="form-submitted" value="true" />
 		</form>');

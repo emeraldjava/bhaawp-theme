@@ -38,7 +38,7 @@ if(isset($_POST['form-submitted']))
 	if(!isset($hasError))
 	{
  		error_log($firstname.' '.$lastname.' '.$gender.' '.$dateofbirth);
- 		$runner_id = $BHAA->registration->addNewMember($firstname,$lastname,$gender,$dateofbirth,$email);
+ 		$runner = $BHAA->registration->addNewMember($firstname,$lastname,$gender,$dateofbirth,$email);
  		$registrationSubmitted = true;
 	}
 }
@@ -58,7 +58,7 @@ echo "<h3>BHAA New Member</h3>";
 
 if(isset($registrationSubmitted) && $registrationSubmitted == true) 
 {
-	echo '<div class="thanks"><p>New runner with ID '.$runner_id.' has been registered.</p></div>';
+	echo '<div class="thanks"><p>New runner with ID '.$runner.' has been registered.</p></div>';
 }
 else
 {
@@ -70,7 +70,7 @@ else
 			<b>Runner Details - REQUIRED</b><br/>
 			Firstname<input type="text" name="firstname"/><br/>
 			Surname<input type="text" name="lastname"/><br/>
-			Gender<input type="text" name="gender"/><br/>
+			Gender<input type="checkbox" name="gender" value="M">M<input type="checkbox" name="gender" value="W">W<br/>
 			DOB<input type="text" name="dateofbirth"/><br/>
 			[/one_half]
 			[one_half last="yes"]
