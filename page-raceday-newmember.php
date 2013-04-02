@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: BHAA Raceday Registration
+ * Template Name: BHAA Raceday New Member
  */
 
 global $BHAA;
@@ -42,9 +42,10 @@ get_header();
 <?php 
 include_once 'page-raceday-header.php';
 
+echo "BHAA NEW MEMBER";
+
 if(isset($registrationSubmitted) && $registrationSubmitted == true) 
 {
-	// redirect to registration page
 	echo '<div class="thanks">
 	<p>The runner has been registered.</p></div>';
 }
