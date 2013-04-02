@@ -90,7 +90,7 @@ jQuery(document).ready(
 	[/one_third]');
 	
 	$races = $BHAA->registration->getNextRaces();
-	var_dump($races);
+	//var_dump($races);
 	$selectRaces = '<select name="raceid">';
 	$i=0;
 	foreach($races as $race)
@@ -105,22 +105,25 @@ jQuery(document).ready(
 
 	echo apply_filters('the_content','
 		<form action="" id="bhaa-registration-form" method="POST">
-			[one_half last="no"]
+			[one_third last="no"]
 			<b>Race Details</b><br/>
 			RaceNumber<input type="text" name="number" id="number"/><br/>
 			Race'.$selectRaces.'<br/>
-			[/one_half]
-			[one_half last="yes"]
+			<input type="submit" value="Register Runner"/>
+			[/one_third]
+			[one_third]
 			<b>Runner Details</b><br/>
-			ID<input type="text" name="runner" id="runner"/><br/>
 			Firstname<input type="text" name="first" id="first"/><br/>
 			Surname<input type="text" name="last" id="last"/><br/>
 			Gender<input type="text" name="gender" id="gender"/><br/>
 			DOB<input type="text" name="dob" id="dob"/><br/>
+			[/one_third]
+			[one_third last="yes"]
+			<b>BHAA Details</b><br/>
+			ID<input type="text" name="runner" id="runner"/><br/>
 			Standard<input type="text" name="standard" id="standard"/><br/>
 			Company<input type="text" name="company" id="company"/><br/>
-			[/one_half]
-			<input type="submit" value="Register Runner"/>
+			[/one_third]
 			<input type="hidden" name="form-submitted" value="true" />
 		</form>');
 }
