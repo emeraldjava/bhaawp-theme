@@ -30,6 +30,13 @@ if(isset($_POST['form-submitted']))
  		$registrationSubmitted = true;
 	}
 }
+elseif(isset($_GET['newmember']))
+{
+	error_log("new member linked!");
+	$runner = trim($_GET['runner']);
+	$firstname = trim($_GET['firstname']);
+	$lastname = trim($_GET['lastname']);
+}
 
 // http://stackoverflow.com/questions/11368368/404-when-using-post-get-parameters-in-wordpress-3-4
 get_header();

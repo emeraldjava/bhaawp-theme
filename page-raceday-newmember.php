@@ -58,7 +58,10 @@ echo "<h3>BHAA New Member</h3>";
 
 if(isset($registrationSubmitted) && $registrationSubmitted == true) 
 {
+	// http://localhost/raceday-newmember/raceday-registration/?runner=&d&firstname=23004&stname=POC&g=M&dob=12
 	echo '<div class="thanks"><p>New runner with ID '.$runner.' has been registered.</p></div>';
+	echo sprintf('<a href="./raceday-registration/?newmember=xxy&runner=&s&firstname=%s&lastname=%s&gender=%s&dateofbirth=%s">Next Step Register Runner %s</a>'
+		,$runner,$firstname,$lastname,$gender,$dateofbirth,$runner);
 }
 else
 {
