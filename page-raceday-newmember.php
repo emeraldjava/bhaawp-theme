@@ -50,8 +50,8 @@ if(isset($_POST['form-submitted']))
 
 // http://stackoverflow.com/questions/11368368/404-when-using-post-get-parameters-in-wordpress-3-4
 get_header();
-echo "<pre>GET "; print_r($_GET); echo "</pre>";
-echo "<pre>POST "; print_r($_POST); echo "</pre>";
+//echo "<pre>GET "; print_r($_GET); echo "</pre>";
+//echo "<pre>POST "; print_r($_POST); echo "</pre>";
 ?>
 <div id="container">
 <?php 
@@ -63,8 +63,8 @@ if(isset($registrationSubmitted) && $registrationSubmitted == true)
 {
 	// http://stackoverflow.com/questions/2090366/date-validation-using-jquery-validation - datepicker
 	// http://localhost/raceday-newmember/raceday-registration/?runner=&d&firstname=23004&stname=POC&g=M&dob=12
-	echo '<div class="thanks"><p>The non-member runner with ID '.$runner.' has been registered.</p></div>';
-	echo sprintf('<a href="/raceday-register/?newmember=xxy&runner=%s&firstname=%s&lastname=%s&gender=%s&dateofbirth=%s">Next Step Register Runner %s</a>'
+	echo '<div class="thanks"><p>Hit the LINK to go to the next step :</p></div>';
+	echo sprintf('<a href="/raceday-register/?newmember=xxy&runner=%s&firstname=%s&lastname=%s&gender=%s&dateofbirth=%s">Assign Runner %s a race number</a>'
 		,$runner,$firstname,$lastname,$gender,$dateofbirth,$runner);
 }
 else
@@ -72,7 +72,7 @@ else
 	echo apply_filters('the_content',
 			'[one_third last="yes"]
 			<div class="navbar-search pull-left" align="left">
-			Search per Matching Member : <input size="40" type="text" placeholder="Search by Name OR ID" id="memberfilter"/>
+			Check for an existing day members : <input size="40" type="text" placeholder="Search by Name OR ID" id="memberfilter"/>
 			[raw]<script type="text/javascript">
 jQuery(document).ready(
 	function($){
