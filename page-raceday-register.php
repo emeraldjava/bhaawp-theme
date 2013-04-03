@@ -36,12 +36,13 @@ elseif(isset($_GET['newmember']))
 	$runner = trim($_GET['runner']);
 	$firstname = trim($_GET['firstname']);
 	$lastname = trim($_GET['lastname']);
+	$gender = trim($_GET['gender']);
+	$dateofbirth = trim($_GET['dateofbirth']);
 }
-
 // http://stackoverflow.com/questions/11368368/404-when-using-post-get-parameters-in-wordpress-3-4
 get_header();
-//echo "<pre>GET "; print_r($_GET); echo "</pre>";
-//echo "<pre>POST "; print_r($_POST); echo "</pre>";
+echo "<pre>GET "; print_r($_GET); echo "</pre>";
+echo "<pre>POST "; print_r($_POST); echo "</pre>";
 ?>
 
 <div id="container">
@@ -87,7 +88,11 @@ jQuery(document).ready(
 			$("#dateofbirth").val( ui.item.dob );
 			$("#company").val( ui.item.company );
 			$("#standard").val( ui.item.standard );
-			$("#gender").val( ui.item.gender );
+			if(ui.item.gender=="M") {
+				$("#gendermale").prop("checked",true);
+			} else {
+				$("#genderfemale").prop("checked",true);
+			}
 			return true;	
 		}
 	})
@@ -134,7 +139,7 @@ jQuery(document).ready(
 			<b>Runner Details</b><br/>
 			Firstname<input type="text" name="firstname" id="firstname" value="'.$firstname.'"/><br/>
 			Surname<input type="text" name="lastname" id="lastname" value="'.$lastname.'"/><br/>
-			Gender<input type="checkbox" name="gender" value="M" id="gender">M<input type="checkbox" name="gender" value="W" id="gender">W<br/> 
+			Gender<input type="radio" name="gender" value="M" id="gendermale">M<input type="radio" name="gender" value="W" id="genderfemale">W<br/> 
 			DOB<input type="text" name="dateofbirth" id="dateofbirth"/><br/>
 			[/one_third]
 			[one_third last="yes"]
