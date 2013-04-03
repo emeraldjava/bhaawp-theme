@@ -41,8 +41,8 @@ elseif(isset($_GET['newmember']))
 }
 // http://stackoverflow.com/questions/11368368/404-when-using-post-get-parameters-in-wordpress-3-4
 get_header();
-echo "<pre>GET "; print_r($_GET); echo "</pre>";
-echo "<pre>POST "; print_r($_POST); echo "</pre>";
+//echo "<pre>GET "; print_r($_GET); echo "</pre>";
+//echo "<pre>POST "; print_r($_POST); echo "</pre>";
 ?>
 
 <div id="container">
