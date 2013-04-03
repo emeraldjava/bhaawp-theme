@@ -68,6 +68,7 @@ else
 jQuery(document).ready( 
 	function($){
 	var runners = '.file_get_contents("wp-content/bhaa_runners.json.txt").';
+	
 	$("#memberfilter").autocomplete({
 		source: runners,
 		minLength: 3,
@@ -140,7 +141,7 @@ jQuery(document).ready(
 			Firstname<input type="text" name="firstname" id="firstname" value="'.$firstname.'"/><br/>
 			Surname<input type="text" name="lastname" id="lastname" value="'.$lastname.'"/><br/>
 			Gender<input type="radio" name="gender" value="M" id="gendermale">M<input type="radio" name="gender" value="W" id="genderfemale">W<br/> 
-			DOB<input type="text" name="dateofbirth" id="dateofbirth"/><br/>
+			DOB<input type="date" class="{validate:{required:true, date:true}} name="dateofbirth" id="dateofbirth"/><br/>
 			[/one_third]
 			[one_third last="yes"]
 			<b>BHAA Details</b><br/>

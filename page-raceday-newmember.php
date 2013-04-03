@@ -7,6 +7,8 @@ global $BHAA;
 
 if(isset($_POST['form-submitted'])) 
 {
+	$runner = trim($_POST['runner']);
+	
  	if(trim($_POST['firstname']) === '') {
  		$runnerError = 'Please enter firstname.';
  		$hasError = true;
@@ -37,16 +39,19 @@ if(isset($_POST['form-submitted']))
 	
 	if(!isset($hasError))
 	{
- 		error_log($firstname.' '.$lastname.' '.$gender.' '.$dateofbirth);
- 		$runner = $BHAA->registration->addNewMember($firstname,$lastname,$gender,$dateofbirth,$email);
- 		$registrationSubmitted = true;
+		if(!isset($runner))
+		{
+	 		error_log($firstname.' '.$lastname.' '.$gender.' '.$dateofbirth);
+	 		$runner = $BHAA->registration->addNewMember($firstname,$lastname,$gender,$dateofbirth,$email);
+		}
+		$registrationSubmitted = true;
 	}
 }
 
 // http://stackoverflow.com/questions/11368368/404-when-using-post-get-parameters-in-wordpress-3-4
 get_header();
-//echo "<pre>GET "; print_r($_GET); echo "</pre>";
-//echo "<pre>POST "; print_r($_POST); echo "</pre>";
+echo "<pre>GET "; print_r($_GET); echo "</pre>";
+echo "<pre>POST "; print_r($_POST); echo "</pre>";
 ?>
 <div id="container">
 <?php 
@@ -56,9 +61,10 @@ echo "<h3>BHAA New Member</h3>";
 
 if(isset($registrationSubmitted) && $registrationSubmitted == true) 
 {
+	// http://stackoverflow.com/questions/2090366/date-validation-using-jquery-validation - datepicker
 	// http://localhost/raceday-newmember/raceday-registration/?runner=&d&firstname=23004&stname=POC&g=M&dob=12
-	echo '<div class="thanks"><p>New runner with ID '.$runner.' has been registered.</p></div>';
-	echo sprintf('<a href="./raceday-registration/?newmember=xxy&runner=&s&firstname=%s&lastname=%s&gender=%s&dateofbirth=%s">Next Step Register Runner %s</a>'
+	echo '<div class="thanks"><p>The non-member runner with ID '.$runner.' has been registered.</p></div>';
+	echo sprintf('<a href="/raceday-register/?newmember=xxy&runner=%s&firstname=%s&lastname=%s&gender=%s&dateofbirth=%s">Next Step Register Runner %s</a>'
 		,$runner,$firstname,$lastname,$gender,$dateofbirth,$runner);
 }
 else
@@ -90,8 +96,11 @@ jQuery(document).ready(
 			$("#lastname").val( ui.item.lastname );
 			$("#dateofbirth").val( ui.item.dob );
 			$("#company").val( ui.item.company );
-			$("#standard").val( ui.item.standard );
-			$("#gender").val( ui.item.gender );
+			if(ui.item.gender=="M") {
+				$("#gendermale").prop("checked",true);
+			} else {
+				$("#genderfemale").prop("checked",true);
+			}
 			return true;
 		}
 	})
@@ -112,13 +121,14 @@ jQuery(document).ready(
 		<form action="" id="bhaa-raceday-newmember" method="POST">
 			[one_half last="no"]
 			<b>Runner Details - REQUIRED</b><br/>
-			Firstname<input type="text" name="firstname"/><br/>
-			Surname<input type="text" name="lastname"/><br/>
-			Gender<input type="checkbox" name="gender" value="M">M<input type="checkbox" name="gender" value="W">W<br/>
-			DOB<input type="text" name="dateofbirth"/><br/>
+			Firstname<input type="text" id="firstname" name="firstname"/><br/>
+			Surname<input type="text" id="lastname" name="lastname"/><br/>
+			Gender<input type="radio" name="gender" value="M" id="gendermale">M<input type="radio" name="gender" value="W" id="genderfemale">W<br/>
+			DOB<input type="date" placeholder="YYYY-MM-DD" class="{validate:{required:true, date:true}} name="dateofbirth" id="dateofbirth"/><br/>
 			[/one_half]
 			[one_half last="yes"]
 			<b>Extra Details</b><br/>
+			ID<input type="text" name="runner" id="runner" value="'.$runner.'"/><br/>
 			Email<input type="text" name="email"/><br/>
 			Mobile<input type="text" name="mobile"/><br/>
 			Company<input type="text" name="company"/><br/>
