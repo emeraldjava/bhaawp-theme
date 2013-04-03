@@ -58,10 +58,11 @@ else
 {
 	// http://jqueryui.com/autocomplete/#custom-data
 	// http://stackoverflow.com/questions/11349205/jqueryui-autocomplete-custom-data-and-display
+	// http://stackoverflow.com/questions/4717488/jquery-ui-autocomplete-search-more-than-just-label-within-a-local-json-array
 	echo apply_filters('the_content',
 		'[one_third last="yes"]
 			<div class="navbar-search pull-left" align="left">
-			Search for BHAA Member by Name : <input size="40" type="text" placeholder="Name or ID" id="memberfilter"/>
+			BHAA Member : <input size="40" type="text" placeholder="Search by Name OR ID" id="memberfilter"/>
 			[raw]<script type="text/javascript">
 jQuery(document).ready( 
 	function($){
@@ -69,8 +70,14 @@ jQuery(document).ready(
 	$("#memberfilter").autocomplete({
 		source: runners,
 		minLength: 3,
+		source: function (request, response) {
+		    var matcher = new RegExp($.ui.autocomplete.escapeRegex(request.term), "i");
+		    response($.grep(runners, function(value) {
+		        return matcher.test(value.label) || matcher.test(value.value);
+		    }));
+		},
 		focus: function( event, ui ) {
-        	$( "#memberfilter" ).val( ui.item.label );
+        	$("#memberfilter").val(ui.item.label);
         	return false;
       	},
 		select: function(event, ui) {
@@ -87,7 +94,7 @@ jQuery(document).ready(
 	.data( "ui-autocomplete" )._renderItem = function( ul, item ) {
 		return $("<li></li>")
         	.data("item.autocomplete", item)
-        	.append("<a>"+item.label+" "+item.id+"</a><br/><small>DOB:"+item.dob+", Status:"+item.status+"</small>")
+        	.append("<a>"+item.label+" "+item.id+"</a><small>DOB:"+item.dob+", Status:"+item.status+"</small>")
 			.appendTo(ul);
     };
 });
@@ -96,13 +103,12 @@ jQuery(document).ready(
 	[/one_third]<hr/><br/>');
 	
 	$races = $BHAA->registration->getNextRaces();
-	//var_dump($races);
 	$selectRaces = '<select name="raceid">';
 	$i=0;
 	foreach($races as $race)
 	{
 		$rname = $race->dist.'-'.$race->unit.'-'.$race->type;
-		$selectRaces .= sprintf('<option value=%d>%s</option>',$race->id,$rname);// $race->id,$race->id,$rname);
+		$selectRaces .= sprintf('<option value=%d>%s</option>',$race->id,$rname);
 	}
 	$selectRaces .= '</select>';
 		
@@ -115,8 +121,6 @@ jQuery(document).ready(
 			$errorMessages .=$numberError.'</br>';
 		echo apply_filters('the_content','[alert type="error"]'.$errorMessages.'[/alert]');
 	}
-	//var_dump('name'.$name);
-	//var_dump('get_permalink '.get_permalink());
 
 	echo apply_filters('the_content','
 		<form action="" id="bhaa-registration-form" method="POST">
