@@ -63,6 +63,49 @@ if(isset($registrationSubmitted) && $registrationSubmitted == true)
 }
 else
 {
+	echo apply_filters('the_content',
+			'[one_third last="yes"]
+			<div class="navbar-search pull-left" align="left">
+			Search per Matching Member : <input size="40" type="text" placeholder="Search by Name OR ID" id="memberfilter"/>
+			[raw]<script type="text/javascript">
+jQuery(document).ready(
+	function($){
+	var runners = '.file_get_contents("wp-content/bhaa_day_runners.json.txt").';
+	$("#memberfilter").autocomplete({
+		source: runners,
+		minLength: 3,
+		source: function (request, response) {
+		    var matcher = new RegExp($.ui.autocomplete.escapeRegex(request.term), "i");
+		    response($.grep(runners, function(value) {
+		        return matcher.test(value.label) || matcher.test(value.value);
+		    }));
+		},
+		focus: function( event, ui ) {
+        	$("#memberfilter").val(ui.item.label);
+        	return false;
+      	},
+		select: function(event, ui) {
+			$("#runner").val( ui.item.id );
+			$("#firstname").val( ui.item.firstname );
+			$("#lastname").val( ui.item.lastname );
+			$("#dateofbirth").val( ui.item.dob );
+			$("#company").val( ui.item.company );
+			$("#standard").val( ui.item.standard );
+			$("#gender").val( ui.item.gender );
+			return true;
+		}
+	})
+	.data( "ui-autocomplete" )._renderItem = function( ul, item ) {
+		return $("<li></li>")
+        	.data("item.autocomplete", item)
+        	.append("<a>"+item.label+" "+item.id+"</a><small>DOB:"+item.dob+", Status:"+item.status+"</small>")
+			.appendTo(ul);
+    };
+});
+</script>[/raw]
+		</div>
+	[/one_third]<hr/><br/>');
+	
 	// http://jqueryui.com/autocomplete/#custom-data
 	// http://stackoverflow.com/questions/11349205/jqueryui-autocomplete-custom-data-and-display
 	echo apply_filters('the_content','
