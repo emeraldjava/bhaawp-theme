@@ -22,11 +22,12 @@ if(isset($_POST['form-submitted']))
  	}
 	
  	$raceid = trim($_POST['raceid']);
-
+ 	$standard = trim($_POST['standard']);
+ 	
 	if(!isset($hasError))
 	{
  		error_log($raceid.' '.$runner.' '.$number);
- 		$BHAA->registration->registerRunner($raceid,$runner,$number);
+ 		$BHAA->registration->registerRunner($raceid,$runner,$number,$standard);
  		$registrationSubmitted = true;
 	}
 }
@@ -146,7 +147,7 @@ jQuery(document).ready(
 			[one_third last="yes"]
 			<b>BHAA Details</b><br/>
 			ID<input type="text" name="runner" id="runner" value="'.$runner.'"/><br/>
-			Standard<input type="text" name="standard" id="standard"/><br/>
+			Standard<input type="text" name="standard" id="standard" value="'.$standard.'"/><br/>
 			Company<input type="text" name="company" id="company"/><br/>
 			[/one_third]
 			<input type="hidden" name="form-submitted" value="true" />
