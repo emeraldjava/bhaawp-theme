@@ -27,8 +27,14 @@ if(isset($_POST['form-submitted']))
 	if(!isset($hasError))
 	{
  		error_log($raceid.' '.$runner.' '.$number);
- 		$BHAA->registration->registerRunner($raceid,$runner,$number,$standard);
- 		$registrationSubmitted = true;
+ 		$res = $BHAA->registration->registerRunner($raceid,$runner,$number,$standard);
+ 		if(gettype($res)=='string')
+ 		{
+ 			$hasError = true;
+ 			$duplicateError = $res;
+ 		}
+ 		else
+ 			$registrationSubmitted = true;
 	}
 }
 elseif(isset($_GET['newmember']))
@@ -126,6 +132,8 @@ jQuery(document).ready(
 			$errorMessages .=$runnerError.'</br>';
 		if(isset($numberError))
 			$errorMessages .=$numberError.'</br>';
+		if(isset($duplicateError))
+			$errorMessages .=$duplicateError.'</br>';
 		echo apply_filters('the_content','[alert type="error"]'.$errorMessages.'[/alert]');
 	}
 
