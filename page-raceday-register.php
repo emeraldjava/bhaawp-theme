@@ -20,8 +20,14 @@ if(isset($_POST['form-submitted']))
  	} else {
  		$number = trim($_POST['number']);
  	}
+ 	
+ 	if(trim($_POST['raceid']) === '')  {
+ 		$raceError = 'Please select a race.';
+ 		$hasError = true;
+ 	} else {
+ 		$raceid = trim($_POST['raceid']);
+ 	}
 	
- 	$raceid = trim($_POST['raceid']);
  	$standard = trim($_POST['standard']);
  	
 	if(!isset($hasError))
@@ -60,7 +66,7 @@ include_once 'page-raceday-header.php';
 if(isset($registrationSubmitted) && $registrationSubmitted == true) 
 {
 	// redirect to registration page
-	echo '<div class="thanks"><p>Runner '.$firstname.' '.$lastname.' has been registered with number '.$number.'.</p></div>';
+	echo '<div class="thanks"><p>Runner '.trim($_POST['firstname']).' '.trim($_POST['lastname']).' has been registered with number '.$number.'.</p></div>';
 }
 else
 {
@@ -116,14 +122,13 @@ jQuery(document).ready(
 	[/one_third]<hr/>');
 	
 	$races = $BHAA->registration->getNextRaces();
-	$selectRaces = '<select name="raceid">';
+	$selectRaces = '';
 	$i=0;
 	foreach($races as $race)
 	{
-		$rname = $race->dist.'-'.$race->unit.'-'.$race->type;
-		$selectRaces .= sprintf('<option value=%d>%s</option>',$race->id,$rname);
+		$rname = $race->dist.$race->unit;
+		$selectRaces .= sprintf('<input type="radio" name="raceid" value="%s">%s</input>',$race->id,$rname);
 	}
-	$selectRaces .= '</select>';
 		
 	if(isset($hasError) && $hasError==true)
 	{
@@ -134,6 +139,8 @@ jQuery(document).ready(
 			$errorMessages .=$numberError.'</br>';
 		if(isset($duplicateError))
 			$errorMessages .=$duplicateError.'</br>';
+		if(isset($raceError))
+			$errorMessages .=$raceError.'</br>';
 		echo apply_filters('the_content','[alert type="error"]'.$errorMessages.'[/alert]');
 	}
 
