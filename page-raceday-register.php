@@ -157,7 +157,7 @@ jQuery(document).ready(
 			Firstname<input type="text" name="firstname" id="firstname" value="'.$firstname.'"/><br/>
 			Surname<input type="text" name="lastname" id="lastname" value="'.$lastname.'"/><br/>
 			Gender<input type="radio" name="gender" value="M" id="gendermale">M</input><input type="radio" name="gender" value="W" id="genderfemale">W</input><br/> 
-			DOB<input type="date" class="{validate:{required:true, date:true}} name="dateofbirth" id="dateofbirth"/><br/>
+			DOB<input type="text" value="'.$dateofbirth.'" name="dateofbirth" id="dateofbirth"/><br/>
 			[/one_third]
 			[one_third last="yes"]
 			<b>BHAA Details</b><br/>
