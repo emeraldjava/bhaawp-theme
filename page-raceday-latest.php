@@ -9,11 +9,6 @@ if ( !current_user_can( 'edit_users' ) )  {
 global $BHAA;
 
 get_header();
-//echo "<pre>GET "; print_r($_GET); echo "</pre>";
-//echo "<pre>POST "; print_r($_POST); echo "</pre>";
-
-include_once 'page-raceday-header.php';
-
 
 echo '<div id="raceteclist">
 <div class="row">
@@ -40,6 +35,17 @@ foreach($racetec as $racetec) : ?>
 </div>
 <?php endforeach;?>
 </div>
+
+<!-- <div align="right">Refreshing in <span id="seconds">15</span> seconds.
+    <script>
+      var seconds = 15;
+      setInterval(
+        function(){
+          document.getElementById('seconds').innerHTML = --seconds;
+        }, 1000
+      );
+    </script>
+</div>-->
 
 <?php 
 get_footer(); 

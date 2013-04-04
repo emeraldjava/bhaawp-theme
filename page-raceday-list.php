@@ -10,7 +10,7 @@ global $BHAA;
 
 get_header();
 
-
+include_once 'page-raceday-header.php';
 
 echo '<div id="raceteclist">
 <div class="row">
