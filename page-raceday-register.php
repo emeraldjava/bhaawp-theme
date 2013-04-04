@@ -49,7 +49,7 @@ if(isset($_POST['form-submitted']))
 }
 elseif(isset($_GET['newmember']))
 {
-	error_log("new member linked!");
+// 	error_log("new member linked!");
 	$runner = trim($_GET['runner']);
 	$firstname = trim($_GET['firstname']);
 	$lastname = trim($_GET['lastname']);
