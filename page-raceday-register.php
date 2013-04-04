@@ -60,7 +60,7 @@ include_once 'page-raceday-header.php';
 if(isset($registrationSubmitted) && $registrationSubmitted == true) 
 {
 	// redirect to registration page
-	echo '<div class="thanks"><p>The runner has been registered.</p></div>';
+	echo '<div class="thanks"><p>Runner '.$firstname.' '.$lastname.' has been registered with number '.$number.'.</p></div>';
 }
 else
 {
@@ -113,7 +113,7 @@ jQuery(document).ready(
 });
 </script>[/raw]
 		</div>
-	[/one_third]<hr/><br/>');
+	[/one_third]<hr/>');
 	
 	$races = $BHAA->registration->getNextRaces();
 	$selectRaces = '<select name="raceid">';
@@ -149,7 +149,7 @@ jQuery(document).ready(
 			<b>Runner Details</b><br/>
 			Firstname<input type="text" name="firstname" id="firstname" value="'.$firstname.'"/><br/>
 			Surname<input type="text" name="lastname" id="lastname" value="'.$lastname.'"/><br/>
-			Gender<input type="radio" name="gender" value="M" id="gendermale">M<input type="radio" name="gender" value="W" id="genderfemale">W<br/> 
+			Gender<input type="radio" name="gender" value="M" id="gendermale">M</input><input type="radio" name="gender" value="W" id="genderfemale">W</input><br/> 
 			DOB<input type="date" class="{validate:{required:true, date:true}} name="dateofbirth" id="dateofbirth"/><br/>
 			[/one_third]
 			[one_third last="yes"]

@@ -113,7 +113,7 @@ jQuery(document).ready(
 });
 </script>[/raw]
 		</div>
-	[/one_third]<hr/><br/>');
+	[/one_third]<hr/>');
 	
 	// http://jqueryui.com/autocomplete/#custom-data
 	// http://stackoverflow.com/questions/11349205/jqueryui-autocomplete-custom-data-and-display
@@ -123,7 +123,7 @@ jQuery(document).ready(
 			<b>Runner Details - REQUIRED</b><br/>
 			Firstname<input type="text" id="firstname" name="firstname"/><br/>
 			Surname<input type="text" id="lastname" name="lastname"/><br/>
-			Gender<input type="radio" name="gender" value="M" id="gendermale">M<input type="radio" name="gender" value="W" id="genderfemale">W<br/>
+			Gender<input type="radio" name="gender" value="M" id="gendermale">M</input><input type="radio" name="gender" value="W" id="genderfemale">W</input><br/> 
 			DOB<input type="date" placeholder="YYYY-MM-DD" class="{validate:{required:true, date:true}} name="dateofbirth" id="dateofbirth"/><br/>
 			[/one_half]
 			[one_half last="yes"]
