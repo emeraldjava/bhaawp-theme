@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: BHAA Raceday List
+ * Template Name: BHAA Raceday Latest
  */
 if ( !current_user_can( 'edit_users' ) )  {
 	wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
@@ -9,7 +9,10 @@ if ( !current_user_can( 'edit_users' ) )  {
 global $BHAA;
 
 get_header();
+//echo "<pre>GET "; print_r($_GET); echo "</pre>";
+//echo "<pre>POST "; print_r($_POST); echo "</pre>";
 
+include_once 'page-raceday-header.php';
 
 
 echo '<div id="raceteclist">
@@ -23,7 +26,7 @@ echo '<div id="raceteclist">
 <span class="cell">Team</span>
 </div>';
 
-$racetec = $BHAA->registration->listRegisteredRunners();
+$racetec = $BHAA->registration->listRegisteredRunners(3);
 
 foreach($racetec as $racetec) : ?>
 <div class="row">
