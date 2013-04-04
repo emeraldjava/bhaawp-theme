@@ -1,7 +1,8 @@
-<div id="header">
-	<a href="/raceday-register"><b>Register</b></a>
-	<a href="/raceday-newmember"><b>New Member</b></a>
-	<a href="/raceday-list"><b>List</b></a>
-	<a href="/raceday-export"><b>Export</b></a>
-</div>
-<hr/><br/>
+<?php 
+echo apply_filters(
+'the_content',
+'[one_fourth last="no"]<a href="/raceday-register">Register</a>[/one_fourth]
+[one_fourth last="no"]<a href="/raceday-newmember">New/Day Member</a>[/one_fourth]
+[one_fourth last="no"]<a href="/raceday-list">List</a>[/one_fourth]
+[one_fourth last="yes"]<a href="/raceday-export">Export</a>[/one_fourth]<hr/>');
+?>
