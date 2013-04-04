@@ -10,28 +10,28 @@ if(isset($_POST['form-submitted']))
 	$runner = trim($_POST['runner']);
 	
  	if(trim($_POST['firstname']) === '') {
- 		$runnerError = 'Please enter firstname.';
+ 		$firstNameError = 'Please enter firstname.';
  		$hasError = true;
  	} else {
  		$firstname = trim($_POST['firstname']);
  	}
  	
  	if(trim($_POST['lastname']) === '') {
- 		$runnerError = 'Please enter lastname.';
+ 		$lastNameError = 'Please enter lastname.';
  		$hasError = true;
  	} else {
  		$lastname = trim($_POST['lastname']);
  	}
 
  	if(trim($_POST['gender']) === '')  {
- 		$numberError = 'Please enter gender.';
+ 		$genderError = 'Please enter gender.';
  		$hasError = true;
  	} else {
  		$gender = trim($_POST['gender']);
  	}
  	
  	if(trim($_POST['dateofbirth']) === '')  {
- 		$numberError = 'Please enter dateofbirth.';
+ 		$dobError = 'Please enter dateofbirth.';
  		$hasError = true;
  	} else {
  		$dateofbirth = trim($_POST['dateofbirth']);
@@ -39,19 +39,20 @@ if(isset($_POST['form-submitted']))
 	
 	if(!isset($hasError))
 	{
-		if(!isset($runner))
+		error_log('runner '.isset($runner).' $'.$runner.'$');
+		if($runner=='')// !isset($runner) || $runner!='')
 		{
-	 		error_log($firstname.' '.$lastname.' '.$gender.' '.$dateofbirth);
 	 		$runner = $BHAA->registration->addNewMember($firstname,$lastname,$gender,$dateofbirth,$email);
 		}
+		error_log($firstname.' '.$lastname.' '.$gender.' '.$dateofbirth.' -> '.$runner);
 		$registrationSubmitted = true;
 	}
 }
 
 // http://stackoverflow.com/questions/11368368/404-when-using-post-get-parameters-in-wordpress-3-4
 get_header();
-//echo "<pre>GET "; print_r($_GET); echo "</pre>";
-//echo "<pre>POST "; print_r($_POST); echo "</pre>";
+echo "<pre>GET "; print_r($_GET); echo "</pre>";
+echo "<pre>POST "; print_r($_POST); echo "</pre>";
 ?>
 <div id="container">
 <?php 
@@ -63,8 +64,8 @@ if(isset($registrationSubmitted) && $registrationSubmitted == true)
 {
 	// http://stackoverflow.com/questions/2090366/date-validation-using-jquery-validation - datepicker
 	// http://localhost/raceday-newmember/raceday-registration/?runner=&d&firstname=23004&stname=POC&g=M&dob=12
-	echo '<div class="thanks"><p>Hit the LINK to go to the next step :</p></div>';
-	echo sprintf('<a href="/raceday-register/?newmember=xxy&runner=%s&firstname=%s&lastname=%s&gender=%s&dateofbirth=%s">Assign Runner %s a race number</a>'
+	echo '<div class="thanks"><p>Runner '.$firstname.' '.$lastname.' has been registered. Next Step ';
+	echo sprintf('<a href="/raceday-register/?newmember=xxy&runner=%s&firstname=%s&lastname=%s&gender=%s&dateofbirth=%s">Assign Runner %s a race number</a></p></div>'
 		,$runner,$firstname,$lastname,$gender,$dateofbirth,$runner);
 }
 else
@@ -115,6 +116,20 @@ jQuery(document).ready(
 		</div>
 	[/one_third]<hr/>');
 	
+	if(isset($hasError) && $hasError==true)
+	{
+		$errorMessages = '';
+		if(isset($firstNameError))
+			$errorMessages .=$firstNameError.'</br>';
+		if(isset($lastNameError))
+			$errorMessages .=$lastNameError.'</br>';
+		if(isset($genderError))
+			$errorMessages .=$genderError.'</br>';
+		if(isset($dobError))
+			$errorMessages .=$dobError.'</br>';
+		echo apply_filters('the_content','[alert type="error"]'.$errorMessages.'[/alert]');
+	}
+	
 	// http://jqueryui.com/autocomplete/#custom-data
 	// http://stackoverflow.com/questions/11349205/jqueryui-autocomplete-custom-data-and-display
 	echo apply_filters('the_content','
@@ -124,7 +139,8 @@ jQuery(document).ready(
 			Firstname<input type="text" id="firstname" name="firstname"/><br/>
 			Surname<input type="text" id="lastname" name="lastname"/><br/>
 			Gender<input type="radio" name="gender" value="M" id="gendermale">M</input><input type="radio" name="gender" value="W" id="genderfemale">W</input><br/> 
-			DOB<input type="date" placeholder="YYYY-MM-DD" class="{validate:{required:true, date:true}} name="dateofbirth" id="dateofbirth"/><br/>
+			DOB<input type="text" placeholder="YYYY-MM-DD" name="dateofbirth" id="dateofbirth"/><br/>
+			<input type="submit" value="Register New Runner"/>
 			[/one_half]
 			[one_half last="yes"]
 			<b>Extra Details</b><br/>
@@ -132,7 +148,6 @@ jQuery(document).ready(
 			Email<input type="text" name="email"/><br/>
 			Mobile<input type="text" name="mobile"/><br/>
 			Company<input type="text" name="company"/><br/>
-			<input type="submit" value="Register New Runner"/>
 			[/one_half]
 			<input type="hidden" name="form-submitted" value="true" />
 		</form>');
