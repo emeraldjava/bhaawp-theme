@@ -2,6 +2,9 @@
 /**
  * Template Name: BHAA Raceday New Member
  */
+if ( !current_user_can( 'edit_users' ) )  {
+	wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
+}
 
 global $BHAA;
 
