@@ -18,6 +18,8 @@ if(isset($_GET['action']))
 
 get_header();
 
+include_once 'page-raceday-header.php';
+
 $racetec = $BHAA->registration->listRegisteredRunners();
 
 echo '<h2>BHAA RACE DAY ADMIN</h2>';
