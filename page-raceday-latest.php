@@ -10,31 +10,31 @@ global $BHAA;
 
 get_header();
 
-echo '<div id="raceteclist">
-<div class="row">
-<span class="cell">Event</span>
-<span class="cell">Race Number</span>
-<span class="cell">BHAA</span>
-<span class="cell">Name</span>
-<span class="cell">Standard</span>
-<span class="cell">Company</span>
-<span class="cell">Team</span>
-</div>';
+$racetec = $BHAA->registration->listRegisteredRunners(10);
 
-$racetec = $BHAA->registration->listRegisteredRunners(3);
+echo '<table id="raceteclist" >
+<tr class="row">
+<th class="cell">Race</th>
+<th class="cell">Number</th>
+<th class="cell">BHAA</th>
+<th class="cell">Name</th>
+<th class="cell">Standard</th>
+<th class="cell">Company</th>
+<th class="cell">Team</th>
+</tr>';
 
 foreach($racetec as $racetec) : ?>
-<div class="row">
-<span class="cell"><?php echo $racetec->race;?></span>
-<span class="cell"><?php echo $racetec->racenumber;?></span>
-<span class="cell"><?php echo $racetec->runner;?></span>
-<span class="cell"><?php echo $racetec->firstname;?> <?php echo $racetec->lastname;?></span>
-<span class="cell"><?php echo $racetec->standard;?></span>
-<span class="cell"><?php echo $racetec->companyname;?></span>
-<span class="cell"><?php echo $racetec->teamname;?></span>
-</div>
+<tr class="row">
+<td class="cell"><?php echo $racetec->race;?></td>
+<td class="cell"><?php echo $racetec->racenumber;?></td>
+<td class="cell"><?php echo $racetec->runner;?></td>
+<td class="cell"><?php echo $racetec->firstname;?> <?php echo $racetec->lastname;?></td>
+<td class="cell"><?php echo $racetec->standard;?></td>
+<td class="cell"><?php echo $racetec->companyname;?></td>
+<td class="cell"><?php echo $racetec->teamname;?></td>
+</tr>
 <?php endforeach;?>
-</div>
+</table>
 
 <!-- <div align="right">Refreshing in <span id="seconds">15</span> seconds.
     <script>
