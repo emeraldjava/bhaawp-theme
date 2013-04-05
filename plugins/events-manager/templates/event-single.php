@@ -68,10 +68,12 @@ else
 	));
 	
 	$results = '';
+	$teams = '';
 	if ( $connected->have_posts() ) :
 		while ( $connected->have_posts() ) :
 			$connected->the_post();
 			$results .= $BHAA->getIndividualResultTable()->renderTable(get_the_ID());
+			$teams .= $BHAA->getTeamResultTable(get_the_ID());
 		endwhile;
 		// Prevent weirdness
 		wp_reset_postdata();
@@ -81,8 +83,9 @@ else
 	
 	// past event
 	echo $EM_Event->output(
-		'[tabs tabresults="Results" tabdetails="Details" tabstandards="Standards"]
+		'[tabs tabresults="Results" tabteams="Teams" tabdetails="Details" tabstandards="Standards"]
 			[tab id=results]'.$results.'[/tab]
+			[tab id=teams]'.$teams.'[/tab]
 			[tab id=details]
 				[one_half last="no"]<p>#_EVENTEXCERPT</p>[/one_half]
 				[one_half last="yes"]<strong>Date/Time</strong><br/>Date - #_EVENTDATES<br/><i>#_EVENTTIMES</i>[/one_half]
