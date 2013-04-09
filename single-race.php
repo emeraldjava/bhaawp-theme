@@ -54,10 +54,15 @@ if ( $connected->have_posts() ) :
 
 
 				<p>Meta information for this post:</p>
-				<?php the_meta(); ?>
+				<?php //the_meta(); ?>
 
 				<?php 
+				echo $BHAA->getTeamResultTable(get_the_ID());
+				
 				echo $BHAA->getIndividualResultTable()->renderTable(get_the_ID());
+				
+
+				
 				//echo $loader->raceresult->getTable()->renderTable(get_post_meta(get_the_ID(),'bhaa_race_id',true));
 ?>
 				<hr />
