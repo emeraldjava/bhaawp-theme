@@ -40,6 +40,6 @@
 	?>	      
 	<a href="<?php echo site_url('wp-login.php?action=lostpassword', 'login') ?>" 
 		title="<?php _e('Password Lost and Found', 'dbem') ?>">
-		<?php _e("Don't know your username or password - Enter your email address to reset your password?", 'dbem') ?></a>                        
+		<?php _e("Don't know your username or password - Enter your email address to reset your password", 'dbem') ?></a>                        
   </form>
 </div>
