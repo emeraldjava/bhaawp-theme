@@ -2,5 +2,6 @@
 #_BOOKINGNAME (#_BOOKINGEMAIL) will attend #_EVENTNAME on #_EVENTDATES. <br/>
 #_BOOKINGFORMCUSTOMFIELDS<br/>
 They want to reserve #_BOOKINGSPACES space for #_BOOKINGTICKETPRICE.<br/>
- Now there are #_BOOKEDSPACES spaces reserved, #_AVAILABLESPACES are still available.<br/>
+Now there are #_BOOKEDSPACES spaces reserved, #_AVAILABLESPACES are still available.<br/>
+#_BOOKINGLISTURL<br/>
 BHAA WebMaster<br/>
