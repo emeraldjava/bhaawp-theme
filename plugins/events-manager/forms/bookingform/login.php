@@ -5,7 +5,7 @@
 ?>
 <div class="em-booking-login">
 	<form class="em-booking-login-form" action="<?php echo site_url('wp-login.php', 'login_post'); ?>" method="post">
-	<p><?php _e('Log in if you already have an account with us.','dbem'); ?></p>
+	<p><?php _e('Existing or previous BHAA Members should login here first.','dbem'); ?></p>
     <p>
 		<label><?php _e( 'Username','dbem' ) ?></label>
 		<input type="text" name="log" class="input" value="" />
@@ -38,6 +38,8 @@
 	//$content = apply_filters('the_content','<br/>[alert type="error"]Existing or previous BHAA members have an account already set up, it should mean the form will be pre-populated with your details. Read about <a href="http://bhaa.ie/user-accounts/">resetting your password</a> to avoid creating duplicate accounts.[/alert]');
 	//echo $content;
 	?>	      
-	<a href="<?php echo site_url('wp-login.php?action=lostpassword', 'login') ?>" title="<?php _e('Password Lost and Found', 'dbem') ?>"><?php _e('Lost your password?', 'dbem') ?></a>                        
+	<a href="<?php echo site_url('wp-login.php?action=lostpassword', 'login') ?>" 
+		title="<?php _e('Password Lost and Found', 'dbem') ?>">
+		<?php _e("Don't know your username or password - Enter your email address to reset your password?", 'dbem') ?></a>                        
   </form>
 </div>
