@@ -1,0 +1,3 @@
+#_BOOKINGNAME (#_BOOKINGEMAIL) will attend #_EVENTNAME on #_EVENTDATES. They want to reserve #_BOOKINGSPACES space for #_BOOKINGTICKETPRICE.
+
+ Now there are #_BOOKEDSPACES spaces reserved, #_AVAILABLESPACES are still available.
