@@ -49,8 +49,8 @@ if( $EM_Event->end >= time() )
 				{/has_location}
 			[/tab]
 			[tab id=register]
-				{has_bookings}#_BOOKINGFORM{/has_bookings}
-				{no_bookings}Online registion will be available closer to the event date and can be done on the day of event at the registration location.{/no_bookings}
+				<div>{has_bookings}#_BOOKINGFORM{/has_bookings}</div>
+				{no_bookings}Online registion is unavailable for this event at the moment.{/no_bookings}
 			[/tab]
 			[tab id=standards]
 				<h3>BHAA Standard Table</h3>
