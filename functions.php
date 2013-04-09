@@ -39,6 +39,15 @@ function bhaa_force_pretty_displaynames($user_login, $user) {
 }
 add_action('wp_login','bhaa_force_pretty_displaynames',10,2);
 
+function bhaa_lost_password_message() {
+	$action = $_REQUEST['action'];
+	if( $action == 'lostpassword' ) {
+		$message = '<p class="message"><b>Please enter your email address below</b><br/>- If there is an error it maybe the case that we do not have your email linked to your account, you should send an email to <a href="mailto:info@bhaa.ie?Subject=Email Reset">info@bhaa.ie</a> with your name and BHAA ID and we can fix this up.</p>';
+		return $message;
+	}
+}
+add_filter('login_message', 'bhaa_lost_password_message');
+
 // http://wordpress.org/support/topic/plugin-events-manager-searching-by-custom-taxonomy?replies=6
 function bhaa_house_drop_down_list() {
 echo '<script type="text/javascript">
