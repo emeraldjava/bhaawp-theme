@@ -1,7 +1,11 @@
 #_EVENTNAME<br/>
-#_BOOKINGNAME (#_BOOKINGEMAIL) will attend #_EVENTNAME on #_EVENTDATES. <br/>
-#_BOOKINGFORMCUSTOMFIELDS<br/>
-They want to reserve #_BOOKINGSPACES space for #_BOOKINGTICKETPRICE.<br/>
+#_BOOKINGNAME (#_BOOKINGEMAIL) will attend #_EVENTNAME on #_EVENTDATES.<br/>
+DATEOFBIRTH #_BOOKINGFORMCUSTOM{bhaa_runner_dateofbirth}</br>
+GENDER #_BOOKINGFORMCUSTOM{bhaa_runner_gender}</br>
+STATUS #_BOOKINGFORMCUSTOM{bhaa_runner_status}</br>
+COMPANY #_BOOKINGFORMCUSTOM{bhaa_runner_company}</br>
+COMPANYNAME #_BOOKINGFORMCUSTOM{bhaa_runner_companyname}</br>
+They want to reserve #_BOOKINGSPACES space for #_BOOKINGPRICE.<br/>
 Now there are #_BOOKEDSPACES spaces reserved, #_AVAILABLESPACES are still available.<br/>
 #_BOOKINGLISTURL<br/>
 BHAA WebMaster<br/>
