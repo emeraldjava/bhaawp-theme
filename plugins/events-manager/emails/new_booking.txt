@@ -1,4 +1,5 @@
 #_EVENTNAME<br/>
+BOOKINGID #_BOOKINGID<br/>
 #_BOOKINGNAME (#_BOOKINGEMAIL) will attend #_EVENTNAME on #_EVENTDATES.<br/>
 DATEOFBIRTH #_BOOKINGFORMCUSTOM{bhaa_runner_dateofbirth}</br>
 GENDER #_BOOKINGFORMCUSTOM{bhaa_runner_gender}</br>
