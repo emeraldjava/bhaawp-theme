@@ -15,10 +15,10 @@ Find out how to register and join the BHAA.
 [/one_third]
 
 [one_third last="no"]
-<h2></h2>
+[events_list limit="1" orderby="event_start_date"]#_EVENTLINK[/events_list]
 [/one_third]
 [one_third last="no"]
-<h2></h2>
+[events_list limit="1" scope="past" orderby="event_start_date" order="DESC"]#_EVENTLINK[/events_list]
 [/one_third]
 [one_third last="yes"]
 <h2><a href="./events/">Runner Search</a></h2>
