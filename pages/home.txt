@@ -1,3 +1,8 @@
+[layerslider id="1"]
+[separator top="40"]
+[recent_posts columns="3" number_posts="3" cat_id="" thumbnail="yes" title="yes" meta="yes" excerpt="yes" excerpt_words="15"][/recent_posts]
+[separator top="40"]
+
 [one_third last="no"]
 <img alt="" src="http://bhaa.ie/wp-content/uploads/2012/08/feature1.jpg" width="205" height="108" />
 <h2><a href="./events/">Upcoming Races</a></h2>
@@ -15,10 +20,19 @@ Find out how to register and join the BHAA.
 [/one_third]
 
 [one_third last="no"]
-[events_list limit="1" orderby="event_start_date"]#_EVENTLINK[/events_list]
+[events_list limit="1" orderby="event_start_date"]
+#_EVENTIMAGE{150,80}<br/>
+#_EVENTLINK<br/>
+#_EVENTEXCERPT<br/>
+<strong>Date/Time</strong><br/>
+#_EVENTDATES<i>#_24HSTARTTIME</i><br/>
+<a class="button small orange" href="#_EVENTURL#tabregister" target="">Register Now</a></br>
+[/events_list]
 [/one_third]
 [one_third last="no"]
-[events_list limit="1" scope="past" orderby="event_start_date" order="DESC"]#_EVENTLINK[/events_list]
+[events_list limit="1" scope="past" orderby="event_start_date" order="DESC"]
+#_EVENTIMAGE{150,80}<br/>
+#_EVENTLINK[/events_list]
 [/one_third]
 [one_third last="yes"]
 <h2><a href="./events/">Runner Search</a></h2>
