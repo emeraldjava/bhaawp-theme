@@ -21,18 +21,23 @@ Find out how to register and join the BHAA.
 
 [one_third last="no"]
 [events_list limit="1" orderby="event_start_date"]
-#_EVENTIMAGE{150,80}<br/>
-#_EVENTLINK<br/>
+#_EVENTIMAGE{200,120}<br/>
+Next Event: #_EVENTLINK<br/>
 #_EVENTEXCERPT<br/>
 <strong>Date/Time</strong><br/>
-#_EVENTDATES<i>#_24HSTARTTIME</i><br/>
-<a class="button small orange" href="#_EVENTURL#tabregister" target="">Register Now</a></br>
+#_EVENTDATES <i>#_24HSTARTTIME</i><br/>
+<a href="#_EVENTURL">Register Online</a></br>
 [/events_list]
 [/one_third]
 [one_third last="no"]
 [events_list limit="1" scope="past" orderby="event_start_date" order="DESC"]
-#_EVENTIMAGE{150,80}<br/>
-#_EVENTLINK[/events_list]
+#_EVENTIMAGE{200,120}<br/>
+Last Event: #_EVENTLINK<br/>
+#_EVENTEXCERPT<br/>
+<strong>Date/Time</strong><br/>
+#_EVENTDATES <i>#_24HSTARTTIME</i><br/>
+<a href="#_EVENTURL">See Results</a></br>
+[/events_list]
 [/one_third]
 [one_third last="yes"]
 <h2><a href="./events/">Runner Search</a></h2>
