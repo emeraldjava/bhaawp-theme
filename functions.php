@@ -49,59 +49,59 @@ function bhaa_lost_password_message() {
 add_filter('login_message', 'bhaa_lost_password_message');
 
 // http://wordpress.org/support/topic/plugin-events-manager-searching-by-custom-taxonomy?replies=6
-function bhaa_house_drop_down_list() {
-echo '<script type="text/javascript">
-jQuery(document).ready( 
-	function($){
-		var availableTags = [';
-global $wpdb;
-global $current_user;
-$c = get_user_meta (get_current_user_id(), 'bhaa_runner_company', true);
-$companyList = new WP_Query(
-	array(
-		'post_type' => 'house',
-		'order'		=> 'ASC',
-		'post_status' => 'publish',
-		'orderby' 	=> 'title',
-		'nopaging' => true,
- 		'tax_query'	=> array(
-		array(
-			'taxonomy'  => 'teamtype',
-			'field'     => 'slug',
-			'terms'     => 'sectorteam', // exclude house posts in the sectorteam custom teamtype taxonomy
-			'operator'  => 'NOT IN')
-		))
-);
-//error_log('found_posts '.$companyList->found_posts.' '.$companyList->post_count);
-if( $companyList->have_posts() ) :
-	while ($companyList->have_posts()) : $companyList->the_post();
-		if(get_the_ID()==$c)
-			$name=$post->post_title;
-		echo '{ value:'.get_the_ID().', label: "'.get_the_title(get_the_ID()).'"},';
-	endwhile;
-endif;
-wp_reset_postdata();
-echo '{value:0, label: ""}];
-		$("#bhaa_runner_company_name").autocomplete({
-			source: availableTags,
-		 	minLength: 2,
-			focus: function(event, ui) {
-            	$("#bhaa_runner_company_name").val(ui.item.label);
-            	return false;
-        	},
-			select: function(event, ui) {
-				//alert(ui.item.value);
-				//console.debug(ui);
-	        	$("#bhaa_runner_company_name").val(ui.item.label);
-				$("#bhaa_runner_company").val(ui.item.value);
-				return false;
-    		}
-		});
-;})
-</script>';
-}
-add_action('wp_footer', 'bhaa_house_drop_down_list');
-add_action('admin_footer', 'bhaa_house_drop_down_list');
+// function bhaa_house_drop_down_list() {
+// echo '<script type="text/javascript">
+// jQuery(document).ready( 
+// 	function($){
+// 		var availableTags = [';
+// global $wpdb;
+// global $current_user;
+// $c = get_user_meta (get_current_user_id(), 'bhaa_runner_company', true);
+// $companyList = new WP_Query(
+// 	array(
+// 		'post_type' => 'house',
+// 		'order'		=> 'ASC',
+// 		'post_status' => 'publish',
+// 		'orderby' 	=> 'title',
+// 		'nopaging' => true,
+//  		'tax_query'	=> array(
+// 		array(
+// 			'taxonomy'  => 'teamtype',
+// 			'field'     => 'slug',
+// 			'terms'     => 'sectorteam', // exclude house posts in the sectorteam custom teamtype taxonomy
+// 			'operator'  => 'NOT IN')
+// 		))
+// );
+// //error_log('found_posts '.$companyList->found_posts.' '.$companyList->post_count);
+// if( $companyList->have_posts() ) :
+// 	while ($companyList->have_posts()) : $companyList->the_post();
+// 		if(get_the_ID()==$c)
+// 			$name=$post->post_title;
+// 		echo '{ value:'.get_the_ID().', label: "'.get_the_title(get_the_ID()).'"},';
+// 	endwhile;
+// endif;
+// wp_reset_postdata();
+// echo '{value:0, label: ""}];
+// 		$("#bhaa_runner_company_name").autocomplete({
+// 			source: availableTags,
+// 		 	minLength: 2,
+// 			focus: function(event, ui) {
+//             	$("#bhaa_runner_company_name").val(ui.item.label);
+//             	return false;
+//         	},
+// 			select: function(event, ui) {
+// 				//alert(ui.item.value);
+// 				//console.debug(ui);
+// 	        	$("#bhaa_runner_company_name").val(ui.item.label);
+// 				$("#bhaa_runner_company").val(ui.item.value);
+// 				return false;
+//     		}
+// 		});
+// ;})
+// </script>';
+// }
+// add_action('wp_footer', 'bhaa_house_drop_down_list');
+// add_action('admin_footer', 'bhaa_house_drop_down_list');
 
 //wp_register_script(
 //	'worker_loader',
