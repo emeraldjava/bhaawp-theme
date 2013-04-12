@@ -17,6 +17,9 @@ th.event-description {
 	text-align:left;
 }
 
+table, tr, td, th {margin:0;border:0;padding:0;}
+tr.rowhighlight {background-color:#B0C4DE;}
+
 .bhaatables {
 	margin: 0px;
 	padding: 0px;
