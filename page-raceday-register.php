@@ -134,7 +134,11 @@ jQuery(document).ready(
 	foreach($races as $race)
 	{
 		$rname = $race->dist.$race->unit;
-		$selectRaces .= sprintf('<input type="radio" name="raceid" value="%s">%s</input>',$race->id,$rname);
+		if($i==0)
+			$selectRaces .= sprintf('<input type="radio" name="raceid" value="%s" checked>%s</input>',$race->id,$rname);
+		else
+			$selectRaces .= sprintf('<input type="radio" name="raceid" value="%s">%s</input>',$race->id,$rname);
+		$i++;
 	}
 		
 	if(isset($hasError) && $hasError==true)
