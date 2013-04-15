@@ -52,6 +52,11 @@ if(isset($_POST['form-submitted']))
 	}
 }
 
+wp_register_script(
+	'bhaa_day_members',
+	content_url().'/bhaa_day_members.js');
+wp_enqueue_script('bhaa_day_members');
+
 // http://stackoverflow.com/questions/11368368/404-when-using-post-get-parameters-in-wordpress-3-4
 get_header();
 //echo "<pre>GET "; print_r($_GET); echo "</pre>";
@@ -80,13 +85,12 @@ else
 			[raw]<script type="text/javascript">
 jQuery(document).ready(
 	function($){
-	var runners = '.file_get_contents("wp-content/bhaa_day_runners.json.txt").';
 	$("#memberfilter").autocomplete({
-		source: runners,
+		source: bhaa_day_members,
 		minLength: 3,
 		source: function (request, response) {
 		    var matcher = new RegExp($.ui.autocomplete.escapeRegex(request.term), "i");
-		    response($.grep(runners, function(value) {
+		    response($.grep(bhaa_day_members, function(value) {
 		        return matcher.test(value.label) || matcher.test(value.value);
 		    }));
 		},
