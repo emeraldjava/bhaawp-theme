@@ -48,8 +48,8 @@ if(isset($_POST['form-submitted']))
 }
 
 get_header();
-echo "<pre>GET "; print_r($_GET); echo "</pre>";
-echo "<pre>POST "; print_r($_POST); echo "</pre>";
+//echo "<pre>GET "; print_r($_GET); echo "</pre>";
+//echo "<pre>POST "; print_r($_POST); echo "</pre>";
 
 include_once 'page-raceday-header.php';
 
@@ -75,6 +75,7 @@ echo '<table id="raceteclist" >
 <th class="cell">Name</th>
 <th class="cell">DOB</th>
 <th class="cell">Company</th>
+<th class="cell">Membership Status</th>
 <th class="cell">Assign Race Number</th>
 </tr>';
 
@@ -83,13 +84,14 @@ foreach($racetec as $racetec) : ?>
 <td class="cell"><?php echo $racetec->runner;?></td>
 <td class="cell"><?php echo $racetec->firstname;?> <?php echo $racetec->lastname;?></td>
 <td class="cell"><?php echo $racetec->dateofbirth;?></td>
+<td class="cell"><?php echo $racetec->status;?></td>
 <td class="cell"><?php echo $racetec->companyname;?></td>
 <td class="cell">
 <form action="" id="bhaa-prereg-form" method="POST">
 	<input type="number" name="number" value=""/>
 	<input type="hidden" name="raceid" value="2597">
 	<input type="hidden" name="runner" value="<?php echo $racetec->runner;?>">
-	<input type="hidden" value="form-submitted"/>
+	<input type="hidden" name="form-submitted" value="true"/>
 	<input type="submit" value="<?php echo $racetec->firstname;?> <?php echo $racetec->lastname;?> Race Number"/>
 </form>
 </td>
