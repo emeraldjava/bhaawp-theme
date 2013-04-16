@@ -107,6 +107,13 @@ else
 			[raw]<script type="text/javascript">
 jQuery(document).ready(
 	function($){
+	
+	$("#dateofbirth").datepicker({ 
+		dateFormat: "yy-mm-dd",
+		defaultDate: "-30y", 
+        yearRange: "1900:2000",
+    	maxDate: "-18y"
+	}).val()
 	$("#memberfilter").autocomplete({
 		source: bhaa_day_members,
 		minLength: 3,
@@ -181,13 +188,13 @@ jQuery(document).ready(
 	// http://jqueryui.com/autocomplete/#custom-data
 	// http://stackoverflow.com/questions/11349205/jqueryui-autocomplete-custom-data-and-display
 	echo apply_filters('the_content','
-		<form action="" id="bhaa-raceday-newmember" method="POST">
+		<form action="" id="bhaa-raceday-newmember" name="bhaa-raceday-newmember" method="POST">
 			[one_half last="no"]
 			<b>Runner Details - REQUIRED</b><br/>
-			Firstname<input type="text" id="firstname" name="firstname"/><br/>
-			Surname<input type="text" id="lastname" name="lastname"/><br/>
+			Firstname<input type="text" id="firstname" name="firstname" value="'.$firstname.'"/><br/>
+			Surname<input type="text" id="lastname" name="lastname" value="'.$lastname.'"/><br/>
 			Gender<input type="radio" name="gender" value="M" id="gendermale">M</input><input type="radio" name="gender" value="W" id="genderfemale">W</input><br/> 
-			DOB<input type="text" placeholder="YYYY-MM-DD" name="dateofbirth" id="dateofbirth"/><br/>
+			DOB<input type="date" placeholder="YYYY-MM-DD" name="dateofbirth" id="dateofbirth" value="'.$dateofbirth.'"/><br/>
 			RaceNumber<input type="text" name="number" id="number" value="'.$number.'"/><br/>
 			Race'.$selectRaces.'<br/>
 			<input type="submit" value="Register New Runner"/>
