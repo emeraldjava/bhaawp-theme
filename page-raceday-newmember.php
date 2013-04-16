@@ -39,16 +39,38 @@ if(isset($_POST['form-submitted']))
  	} else {
  		$dateofbirth = trim($_POST['dateofbirth']);
  	}
+ 	
+ 	if(trim($_POST['number']) === '')  {
+ 		$numberError = 'Please enter a race number.';
+ 		$hasError = true;
+ 	} else {
+ 		$number = trim($_POST['number']);
+ 	}
+ 	
+ 	if(trim($_POST['raceid']) === '')  {
+ 		$raceError = 'Please select a race.';
+ 		$hasError = true;
+ 	} else {
+ 		$raceid = trim($_POST['raceid']);
+ 	}
 	
 	if(!isset($hasError))
 	{
+		// check if runner exists
 		error_log('runner '.isset($runner).' $'.$runner.'$');
-		if($runner=='')// !isset($runner) || $runner!='')
+		if($runner=='')
 		{
 	 		$runner = $BHAA->registration->addNewMember($firstname,$lastname,$gender,$dateofbirth,$email);
 		}
-		error_log($firstname.' '.$lastname.' '.$gender.' '.$dateofbirth.' -> '.$runner);
-		$registrationSubmitted = true;
+		// register new runner		
+		$res = $BHAA->registration->registerRunner($raceid,$runner,$number,$standard);
+		if(gettype($res)=='string')
+		{
+			$hasError = true;
+			$duplicateError = $res;
+		}
+		else
+			$registrationSubmitted = true;
 	}
 }
 
@@ -72,9 +94,9 @@ if(isset($registrationSubmitted) && $registrationSubmitted == true)
 {
 	// http://stackoverflow.com/questions/2090366/date-validation-using-jquery-validation - datepicker
 	// http://localhost/raceday-newmember/raceday-registration/?runner=&d&firstname=23004&stname=POC&g=M&dob=12
-	echo '<div class="thanks"><p>Runner '.$firstname.' '.$lastname.' has been registered. Next Step ';
-	echo sprintf('<a href="/raceday-register/?newmember=xxy&runner=%s&firstname=%s&lastname=%s&gender=%s&dateofbirth=%s">Assign Runner %s a race number</a></p></div>'
-		,$runner,$firstname,$lastname,$gender,$dateofbirth,$runner);
+	echo '<div class="thanks"><h1>Day/New Runner '.$firstname.' '.$lastname.' with ID '.$runner.' has been registered with number '.$number.'.</h1></div>';
+	//echo sprintf('<a href="/raceday-register/?newmember=xxy&runner=%s&firstname=%s&lastname=%s&gender=%s&dateofbirth=%s">Assign Runner %s a race number</a></p></div>'
+		//,$runner,$firstname,$lastname,$gender,$dateofbirth,$runner);
 }
 else
 {
@@ -123,6 +145,19 @@ jQuery(document).ready(
 		</div>
 	[/one_third]<hr/>');
 	
+	$races = $BHAA->registration->getNextRaces();
+	$selectRaces = '';
+	$i=0;
+	foreach($races as $race)
+	{
+		$rname = $race->dist.$race->unit;
+		if($i==0)
+			$selectRaces .= sprintf('<input type="radio" name="raceid" value="%s" checked>%s</input>',$race->id,$rname);
+		else
+			$selectRaces .= sprintf('<input type="radio" name="raceid" value="%s">%s</input>',$race->id,$rname);
+		$i++;
+	}
+	
 	if(isset($hasError) && $hasError==true)
 	{
 		$errorMessages = '';
@@ -134,6 +169,12 @@ jQuery(document).ready(
 			$errorMessages .=$genderError.'</br>';
 		if(isset($dobError))
 			$errorMessages .=$dobError.'</br>';
+		if(isset($numberError))
+			$errorMessages .=$numberError.'</br>';
+		if(isset($duplicateError))
+			$errorMessages .=$duplicateError.'</br>';
+		if(isset($raceError))
+			$errorMessages .=$raceError.'</br>';
 		echo apply_filters('the_content','[alert type="error"]'.$errorMessages.'[/alert]');
 	}
 	
@@ -147,11 +188,12 @@ jQuery(document).ready(
 			Surname<input type="text" id="lastname" name="lastname"/><br/>
 			Gender<input type="radio" name="gender" value="M" id="gendermale">M</input><input type="radio" name="gender" value="W" id="genderfemale">W</input><br/> 
 			DOB<input type="text" placeholder="YYYY-MM-DD" name="dateofbirth" id="dateofbirth"/><br/>
+			RaceNumber<input type="text" name="number" id="number" value="'.$number.'"/><br/>
+			Race'.$selectRaces.'<br/>
 			<input type="submit" value="Register New Runner"/>
 			[/one_half]
 			[one_half last="yes"]
 			<b>Extra Details</b><br/>
-			ID<input type="text" name="runner" id="runner" value="'.$runner.'"/><br/>
 			Email<input type="text" name="email"/><br/>
 			Mobile<input type="text" name="mobile"/><br/>
 			Company<input type="text" name="company"/><br/>

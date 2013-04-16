@@ -75,7 +75,7 @@ include_once 'page-raceday-header.php';
 if(isset($registrationSubmitted) && $registrationSubmitted == true) 
 {
 	// redirect to registration page
-	echo '<div class="thanks"><p>Runner '.trim($_POST['firstname']).' '.trim($_POST['lastname']).' has been registered with number '.$number.'.</p></div>';
+	echo '<div class="thanks"><h1>BHAA Runner '.trim($_POST['firstname']).' '.trim($_POST['lastname']).' with ID '.trim($_POST['runner']).' has been registered with number '.$number.'.</h1></div>';
 }
 else
 {
