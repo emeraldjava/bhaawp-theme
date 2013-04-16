@@ -8,9 +8,64 @@ if ( !current_user_can( 'edit_users' ) )  {
 
 global $BHAA;
 
+if(isset($_POST['form-submitted']))
+{
+	if(trim($_POST['runner']) === '') {
+		$runnerError = 'Please enter a runner ID.';
+		$hasError = true;
+	} else {
+		$runner = trim($_POST['runner']);
+	}
+
+	if(trim($_POST['number']) === '')  {
+		$numberError = 'Please enter a race number.';
+		$hasError = true;
+	} else {
+		$number = trim($_POST['number']);
+	}
+
+	if(trim($_POST['raceid']) === '')  {
+		$raceError = 'Please select a race.';
+		$hasError = true;
+	} else {
+		$raceid = trim($_POST['raceid']);
+	}
+
+	//$standard = trim($_POST['standard']);
+	error_log('pre-reg:'.$raceid.' '.$runner.' '.$number);
+	if(!isset($hasError))
+	{
+		
+		$res = $BHAA->registration->preRegisterRunner($raceid,$runner,$number);
+		if(gettype($res)=='string')
+		{
+			$hasError = true;
+			$duplicateError = $res;
+		}
+		else
+			$registrationSubmitted = true;
+	}
+}
+
 get_header();
+echo "<pre>GET "; print_r($_GET); echo "</pre>";
+echo "<pre>POST "; print_r($_POST); echo "</pre>";
 
 include_once 'page-raceday-header.php';
+
+if(isset($hasError) && $hasError==true)
+{
+	$errorMessages = '';
+	if(isset($runnerError))
+		$errorMessages .=$runnerError.'</br>';
+	if(isset($numberError))
+		$errorMessages .=$numberError.'</br>';
+	if(isset($duplicateError))
+		$errorMessages .=$duplicateError.'</br>';
+	if(isset($raceError))
+		$errorMessages .=$raceError.'</br>';
+	echo apply_filters('the_content','[alert type="error"]'.$errorMessages.'[/alert]');
+}
 
 $racetec = $BHAA->registration->listPreRegisteredRunners();
 
@@ -30,10 +85,11 @@ foreach($racetec as $racetec) : ?>
 <td class="cell"><?php echo $racetec->dateofbirth;?></td>
 <td class="cell"><?php echo $racetec->companyname;?></td>
 <td class="cell">
-<form>
-	<input type="number" name="number"/>
+<form action="" id="bhaa-prereg-form" method="POST">
+	<input type="number" name="number" value=""/>
 	<input type="hidden" name="raceid" value="2597">
 	<input type="hidden" name="runner" value="<?php echo $racetec->runner;?>">
+	<input type="hidden" value="form-submitted"/>
 	<input type="submit" value="<?php echo $racetec->firstname;?> <?php echo $racetec->lastname;?> Race Number"/>
 </form>
 </td>
