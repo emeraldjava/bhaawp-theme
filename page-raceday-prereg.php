@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: BHAA Raceday Latest
+ * Template Name: BHAA Raceday PreRegistered
  */
 if ( !current_user_can( 'edit_users' ) )  {
 	wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
@@ -10,7 +10,9 @@ global $BHAA;
 
 get_header();
 
-$racetec = $BHAA->registration->listPreRegisteredRunners(10);
+include_once 'page-raceday-header.php';
+
+$racetec = $BHAA->registration->listPreRegisteredRunners();
 
 echo '<table id="raceteclist" >
 <tr class="row">
