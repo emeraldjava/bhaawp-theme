@@ -14,7 +14,7 @@ include_once 'page-raceday-header.php';
 
 $racetec = $BHAA->registration->listRegisteredRunners();
 
-echo '<table id="raceteclist" >
+echo '<table width="90%" id="raceteclist" >
 <tr class="row">
 <th class="cell">Race</th>
 <th class="cell">Number</th>
