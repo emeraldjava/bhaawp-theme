@@ -10,6 +10,8 @@ if(isset($wp_query->query_vars['division'])) {
 else
 	echo '<h1>League Summary</h1>';
 
+//error_log("league ".get_the_ID());
+
 $leagueSummary = new LeagueSummary(get_the_ID());
 if(!isset($wp_query->query_vars['division']))
 {	
@@ -82,6 +84,9 @@ else
 	else
 		$events = $leagueSummary->getLeagueRaces('M');
 	
+	//error_log(print_r($events,true));
+	//error_log(print_r($table,true));
+		
 	echo '<table>';
 	echo '<tr>
 	<th>Position</th>
