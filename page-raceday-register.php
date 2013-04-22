@@ -33,6 +33,8 @@ if(isset($_POST['form-submitted']))
  	}
 	
  	$standard = trim($_POST['standard']);
+ 	$firstname = trim($_POST['firstname']);
+ 	$lastname = trim($_POST['lastname']);
  	
 	if(!isset($hasError))
 	{
@@ -75,7 +77,7 @@ include_once 'page-raceday-header.php';
 if(isset($registrationSubmitted) && $registrationSubmitted == true) 
 {
 	// redirect to registration page
-	echo '<div class="thanks"><h1>BHAA Runner '.trim($_POST['firstname']).' '.trim($_POST['lastname']).' with ID '.trim($_POST['runner']).' has been registered with number '.$number.'.</h1></div>';
+	echo '<div class="thanks"><h2>BHAA Runner <b>'.esc_html($firstname.' '.$lastname).'</b> with ID <b>'.trim($_POST['runner']).'</b> has been registered with number <b>'.$number.'</b></h2></div>';
 }
 else
 {

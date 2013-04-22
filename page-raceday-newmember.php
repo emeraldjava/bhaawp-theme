@@ -94,7 +94,7 @@ if(isset($registrationSubmitted) && $registrationSubmitted == true)
 {
 	// http://stackoverflow.com/questions/2090366/date-validation-using-jquery-validation - datepicker
 	// http://localhost/raceday-newmember/raceday-registration/?runner=&d&firstname=23004&stname=POC&g=M&dob=12
-	echo '<div class="thanks"><h1>Day/New Runner '.$firstname.' '.$lastname.' with ID '.$runner.' has been registered with number '.$number.'.</h1></div>';
+	echo '<div class="thanks"><h2>Day/New Runner <b>'.esc_html($firstname.' '.$lastname).'</b> with ID <b>'.$runner.'</b> has been registered with number <b>'.$number.'</b>.</h2></div>';
 	//echo sprintf('<a href="/raceday-register/?newmember=xxy&runner=%s&firstname=%s&lastname=%s&gender=%s&dateofbirth=%s">Assign Runner %s a race number</a></p></div>'
 		//,$runner,$firstname,$lastname,$gender,$dateofbirth,$runner);
 }
