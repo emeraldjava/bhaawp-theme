@@ -163,7 +163,7 @@ jQuery(document).ready(
 			<b>Race Details</b><br/>
 			RaceNumber<input type="text" name="number" id="number" value="'.$number.'"/><br/>
 			Race'.$selectRaces.'<br/>
-			<input type="submit" value="Register Runner"/>
+			<input id="bhaa-raceday-register-submit" type="submit" value="Register Runner"/>
 			[/one_third]
 			[one_third]
 			<b>Runner Details</b><br/>
