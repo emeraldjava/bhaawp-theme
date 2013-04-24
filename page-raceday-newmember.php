@@ -111,9 +111,14 @@ jQuery(document).ready(
 	$("#dateofbirth").datepicker({ 
 		dateFormat: "yy-mm-dd",
 		defaultDate: "-30y", 
-        yearRange: "1900:2000",
-    	maxDate: "-18y"
+        yearRange: "1920:1995",
+		changeYear: true,
+		changeMonth: true
+    	//maxDate: "-18y"
 	}).val()
+	$("#dateofbirth").keypress(function (e)	{
+		e.preventDefault();
+	});		
 	$("#memberfilter").autocomplete({
 		source: bhaa_day_members,
 		minLength: 3,
