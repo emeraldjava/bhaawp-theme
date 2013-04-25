@@ -69,14 +69,15 @@ if(isset($hasError) && $hasError==true)
 
 $racetec = $BHAA->registration->listPreRegisteredRunners();
 
-echo '<table id="raceteclist" >
+echo '<table id="raceteclist" width="95%">
 <tr class="row">
 <th class="cell">BHAA ID</th>
 <th class="cell">Name</th>
 <th class="cell">DOB</th>
+<th class="cell">Status</th>
 <th class="cell">Company</th>
-<th class="cell">Membership Status</th>
-<th class="cell">Assign Race Number</th>
+<th class="cell">Race Number</th>
+<th class="cell">Assign</th>
 </tr>';
 
 foreach($racetec as $racetec) : ?>
@@ -86,13 +87,16 @@ foreach($racetec as $racetec) : ?>
 <td class="cell"><?php echo $racetec->dateofbirth;?></td>
 <td class="cell"><?php echo $racetec->status;?></td>
 <td class="cell"><?php echo $racetec->companyname;?></td>
-<td class="cell">
 <form action="" id="bhaa-prereg-form" method="POST">
+<td class="cell">
 	<input type="text" name="number"/>
 	<input type="hidden" name="raceid" value="<?php echo $racetec->race;?>">
 	<input type="hidden" name="runner" value="<?php echo $racetec->runner;?>">
 	<input type="hidden" name="form-submitted" value="true"/>
+</td>
+<td class="cell">
 	<input type="submit" value="<?php echo $racetec->firstname;?> <?php echo $racetec->lastname;?> Race Number"/>
+</td>
 </form>
 </td>
 </tr>
