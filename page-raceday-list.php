@@ -12,8 +12,9 @@ get_header();
 
 include_once 'page-raceday-header.php';
 
-$racetec = $BHAA->registration->listRegisteredRunners();
+$list = $BHAA->registration->listRegisteredRunners();
 
+echo '<h2>Total Runners '.sizeof($list).'</h2>';
 echo '<table width="90%" id="raceteclist" >
 <tr class="row">
 <th class="cell">Race</th>
@@ -25,7 +26,7 @@ echo '<table width="90%" id="raceteclist" >
 <th class="cell">Team</th>
 </tr>';
 
-foreach($racetec as $racetec) : ?>
+foreach($list as $racetec) : ?>
 <tr class="row">
 <td class="cell"><?php echo $racetec->race;?></td>
 <td class="cell"><?php echo $racetec->racenumber;?></td>
