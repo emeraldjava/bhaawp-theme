@@ -21,7 +21,16 @@ if(isset($_GET['action'])){
 	} elseif($_GET['action']=='preregimport') {
 		error_log("preregimport ".$booking.' '.$race);
 		$wpdb->query(
-			$wpdb->prepare('delete from wp_bhaa_raceresult where class="PRE_REG" and race=%d',$race));
+			$wpdb->prepare('delete from wp_bhaa_raceresult where class="PRE_REG" and race=%d',$race)
+		);
+		$wpdb->query(
+			$wpdb->prepare('insert into wp_bhaa_raceresult(race,runner,class)
+				select %d,person_id,"PRE_REG"
+				from wp_em_bookings 
+				join wp_users on wp_users.id=wp_em_bookings.person_id
+				where event_id=%d
+				order by display_name desc',$race,$booking)		
+		);
 
 	} elseif($_GET['action']=='preregexport') {
 		error_log("preregexport ".$booking.' '.$race);
