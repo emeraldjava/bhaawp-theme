@@ -77,7 +77,7 @@ include_once 'page-raceday-header.php';
 if(isset($registrationSubmitted) && $registrationSubmitted == true) 
 {
 	// redirect to registration page
-	echo '<div class="thanks"><h2>BHAA Runner <b>'.esc_html($firstname.' '.$lastname).'</b> with ID <b>'.trim($_POST['runner']).'</b> has been registered with number <b>'.$number.'</b></h2></div>';
+	echo '<div class="thanks"><h2>BHAA Runner <b>'.htmlspecialchars($firstname.' '.$lastname).'</b> with ID <b>'.trim($_POST['runner']).'</b> has been registered with number <b>'.$number.'</b></h2></div>';
 }
 else
 {
@@ -85,7 +85,7 @@ else
 	// http://stackoverflow.com/questions/11349205/jqueryui-autocomplete-custom-data-and-display
 	// http://stackoverflow.com/questions/4717488/jquery-ui-autocomplete-search-more-than-just-label-within-a-local-json-array
 	echo apply_filters('the_content',
-		'[one_third last="yes"]
+		'[one_half last="no"]
 			<div class="navbar-search pull-left" align="left">
 			BHAA Member : <input size="40" type="text" placeholder="Search by Name OR ID" id="memberfilter"/>
 			[raw]<script type="text/javascript">
@@ -128,7 +128,8 @@ jQuery(document).ready(
 });
 </script>[/raw]
 		</div>
-	[/one_third]<hr/>');
+	[/one_half]
+ 	[one_half last="yes"]Status=M means 10e member. Status=I means 25e renewal or 15e day member.[/one_half]<hr/>');
 	
 	$races = $BHAA->registration->getNextRaces();
 	$selectRaces = '';
