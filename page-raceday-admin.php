@@ -18,6 +18,11 @@ if(isset($_GET['action'])){
 		$runner = trim($_GET['runner']);
 		error_log("deleterunner ".$runner.' '.$race);
 		$BHAA->registration->deleteRunner($runner,$race);
+	} elseif($_GET['action']=='deleteall') {
+		error_log("deleteall ".$booking.' '.$race);
+		$wpdb->query(
+			$wpdb->prepare('delete from wp_bhaa_raceresult where class="RACE_REG" and race=%d',$race)
+		);
 	} elseif($_GET['action']=='preregimport') {
 		error_log("preregimport ".$booking.' '.$race);
 		$wpdb->query(
@@ -45,8 +50,9 @@ $racetec = $BHAA->registration->listRegisteredRunners();
 
 echo '<h2>BHAA RACE DAY ADMIN</h2>';
 echo '<h3>Actions</h3>';
-echo sprintf('<h3><a href="/raceday-admin/?action=preregimport&booking=%d&raceid=%d">Import Pre Registered</a></h3>',113,2598);
-echo sprintf('<h3><a href="/raceday-admin/?action=preregexport&booking=%d&raceid=%d">Export Pre Registered</a></h3>',113,2598);
+echo sprintf('<h3><a href="/raceday-admin/?action=preregimport&booking=%d&raceid=%d">Import PRE_REG</a></h3>',113,2598);
+echo sprintf('<h3><a href="/raceday-admin/?action=preregexport&booking=%d&raceid=%d">Export PRE_REG</a></h3>',113,2598);
+echo sprintf('<h3><a href="/raceday-admin/?action=deleteall&booking=%d&raceid=%d">Delete All RACE_REG</a></h3>',113,2598);
 echo '<hr/>';
 
 echo '<table id="raceteclist" >
