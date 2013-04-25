@@ -34,6 +34,7 @@ if(isset($_GET['action'])){
 				from wp_em_bookings 
 				join wp_users on wp_users.id=wp_em_bookings.person_id
 				where event_id=%d
+				and booking_status=1
 				order by display_name desc',$race,$booking)		
 		);
 
