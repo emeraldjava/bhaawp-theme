@@ -11,12 +11,18 @@ global $BHAA;
 if(isset($_GET['action'])){
 	$race = trim($_GET['raceid']);
 	$booking = trim($_GET['booking']);
+	
+	global $wpdb;
+	
 	if($_GET['action']=='deleterunner') {
 		$runner = trim($_GET['runner']);
 		error_log("deleterunner ".$runner.' '.$race);
 		$BHAA->registration->deleteRunner($runner,$race);
 	} elseif($_GET['action']=='preregimport') {
 		error_log("preregimport ".$booking.' '.$race);
+		$wpdb->query(
+			$wpdb->prepare('delete from wp_bhaa_raceresult where class="PRE_REG" and race=%d',$race));
+
 	} elseif($_GET['action']=='preregexport') {
 		error_log("preregexport ".$booking.' '.$race);
 	}
