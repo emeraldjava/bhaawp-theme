@@ -74,10 +74,10 @@ if(isset($_POST['form-submitted']))
 	}
 }
 
-wp_register_script(
-	'bhaa_day_members',
-	content_url().'/bhaa_day_members.js');
-wp_enqueue_script('bhaa_day_members');
+// wp_register_script(
+// 	'bhaa_day_members',
+// 	content_url().'/bhaa_day_members.js');
+// wp_enqueue_script('bhaa_day_members');
 
 // http://stackoverflow.com/questions/11368368/404-when-using-post-get-parameters-in-wordpress-3-4
 get_header();
@@ -100,62 +100,62 @@ if(isset($registrationSubmitted) && $registrationSubmitted == true)
 }
 else
 {
-	echo apply_filters('the_content',
-			'[one_third last="yes"]
-			<div class="navbar-search pull-left" align="left">
-			Check for an existing day members : <input size="40" type="text" placeholder="Search by Name OR ID" id="memberfilter"/>
-			[raw]<script type="text/javascript">
-jQuery(document).ready(
-	function($){
+// 	echo apply_filters('the_content',
+// 			'[one_third last="yes"]
+// 			<div class="navbar-search pull-left" align="left">
+// 			Check for an existing day members : <input size="40" type="text" placeholder="Search by Name OR ID" id="memberfilter"/>
+// 			[raw]<script type="text/javascript">
+// jQuery(document).ready(
+// 	function($){
 	
-	$("#dateofbirth").datepicker({ 
-		dateFormat: "yy-mm-dd",
-		defaultDate: "-30y", 
-        yearRange: "1920:1995",
-		changeYear: true,
-		changeMonth: true
-    	//maxDate: "-18y"
-	}).val()
-	$("#dateofbirth").keypress(function (e)	{
-		e.preventDefault();
-	});		
-	$("#memberfilter").autocomplete({
-		source: bhaa_day_members,
-		minLength: 3,
-		source: function (request, response) {
-		    var matcher = new RegExp($.ui.autocomplete.escapeRegex(request.term), "i");
-		    response($.grep(bhaa_day_members, function(value) {
-		        return matcher.test(value.label) || matcher.test(value.value);
-		    }));
-		},
-		focus: function( event, ui ) {
-        	$("#memberfilter").val(ui.item.label);
-        	return false;
-      	},
-		select: function(event, ui) {
-			$("#runner").val( ui.item.id );
-			$("#firstname").val( ui.item.firstname );
-			$("#lastname").val( ui.item.lastname );
-			$("#dateofbirth").val( ui.item.dob );
-			$("#company").val( ui.item.company );
-			if(ui.item.gender=="M") {
-				$("#gendermale").prop("checked",true);
-			} else {
-				$("#genderfemale").prop("checked",true);
-			}
-			return true;
-		}
-	})
-	.data( "ui-autocomplete" )._renderItem = function( ul, item ) {
-		return $("<li></li>")
-        	.data("item.autocomplete", item)
-        	.append("<a>"+item.label+" "+item.id+"</a><small>DOB:"+item.dob+", Status:"+item.status+"</small>")
-			.appendTo(ul);
-    };
-});
-</script>[/raw]
-		</div>
-	[/one_third]<hr/>');
+// 	$("#dateofbirth").datepicker({ 
+// 		dateFormat: "yy-mm-dd",
+// 		defaultDate: "-30y", 
+//         yearRange: "1920:1995",
+// 		changeYear: true,
+// 		changeMonth: true
+//     	//maxDate: "-18y"
+// 	}).val()
+// 	$("#dateofbirth").keypress(function (e)	{
+// 		e.preventDefault();
+// 	});		
+// 	$("#memberfilter").autocomplete({
+// 		source: bhaa_day_members,
+// 		minLength: 3,
+// 		source: function (request, response) {
+// 		    var matcher = new RegExp($.ui.autocomplete.escapeRegex(request.term), "i");
+// 		    response($.grep(bhaa_day_members, function(value) {
+// 		        return matcher.test(value.label) || matcher.test(value.value);
+// 		    }));
+// 		},
+// 		focus: function( event, ui ) {
+//         	$("#memberfilter").val(ui.item.label);
+//         	return false;
+//       	},
+// 		select: function(event, ui) {
+// 			$("#runner").val( ui.item.id );
+// 			$("#firstname").val( ui.item.firstname );
+// 			$("#lastname").val( ui.item.lastname );
+// 			$("#dateofbirth").val( ui.item.dob );
+// 			$("#company").val( ui.item.company );
+// 			if(ui.item.gender=="M") {
+// 				$("#gendermale").prop("checked",true);
+// 			} else {
+// 				$("#genderfemale").prop("checked",true);
+// 			}
+// 			return true;
+// 		}
+// 	})
+// 	.data( "ui-autocomplete" )._renderItem = function( ul, item ) {
+// 		return $("<li></li>")
+//         	.data("item.autocomplete", item)
+//         	.append("<a>"+item.label+" "+item.id+"</a><small>DOB:"+item.dob+", Status:"+item.status+"</small>")
+// 			.appendTo(ul);
+//     };
+// });
+// </script>[/raw]
+// 		</div>
+// 	[/one_third]<hr/>');
 	
 	$races = $BHAA->registration->getNextRaces();
 	$selectRaces = '';
@@ -195,7 +195,7 @@ jQuery(document).ready(
 	echo apply_filters('the_content','
 		<form action="" id="bhaa-raceday-newmember" name="bhaa-raceday-newmember" method="POST">
 			[one_half last="no"]
-			<b>Runner Details - REQUIRED</b><br/>
+			<b>15e Day or 25e New Member</b><br/>
 			Firstname<input type="text" id="firstname" name="firstname" value="'.$firstname.'"/><br/>
 			Surname<input type="text" id="lastname" name="lastname" value="'.$lastname.'"/><br/>
 			Gender<input type="radio" name="gender" value="M" id="gendermale">M</input><input type="radio" name="gender" value="W" id="genderfemale">W</input><br/> 
@@ -204,14 +204,14 @@ jQuery(document).ready(
 			Race'.$selectRaces.'<br/>
 			<input type="submit" value="Register New Runner"/>
 			[/one_half]
-			[one_half last="yes"]
-			<b>Extra Details</b><br/>
-			Email<input type="text" name="email"/><br/>
-			Mobile<input type="text" name="mobile"/><br/>
-			Company<input type="text" name="company"/><br/>
-			[/one_half]
 			<input type="hidden" name="form-submitted" value="true" />
 		</form>');
+// [one_half last="yes"]
+// <b>Extra Details</b><br/>
+// Email<input type="text" name="email"/><br/>
+// Mobile<input type="text" name="mobile"/><br/>
+// Company<input type="text" name="company"/><br/>
+// [/one_half]
 }
 echo '</div>';
 ?>
