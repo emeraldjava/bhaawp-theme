@@ -32,7 +32,7 @@ if(isset($_POST['form-submitted']))
 	}
 
 	//$standard = trim($_POST['standard']);
-	error_log('pre-reg:'.$raceid.' '.$runner.' '.$number);
+	//error_log('pre-reg:'.$raceid.' '.$runner.' '.$number);
 	if(!isset($hasError))
 	{
 		
@@ -88,8 +88,8 @@ foreach($racetec as $racetec) : ?>
 <td class="cell"><?php echo $racetec->companyname;?></td>
 <td class="cell">
 <form action="" id="bhaa-prereg-form" method="POST">
-	<input type="number" name="number" value=""/>
-	<input type="hidden" name="raceid" value="2597">
+	<input type="text" name="number"/>
+	<input type="hidden" name="raceid" value="<?php echo $racetec->race;?>">
 	<input type="hidden" name="runner" value="<?php echo $racetec->runner;?>">
 	<input type="hidden" name="form-submitted" value="true"/>
 	<input type="submit" value="<?php echo $racetec->firstname;?> <?php echo $racetec->lastname;?> Race Number"/>
