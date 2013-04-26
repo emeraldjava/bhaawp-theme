@@ -32,7 +32,9 @@ $content = apply_filters(
 echo $content;
 
 // second section - personal
-if(is_user_logged_in()||current_user_can('manage_options'))
+global $current_user;
+//echo error_log($current_user->ID.' - '.$user->ID);
+if( ( is_user_logged_in()&&($current_user->ID==$user->ID) ) ||current_user_can('manage_options'))
 {
 	$content = apply_filters(
 		'the_content',
