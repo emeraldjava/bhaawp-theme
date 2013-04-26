@@ -38,6 +38,15 @@ if(isset($_POST['form-submitted']))
  		$hasError = true;
  	} else {
  		$dateofbirth = trim($_POST['dateofbirth']);
+ 		
+ 		$date = DateTime::createFromFormat('d/m/Y', $dateofbirth);
+ 		$date_errors = DateTime::getLastErrors();
+ 		if ($date_errors['warning_count'] + $date_errors['error_count'] > 0) {
+ 			$dobError = 'Date '.$dateofbirth.' is not a valid DD/MM/YYYY format.';
+ 			$hasError = true;
+ 		} else {
+ 			$mysql_dob = $date->format('Y-m-d');
+ 		}
  	}
  	
  	if(trim($_POST['number']) === '')  {
@@ -57,10 +66,10 @@ if(isset($_POST['form-submitted']))
 	if(!isset($hasError))
 	{
 		// check if runner exists
-		error_log('runner '.isset($runner).' $'.$runner.'$');
+		error_log('runner '.isset($runner).' $'.$runner.'$ '.$mysql_dob);
 		if($runner=='')
 		{
-	 		$runner = $BHAA->registration->addNewMember($firstname,$lastname,$gender,$dateofbirth,$email);
+	 		$runner = $BHAA->registration->addNewMember($firstname,$lastname,$gender,$mysql_dob,$email);
 		}
 		// register new runner		
 		$res = $BHAA->registration->registerRunner($raceid,$runner,$number,$standard);
@@ -199,7 +208,7 @@ else
 			Firstname<input type="text" id="firstname" name="firstname" value="'.$firstname.'"/><br/>
 			Surname<input type="text" id="lastname" name="lastname" value="'.$lastname.'"/><br/>
 			Gender<input type="radio" name="gender" value="M" id="gendermale">M</input><input type="radio" name="gender" value="W" id="genderfemale">W</input><br/> 
-			DOB<input type="date" placeholder="YYYY-MM-DD" name="dateofbirth" id="dateofbirth" value="'.$dateofbirth.'"/><br/>
+			DOB<input type="text" placeholder="DD/MM/YYYY" name="dateofbirth" id="dateofbirth" value="'.$dateofbirth.'"/><br/>
 			RaceNumber<input type="text" name="number" id="number" value="'.$number.'"/><br/>
 			Race'.$selectRaces.'<br/>
 			<input type="submit" value="Register New Runner"/>
