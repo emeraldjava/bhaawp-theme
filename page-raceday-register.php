@@ -109,7 +109,7 @@ jQuery(document).ready(
 			$("#firstname").val( ui.item.firstname );
 			$("#lastname").val( ui.item.lastname );
 			$("#dateofbirth").val( ui.item.dob );
-			$("#company").val( ui.item.company );
+			$("#company").val( ui.item.companyname );
 			$("#standard").val( ui.item.standard );
 			if(ui.item.gender=="M") {
 				$("#gendermale").prop("checked",true);
@@ -122,7 +122,7 @@ jQuery(document).ready(
 	.data( "ui-autocomplete" )._renderItem = function( ul, item ) {
 		return $("<li></li>")
         	.data("item.autocomplete", item)
-        	.append("<a>"+item.label+" "+item.id+"</a><small>DOB:"+item.dob+", Status:"+item.status+"</small>")
+        	.append("<a>"+item.label+" "+item.id+"</a><small>DOB:"+item.dob+", Status:"+item.status+", Company:"+item.companyname+"</small>")
 			.appendTo(ul);
     };
 });
@@ -175,9 +175,9 @@ jQuery(document).ready(
 			[/one_third]
 			[one_third last="yes"]
 			<b>BHAA Details</b><br/>
-			ID<input type="text" name="runner" id="runner" value="'.$runner.'"/><br/>
-			Standard<input type="text" name="standard" id="standard" value="'.$standard.'"/><br/>
-			Company<input type="text" name="company" id="company"/><br/>
+			ID<input type="text" name="runner" id="runner" readonly=true value="'.$runner.'"/><br/>
+			Standard<input type="text" name="standard" id="standard" readonly=true value="'.$standard.'"/><br/>
+			Company<input type="text" name="company" id="company" readonly=true/><br/>
 			[/one_third]
 			<input type="hidden" name="form-submitted" value="true" />
 		</form>');
