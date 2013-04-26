@@ -10,31 +10,27 @@ global $BHAA;
 
 get_header();
 
-include_once 'page-raceday-header.php';
+//include_once 'page-raceday-header.php';
 
 $racetec = $BHAA->registration->listRegisteredRunners(10);
 
 echo '<h2>Latest Runner Total '.sizeof($racetec).'</h2>';
-echo '<table  width="90%" id="raceteclist" >
-<tr class="row">
-<th class="cell">Race</th>
-<th class="cell">Number</th>
-<th class="cell">BHAA</th>
-<th class="cell">Name</th>
-<th class="cell">Standard</th>
-<th class="cell">Company</th>
-<th class="cell">Team</th>
+echo '<table width="90%" id="raceteclist" >
+<tr>
+<th>Number</th>
+<th>BHAA</th>
+<th>Name</th>
+<th>Standard</th>
+<th>Company</th>
 </tr>';
 
 foreach($racetec as $racetec) : ?>
 <tr class="row">
-<td class="cell"><?php echo $racetec->race;?></td>
 <td class="cell"><?php echo $racetec->racenumber;?></td>
 <td class="cell"><?php echo $racetec->runner;?></td>
 <td class="cell"><?php echo $racetec->firstname;?> <?php echo $racetec->lastname;?></td>
 <td class="cell"><?php echo $racetec->standard;?></td>
 <td class="cell"><?php echo $racetec->companyname;?></td>
-<td class="cell"><?php echo $racetec->teamname;?></td>
 </tr>
 <?php endforeach;?>
 </table>
