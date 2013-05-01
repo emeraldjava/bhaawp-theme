@@ -33,13 +33,22 @@ if(!isset($wp_query->query_vars['division']))
 	$i = 0;
 	$division='';
 	$divisionTable = '';
+	
+	//$last_index = count($leagueSummaryByDivision) - 1;
+	
 	foreach($leagueSummaryByDivision as $summary) :
 	
+// 	if(!isset($summary->leaguedivision))
+// 	{
+// 		$rows_in_summary=10;
+// 		break;
+// 	}
+	$i++;
 	if($summary->leaguedivision!=$division)
 	{
 		$division=$summary->leaguedivision;
 		$divisionTable = '';
-		$i++;
+		
 		
 		$divisionTable .= sprintf('<h3><a href="%s">Division %s</a><h3>'.PHP_EOL,
 			add_query_arg(array('division'=>$division)),
@@ -67,7 +76,7 @@ if(!isset($wp_query->query_vars['division']))
 	}
 	
 	// close the table
-	if($summary->leagueposition==$rows_in_summary)
+	if($summary->leagueposition==$rows_in_summary || (count($leagueSummaryByDivision) == $i) )
 	{
 		$divisionTable .= '</table>'.PHP_EOL;
 		$division='';
@@ -88,11 +97,13 @@ else
 	//error_log(print_r($table,true));
 		
 	echo '<table>';
-	echo '<tr>
-	<th>Position</th>
-    <th>Name</th>
-    <th>Company</th>
-    <th>Standard</th>';
+	echo '<tr><th>Position</th>';
+	// only show name for individual league
+	if($leagueSummary->getType()=='I')
+		echo '<th>Name</th>';
+
+	echo '<th>Company</th>';
+	echo '<th>Standard</th>';
 	foreach ( $events as $event )
 	{
 		//  [lid] => 2492 [post_title] => Winter League 2012/2013 [eid] => 2121 [etitle] => South Dublin County Council 2013 [rid] => 2359 [rtitle] => sdcc2013_4M_M [rtype] => M
@@ -120,11 +131,11 @@ else
 		else
 		{
 			// specific row
-			echo '<tr>
-	<td>'.($i++).'</td>
-    <td>'.sprintf('<a href="/runner/?id=%d"><b>%s</b></a>',$row->leagueparticipant,$row->display_name).'</td>
-	<td>'.sprintf('<a href="/?post_type=house&p=%d"><b>%s</b></a>',$row->ID,$row->post_title).'</td>
-    <td>'.$row->leaguestandard.'</td>';
+			echo '<tr><td>'.($i++).'</td>';
+			if($leagueSummary->getType()=='I')
+				echo '<td>'.sprintf('<a href="/runner/?id=%d"><b>%s</b></a>',$row->leagueparticipant,$row->display_name).'</td>';
+			echo '<td>'.sprintf('<a href="/?post_type=house&p=%d"><b>%s</b></a>',$row->ID,$row->post_title).'</td>';
+			echo '<td>'.$row->leaguestandard.'</td>';
 			$points = json_decode(html_entity_decode($row->leaguesummary));
 			// for each event id - look for a matching json row
 			foreach ( $events as $event )
