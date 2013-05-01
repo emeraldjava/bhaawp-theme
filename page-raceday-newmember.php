@@ -33,20 +33,27 @@ if(isset($_POST['form-submitted']))
  		$gender = trim($_POST['gender']);
  	}
  	
+ 	$mysql_dob;
  	if(trim($_POST['dateofbirth']) === '')  {
  		$dobError = 'Please enter dateofbirth.';
  		$hasError = true;
  	} else {
  		$dateofbirth = trim($_POST['dateofbirth']);
  		
- 		$date = DateTime::createFromFormat('d/m/Y', $dateofbirth);
- 		$date_errors = DateTime::getLastErrors();
- 		if ($date_errors['warning_count'] + $date_errors['error_count'] > 0) {
- 			$dobError = 'Date '.$dateofbirth.' is not a valid DD/MM/YYYY format.';
- 			$hasError = true;
- 		} else {
- 			$mysql_dob = $date->format('Y-m-d');
- 		}
+ 		
+ 		if(preg_match("/([0-9]{2})\/([0-9]{2})\/([0-9]{4})/", $dateofbirth, $matches)) {
+ 			if (!checkdate($matches[2], $matches[1], $matches[3])) {
+ 				$dobError =  'Date '.$dateofbirth.' has an incorrect DD/MM/YYYY value somewhere.';
+ 				$hasError = true;
+ 			} else {
+ 				$mysql_dob = DateTime::createFromFormat('d/m/Y', $dateofbirth)->format('Y-m-d');
+ 				error_log($dateofbirth.' -> '.$mysql_dob);
+ 			}
+ 		} 
+ 		else {
+ 			$dobError =  'Date '.$dateofbirth.' is not in the correct DD/MM/YYYY format.';
+ 			$hasError = true; 			
+ 		} 		
  	}
  	
  	if(trim($_POST['number']) === '')  {
