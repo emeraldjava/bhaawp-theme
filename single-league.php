@@ -68,9 +68,12 @@ if(!isset($wp_query->query_vars['division']))
 	{
 		// specific row
 		$divisionTable .= '<tr>
-		<td>'.$summary->leagueposition.'</td>
-	    <td>'.sprintf('<a href="/runner?id=%d">%s</a>',$summary->leagueparticipant,$summary->display_name).'</td>
-	    <td>'.$summary->leaguepoints.'</td>
+		<td>'.$summary->leagueposition.'</td>';
+		if($leagueSummary->getType()=='I')
+			$divisionTable .= '<td>'.sprintf('<a href="/runner?id=%d"><b>%s</b></a>',$summary->leagueparticipant,$summary->display_name).'</td>';
+		else
+			$divisionTable .= '<td>'.sprintf('<a href="/?post_type=house&p=%d"><b>%s</b></a>',$summary->leagueparticipant,$summary->display_name).'</td>';
+	    $divisionTable .= '<td>'.$summary->leaguepoints.'</td>
 		<td>'.$summary->leaguescorecount.'</td>
 	  	</tr>'.PHP_EOL;
 	}
