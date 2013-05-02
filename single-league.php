@@ -103,7 +103,7 @@ else
 		echo '<th>Name</th>';
 
 	echo '<th>Company</th>';
-	echo '<th>Standard</th>';
+	//echo '<th>Standard</th>';
 	foreach ( $events as $event )
 	{
 		//  [lid] => 2492 [post_title] => Winter League 2012/2013 [eid] => 2121 [etitle] => South Dublin County Council 2013 [rid] => 2359 [rtitle] => sdcc2013_4M_M [rtype] => M
@@ -135,12 +135,14 @@ else
 			if($leagueSummary->getType()=='I')
 				echo '<td>'.sprintf('<a href="/runner/?id=%d"><b>%s</b></a>',$row->leagueparticipant,$row->display_name).'</td>';
 			echo '<td>'.sprintf('<a href="/?post_type=house&p=%d"><b>%s</b></a>',$row->ID,$row->post_title).'</td>';
-			echo '<td>'.$row->leaguestandard.'</td>';
-			$points = json_decode(html_entity_decode($row->leaguesummary));
+			//echo '<td>'.$row->leaguesummary.'</td>';
+			
+			$points = explode(',', $row->leaguesummary);
+			//$points = json_decode(html_entity_decode($row->leaguesummary));
 			// for each event id - look for a matching json row
 			foreach ( $events as $event )
 			{
-				// 9925 {"0":{"eid":"2123","race":"2362","leaguepoints":"10"}}
+				// 9925 2278:9.7,2280:p=10
 				// nasty - loops the points
 				$match = false;
 				if(!empty($points))
@@ -148,9 +150,10 @@ else
 					$r = 0;
 					foreach ( $points as $point )
 					{
-						if($event->eid==$point->eid)
+						$result = explode(':', $point);
+						if($event->eid==$result[0])
 						{
-							$r = $point->leaguepoints;
+							$r = $result[1];//$point->leaguepoints;
 							if($r!=0)
 							{
 								echo '<td>'.$r.'</td>';
