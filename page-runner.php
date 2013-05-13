@@ -52,6 +52,22 @@ if( ( is_user_logged_in()&&($current_user->ID==$user->ID) ) ||current_user_can('
 
 if(current_user_can('edit_users'))
 {
+	$user_info = get_userdata($user->ID);
+	var_dump($user_info);
+	
+	$query = new WP_User_Query(array(
+  'meta_key'     => 'last_name', 
+  'meta_compare' => 'like', 
+  'meta_value'   => $user_info->user_lastname
+ )); 
+	error_log($query->request);
+	var_dump($query->request);
+	
+	//var_dump($query->)
+	var_dump($query->get_results());
+	
+	
+	
 	// third section - admin
 	$content = apply_filters(
 		'the_content',
