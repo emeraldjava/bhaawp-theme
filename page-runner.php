@@ -52,45 +52,6 @@ if( ( is_user_logged_in()&&($current_user->ID==$user->ID) ) ||current_user_can('
 
 if(current_user_can('edit_users'))
 {
-	$user_info = get_userdata($user->ID);
-	var_dump($user_info);
-	echo '<hr/>';
-	
-// 	$query1 = new WP_User_Query(array(
-// 			'meta_key'     => 'last_name',
-// 			'meta_compare' => 'like',
-// 			'meta_value'   => 'Carroll'
-// 	));
-// 	var_dump($query1->query_where);
-// 	echo '<hr/>';
-	
-	$query = new WP_User_Query(
-		array(
-			'fields' => 'all_with_meta',
-			'meta_query' => array(
-				//'relation' => 'AND',
-					array(
-							'key' => 'last_name',
-							'value' => $user_info->user_lastname,
-							'compare' => '='
-					),
-					array(
-							'key' => 'first_name',
-							'value' => 'Paul',//$user_info->user_firstname,
-							'compare' => '='
-					)
-			)
-		)
-	); 
-	//error_log($query->request);
-	var_dump($query->query_where);
-	echo '<hr/>';
-	
-	//var_dump($query->)
-	var_dump($query->get_results());
-	echo '<hr/>';
-	
-	
 	// third section - admin
 	$content = apply_filters(
 		'the_content',
@@ -102,6 +63,65 @@ if(current_user_can('edit_users'))
 		'<li><a href="'.get_site_url().'/wp-admin/edit.php?post_type=event&action=bhaa_runner_renew&id='.$user->ID.'">Renew</a></li>'.
 		'[/one_third]');
 	echo $content;
+
+	// get current users details
+	$user_info = get_userdata($user->ID);
+	$bhaa_runner_dateofbirth = get_user_meta($user->ID,'bhaa_runner_dateofbirth',true);
+	
+	$queryMatchAll = new WP_User_Query(
+		array(
+			'fields' => 'all_with_meta',
+			'meta_query' => array(
+				array(
+					'key' => 'last_name',
+					'value' => $user_info->user_lastname,
+					'compare' => '='),
+				array(
+					'key' => 'first_name',
+					'value' => $user_info->user_firstname,
+					'compare' => '='),
+				array(
+					'key' => 'bhaa_runner_dateofbirth',
+					'value' => $bhaa_runner_dateofbirth,
+					'compare' => '='
+	))));
+	
+	$queryMatchName = new WP_User_Query(
+		array(
+			'fields' => 'all_with_meta',
+			'meta_query' => array(
+				array(
+					'key' => 'last_name',
+					'value' => $user_info->user_lastname,
+					'compare' => '='),
+				array(
+					'key' => 'first_name',
+					'value' => $user_info->user_firstname,
+					'compare' => '='
+	))));
+	
+	$queryMatchLastDob = new WP_User_Query(
+		array(
+			'fields' => 'all_with_meta',
+			'meta_query' => array(
+				array(
+					'key' => 'last_name',
+					'value' => $user_info->user_lastname,
+					'compare' => '='),
+				array(
+					'key' => 'bhaa_runner_dateofbirth',
+					'value' => $bhaa_runner_dateofbirth,
+					'compare' => '='
+	))));
+	
+	// 	var_dump($query->query_where);
+	// 	echo '<hr/>';
+	// 	var_dump($query->get_results());
+	// 	echo '<hr/>';
+	
+	$users = array_merge( $queryMatchAll->get_results(), $queryMatchName->get_results(), $queryMatchLastDob->get_results());
+	var_dump($users);
+	echo '<hr/>';
 }
 
 if( current_user_can('manage_options') )
