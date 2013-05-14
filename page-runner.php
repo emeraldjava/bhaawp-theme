@@ -12,6 +12,13 @@ if(isset($_REQUEST['user_nicename']))
 else
 	$user = get_user_by('id', $_REQUEST['id']);
 
+//if(!$user) {
+	//error_log(get_site_url());
+//	require_once( ABSPATH . 'wp-includes/pluggable.php');
+//	wp_redirect(get_site_url().'/',301); 
+//	die;
+//}
+
 if(isset($_REQUEST['merge'])&&current_user_can('edit_users')) {
 	$BHAA->getRunner()->mergeRunner($_REQUEST['id'],$_REQUEST['merge']);
 }
