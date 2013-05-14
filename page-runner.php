@@ -54,18 +54,41 @@ if(current_user_can('edit_users'))
 {
 	$user_info = get_userdata($user->ID);
 	var_dump($user_info);
+	echo '<hr/>';
 	
-	$query = new WP_User_Query(array(
-  'meta_key'     => 'last_name', 
-  'meta_compare' => 'like', 
-  'meta_value'   => $user_info->user_lastname
- )); 
-	error_log($query->request);
-	var_dump($query->request);
+// 	$query1 = new WP_User_Query(array(
+// 			'meta_key'     => 'last_name',
+// 			'meta_compare' => 'like',
+// 			'meta_value'   => 'Carroll'
+// 	));
+// 	var_dump($query1->query_where);
+// 	echo '<hr/>';
+	
+	$query = new WP_User_Query(
+		array(
+			'fields' => 'all_with_meta',
+			'meta_query' => array(
+				//'relation' => 'AND',
+					array(
+							'key' => 'last_name',
+							'value' => $user_info->user_lastname,
+							'compare' => '='
+					),
+					array(
+							'key' => 'first_name',
+							'value' => 'Paul',//$user_info->user_firstname,
+							'compare' => '='
+					)
+			)
+		)
+	); 
+	//error_log($query->request);
+	var_dump($query->query_where);
+	echo '<hr/>';
 	
 	//var_dump($query->)
 	var_dump($query->get_results());
-	
+	echo '<hr/>';
 	
 	
 	// third section - admin
