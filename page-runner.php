@@ -70,6 +70,7 @@ if(current_user_can('edit_users'))
 	
 	$queryMatchAll = new WP_User_Query(
 		array(
+			'exclude' => array($user->ID),
 			'fields' => 'all_with_meta',
 			'meta_query' => array(
 				array(
@@ -88,6 +89,7 @@ if(current_user_can('edit_users'))
 	
 	$queryMatchName = new WP_User_Query(
 		array(
+			'exclude' => array($user->ID),
 			'fields' => 'all_with_meta',
 			'meta_query' => array(
 				array(
@@ -102,6 +104,7 @@ if(current_user_can('edit_users'))
 	
 	$queryMatchLastDob = new WP_User_Query(
 		array(
+			'exclude' => array($user->ID),
 			'fields' => 'all_with_meta',
 			'meta_query' => array(
 				array(
@@ -120,7 +123,15 @@ if(current_user_can('edit_users'))
 	// 	echo '<hr/>';
 	
 	$users = array_merge( $queryMatchAll->get_results(), $queryMatchName->get_results(), $queryMatchLastDob->get_results());
-	var_dump($users);
+	//var_dump($users);
+	foreach($users as $user)
+	{
+		echo sprintf('<div>%d <a href="%s">%s</a> DOB:%s, Status:%s, Email:%s</div>',
+			$user->ID,
+			add_query_arg(array('id'=>$user->ID),'/runner'),$user->display_name,
+			$user->bhaa_runner_dateofbirth,$user->bhaa_runner_status,$user->user_email
+		);
+	}
 	echo '<hr/>';
 }
 
