@@ -12,6 +12,10 @@ if(isset($_REQUEST['user_nicename']))
 else
 	$user = get_user_by('id', $_REQUEST['id']);
 
+if(isset($_REQUEST['merge'])&&current_user_can('edit_users')) {
+	$BHAA->getRunner()->mergeRunner($_REQUEST['id'],$_REQUEST['merge']);
+}
+
 $metadata = get_user_meta($user->ID);
 $status = $metadata['bhaa_runner_status'][0];
 $company = $metadata['bhaa_runner_company'][0];
