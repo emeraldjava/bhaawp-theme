@@ -124,12 +124,13 @@ if(current_user_can('edit_users'))
 	
 	$users = array_merge( $queryMatchAll->get_results(), $queryMatchName->get_results(), $queryMatchLastDob->get_results());
 	//var_dump($users);
-	foreach($users as $user)
+	foreach($users as $matcheduser)
 	{
-		echo sprintf('<div>%d <a href="%s">%s</a> DOB:%s, Status:%s, Email:%s</div>',
-			$user->ID,
-			add_query_arg(array('id'=>$user->ID),'/runner'),$user->display_name,
-			$user->bhaa_runner_dateofbirth,$user->bhaa_runner_status,$user->user_email
+		echo sprintf('<div>%d <a href="%s">%s</a> DOB:%s, Status:%s, Email:%s <a href="%s">Merge %d to %d</a></div>',
+			$matcheduser->ID,
+			add_query_arg(array('id'=>$matcheduser->ID),'/runner'),$matcheduser->display_name,
+			$matcheduser->bhaa_runner_dateofbirth,$matcheduser->bhaa_runner_status,$matcheduser->user_email,
+			add_query_arg(array('id'=>$user->ID,'merge'=>$matcheduser->ID),'/runner'),$matcheduser->ID,$user->ID
 		);
 	}
 	echo '<hr/>';
