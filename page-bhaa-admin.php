@@ -12,6 +12,7 @@ $members = array(
 	'meta_compare' => '='
 );
 
+// http://wordpress.stackexchange.com/questions/76622/wp-user-query-to-exclude-users-with-no-posts
 $missingStandard = array(
 	'meta_query' => array(
 		'relation' => 'AND',
@@ -26,7 +27,8 @@ $missingStandard = array(
 		)
 	),
 	'orderby'=>'ID',
-	'fields'=>'all'
+	'fields'=>'all',
+	'query_id'=>'match_races'
 );
 
 $user_query = new WP_User_Query( $missingStandard );
@@ -34,7 +36,10 @@ echo 'members :'.$user_query->get_total();
 
 if ( ! empty( $user_query->results ) ) {
 	foreach ( $user_query->results as $user ) {
-		echo '<p>' .$user->ID.' - '.$user->display_name . '</p>';
+		//echo '<p>' .$user->ID.' - '.$user->display_name . '</p>';
+		echo sprintf('<div>%d <a href="%s">%s</a></div>',
+			$user->ID,
+			add_query_arg(array('id'=>$user->ID),'/runner'),$user->display_name);
 	}
 }
 

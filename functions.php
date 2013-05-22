@@ -5,6 +5,7 @@ load_theme_textdomain('Avada', TEMPLATEPATH.'/languages');
 // Default RSS feed links
 add_theme_support('automatic-feed-links');
 add_action( 'init', 'session_start', 0 );
+//add_action('init', 'add_ob_start');
 
 // Allow shortcodes in widget text
 add_filter('widget_text', 'do_shortcode');
@@ -13,56 +14,10 @@ add_filter('widget_text', 'do_shortcode');
 register_nav_menu('main_navigation', 'Main Navigation');
 register_nav_menu('404_pages', '404 Useful Pages');
 
-// bhaa custom
-remove_action('wp_head','wp_generator');
-
-// update logo on the login page
-add_action("login_head", "bhaa_login_head");
-function bhaa_login_head() {
-echo "
-<style>
-	body.login #login h1 a {
-	background: url('http://bhaa.ie/wp-content/uploads/2012/11/headerlogo.jpg') no-repeat center top transparent;
-	height: 120px;
-	width: 400px;
-}
-</style>
-";
-}
-
-// http://stackoverflow.com/questions/9326315/wordpress-change-default-display-name-publicy-as-for-all-existing-users
-function bhaa_force_pretty_displaynames($user_login, $user) {
-	$outcome = trim(get_user_meta($user->ID, 'first_name', true) . " " . get_user_meta($user->ID, 'last_name', true));
-	if (!empty($outcome) && ($user->data->display_name!=$outcome)) {
-		wp_update_user( array ('ID' => $user->ID, 'display_name' => $outcome));
-	}
-}
-add_action('wp_login','bhaa_force_pretty_displaynames',10,2);
-
-function bhaa_lost_password_message() {
-	$action = $_REQUEST['action'];
-	if( $action == 'lostpassword' ) {
-		$message = '<p class="message"><b>Please enter your email address below</b><br/>- If there is an error it maybe the case that we do not have your email linked to your account, you should send an email to <a href="mailto:info@bhaa.ie?Subject=Email Reset">info@bhaa.ie</a> with your name and BHAA ID and we can fix this up.</p>';
-		return $message;
-	}
-}
-add_filter('login_message', 'bhaa_lost_password_message');
-
-// [pdf href="xx"]
-function pdf_shortcode( $atts ) {
-	extract( shortcode_atts( array(
-		'href' => ''
-	), $atts ) );
-	// http://stackoverflow.com/questions/1244788/embed-vs-object
-	return '<object data="'.$href.'" width="95%" height="675" type="application/pdf">
-    			<embed src="'.$href.'" width="95%" height="675" type="application/pdf" />
-			</object>';
-}
-add_shortcode( 'pdf', 'pdf_shortcode' );
-
 // Content Width
 if (!isset( $content_width )) $content_width = 1000;
 
+require_once('bhaa-functions.php');
 /* Options Framework */
 require_once('admin/index.php');
 
