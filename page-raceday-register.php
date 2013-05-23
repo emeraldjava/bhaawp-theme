@@ -87,7 +87,7 @@ else
 	echo apply_filters('the_content',
 		'[one_half last="no"]
 			<div class="navbar-search pull-left" align="left">
-			BHAA Member : <input size="40" type="text" placeholder="Search by Name OR ID" id="memberfilter"/>
+			BHAA Member : <input size="20" type="text" placeholder="Search by Name OR ID" id="memberfilter"/>
 			[raw]<script type="text/javascript">
 jQuery(document).ready( 
 	function($){
