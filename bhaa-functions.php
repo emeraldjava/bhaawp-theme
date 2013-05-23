@@ -3,18 +3,6 @@
 // bhaa custom
 remove_action('wp_head','wp_generator');
 
-function match_races( $query ) {
-	if ( isset( $query->query_vars['query_id'] ) && 'match_races' == $query->query_vars['query_id'] ) {
-		$query->query_from = $query->query_from . ' LEFT OUTER JOIN (
-                SELECT runner, COUNT(race) as races
-                FROM wp_bhaa_raceresult
-				GROUP BY runner
-            ) rr ON (wp_users.ID = rr.runner)';
-		$query->query_where = $query->query_where . ' AND rr.races > 0 ';
-	}
-}
-add_action('pre_user_query','match_races');
-
 // update logo on the login page
 add_action("login_head", "bhaa_login_head");
 function bhaa_login_head() {
