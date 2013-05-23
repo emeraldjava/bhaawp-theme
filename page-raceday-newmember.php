@@ -66,6 +66,13 @@ if(isset($_POST['form-submitted']))
  	} else {
  		$raceid = trim($_POST['raceid']);
  	}
+ 	
+ 	if(trim($_POST['money']) === '')  {
+ 		$moneyError = 'Please select the money.';
+ 		$hasError = true;
+ 	} else {
+ 		$money = trim($_POST['money']);
+ 	}
 	
 	if(!isset($hasError))
 	{
@@ -76,7 +83,7 @@ if(isset($_POST['form-submitted']))
 	 		$runner = $BHAA->registration->addNewMember($firstname,$lastname,$gender,$mysql_dob,$email);
 		}
 		// register new runner		
-		$res = $BHAA->registration->registerRunner($raceid,$runner,$number,$standard);
+		$res = $BHAA->registration->registerRunner($raceid,$runner,$number,$standard,$money);
 		if(gettype($res)=='string')
 		{
 			$hasError = true;
@@ -200,6 +207,8 @@ jQuery(document).ready(
 			$errorMessages .=$dobError.'</br>';
 		if(isset($numberError))
 			$errorMessages .=$numberError.'</br>';
+		if(isset($moneyError))
+			$errorMessages .=$moneyError.'</br>';
 		if(isset($duplicateError))
 			$errorMessages .=$duplicateError.'</br>';
 		if(isset($raceError))
@@ -219,6 +228,7 @@ jQuery(document).ready(
 			DOB<input type="text" value="'.$dateofbirth.'" name="dateofbirth" id="dateofbirth"/><br/>
 			RaceNumber<input type="text" name="number" id="number" value="'.$number.'"/><br/>
 			Race'.$selectRaces.'<br/>
+			Money <input type="radio" name="money" value="4">15e</input><input type="radio" name="money" value="5">25e</input><br/>
 			<input type="submit" value="Register New Runner"/>
 			[/one_half]
 			<input type="hidden" name="form-submitted" value="true" />

@@ -31,6 +31,13 @@ if(isset($_POST['form-submitted']))
  	} else {
  		$raceid = trim($_POST['raceid']);
  	}
+ 	
+ 	if(trim($_POST['money']) === '')  {
+ 		$moneyError = 'Please select the money.';
+ 		$hasError = true;
+ 	} else {
+ 		$money = trim($_POST['money']);
+ 	}
 	
  	$standard = trim($_POST['standard']);
  	$firstname = trim($_POST['firstname']);
@@ -39,7 +46,7 @@ if(isset($_POST['form-submitted']))
 	if(!isset($hasError))
 	{
  		error_log($raceid.' '.$runner.' '.$number);
- 		$res = $BHAA->registration->registerRunner($raceid,$runner,$number,$standard);
+ 		$res = $BHAA->registration->registerRunner($raceid,$runner,$number,$standard,$money);
  		if(gettype($res)=='string')
  		{
  			$hasError = true;
@@ -153,6 +160,8 @@ jQuery(document).ready(
 			$errorMessages .=$numberError.'</br>';
 		if(isset($duplicateError))
 			$errorMessages .=$duplicateError.'</br>';
+		if(isset($moneyError))
+			$errorMessages .=$moneyError.'</br>';
 		if(isset($raceError))
 			$errorMessages .=$raceError.'</br>';
 		echo apply_filters('the_content','[alert type="error"]'.$errorMessages.'[/alert]');
@@ -164,6 +173,7 @@ jQuery(document).ready(
 			<b>Race Details</b><br/>
 			RaceNumber<input type="text" name="number" id="number" value="'.$number.'"/><br/>
 			Race'.$selectRaces.'<br/>
+			Money <input type="radio" name="money" value="1">10e</input><input type="radio" name="money" value="2">15e</input><input type="radio" name="money" value="3">25e</input><br/>
 			<input id="bhaa-raceday-register-submit" type="submit" value="Register Runner"/>
 			[/one_third]
 			[one_third]

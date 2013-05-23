@@ -36,7 +36,7 @@ if(isset($_POST['form-submitted']))
 	if(!isset($hasError))
 	{
 		
-		$res = $BHAA->registration->preRegisterRunner($raceid,$runner,$number);
+		$res = $BHAA->registration->preRegisterRunner($raceid,$runner,$number,$money);
 		if(gettype($res)=='string')
 		{
 			$hasError = true;
@@ -80,7 +80,13 @@ echo '<table id="raceteclist" width="95%">
 <th class="cell">Assign</th>
 </tr>';
 
-foreach($racetec as $racetec) : ?>
+foreach($racetec as $racetec) : 
+
+// online day default
+$money=6;
+if($racetec->status='M')
+	$money=7;
+?>
 <tr class="row">
 <td class="cell"><?php echo $racetec->runner;?></td>
 <td class="cell"><?php echo $racetec->firstname;?> <?php echo $racetec->lastname;?></td>
@@ -92,6 +98,7 @@ foreach($racetec as $racetec) : ?>
 	<input type="text" name="number"/>
 	<input type="hidden" name="raceid" value="<?php echo $racetec->race;?>">
 	<input type="hidden" name="runner" value="<?php echo $racetec->runner;?>">
+	<input type="hidden" name="money" value="<?php echo $money;?>">
 	<input type="hidden" name="form-submitted" value="true"/>
 </td>
 <td class="cell">
