@@ -39,8 +39,6 @@ if(isset($_POST['form-submitted']))
  		$hasError = true;
  	} else {
  		$dateofbirth = trim($_POST['dateofbirth']);
- 		
- 		
  		if(preg_match("/([0-9]{2})\/([0-9]{2})\/([0-9]{4})/", $dateofbirth, $matches)) {
  			if (!checkdate($matches[2], $matches[1], $matches[3])) {
  				$dobError =  'Date '.$dateofbirth.' has an incorrect DD/MM/YYYY value somewhere.';
@@ -49,8 +47,7 @@ if(isset($_POST['form-submitted']))
  				$mysql_dob = DateTime::createFromFormat('d/m/Y', $dateofbirth)->format('Y-m-d');
  				error_log($dateofbirth.' -> '.$mysql_dob);
  			}
- 		} 
- 		else {
+ 		} else {
  			$dobError =  'Date '.$dateofbirth.' is not in the correct DD/MM/YYYY format.';
  			$hasError = true; 			
  		} 		
@@ -90,10 +87,10 @@ if(isset($_POST['form-submitted']))
 	}
 }
 
-// wp_register_script(
-// 	'bhaa_day_members',
-// 	content_url().'/bhaa_day_members.js');
-// wp_enqueue_script('bhaa_day_members');
+wp_register_script(
+ 	'bhaa_day_members',
+ 	content_url().'/bhaa_day_members.js');
+wp_enqueue_script('bhaa_day_members');
 
 // http://stackoverflow.com/questions/11368368/404-when-using-post-get-parameters-in-wordpress-3-4
 get_header();
@@ -116,13 +113,13 @@ if(isset($registrationSubmitted) && $registrationSubmitted == true)
 }
 else
 {
-// 	echo apply_filters('the_content',
-// 			'[one_third last="yes"]
-// 			<div class="navbar-search pull-left" align="left">
-// 			Check for an existing day members : <input size="40" type="text" placeholder="Search by Name OR ID" id="memberfilter"/>
-// 			[raw]<script type="text/javascript">
-// jQuery(document).ready(
-// 	function($){
+ 	echo apply_filters('the_content',
+ 			'[one_third last="yes"]
+ 			<div class="navbar-search pull-left" align="left">
+ 			Check for an existing day members : <input size="40" type="text" placeholder="Search by Name OR ID" id="memberfilter"/>
+ 			[raw]<script type="text/javascript">
+jQuery(document).ready(
+ 	function($){
 	
 // 	$("#dateofbirth").datepicker({ 
 // 		dateFormat: "yy-mm-dd",
@@ -135,43 +132,47 @@ else
 // 	$("#dateofbirth").keypress(function (e)	{
 // 		e.preventDefault();
 // 	});		
-// 	$("#memberfilter").autocomplete({
-// 		source: bhaa_day_members,
-// 		minLength: 3,
-// 		source: function (request, response) {
-// 		    var matcher = new RegExp($.ui.autocomplete.escapeRegex(request.term), "i");
-// 		    response($.grep(bhaa_day_members, function(value) {
-// 		        return matcher.test(value.label) || matcher.test(value.value);
-// 		    }));
-// 		},
-// 		focus: function( event, ui ) {
-//         	$("#memberfilter").val(ui.item.label);
-//         	return false;
-//       	},
-// 		select: function(event, ui) {
-// 			$("#runner").val( ui.item.id );
-// 			$("#firstname").val( ui.item.firstname );
-// 			$("#lastname").val( ui.item.lastname );
-// 			$("#dateofbirth").val( ui.item.dob );
-// 			$("#company").val( ui.item.company );
-// 			if(ui.item.gender=="M") {
-// 				$("#gendermale").prop("checked",true);
-// 			} else {
-// 				$("#genderfemale").prop("checked",true);
-// 			}
-// 			return true;
-// 		}
-// 	})
-// 	.data( "ui-autocomplete" )._renderItem = function( ul, item ) {
-// 		return $("<li></li>")
-//         	.data("item.autocomplete", item)
-//         	.append("<a>"+item.label+" "+item.id+"</a><small>DOB:"+item.dob+", Status:"+item.status+"</small>")
-// 			.appendTo(ul);
-//     };
-// });
-// </script>[/raw]
-// 		</div>
-// 	[/one_third]<hr/>');
+ 	$("#memberfilter").autocomplete({
+ 		source: bhaa_day_members,
+ 		minLength: 3,
+ 		source: function (request, response) {
+ 		    var matcher = new RegExp($.ui.autocomplete.escapeRegex(request.term), "i");
+ 		    response($.grep(bhaa_day_members, function(value) {
+ 		        return matcher.test(value.label) || matcher.test(value.value);
+ 		    }));
+ 		},
+ 		focus: function( event, ui ) {
+         	$("#memberfilter").val(ui.item.label);
+         	return false;
+       	},
+ 		select: function(event, ui) {
+ 			$("#runner").val( ui.item.id );
+ 			$("#firstname").val( ui.item.firstname );
+ 			$("#lastname").val( ui.item.lastname );
+ 			
+ 			$year = ui.item.dob.substring(0,4);
+ 			$month = ui.item.dob.substring(5,7);
+ 			$day = ui.item.dob.substring(8,10);
+ 			$("#dateofbirth").val( $day+"/"+$month+"/"+$year );
+ 			$("#company").val( ui.item.company );
+ 			if(ui.item.gender=="M") {
+ 				$("#gendermale").prop("checked",true);
+ 			} else {
+ 				$("#genderfemale").prop("checked",true);
+ 			}
+ 			return true;
+ 		}
+ 	})
+ 	.data( "ui-autocomplete" )._renderItem = function( ul, item ) {
+ 		return $("<li></li>")
+         	.data("item.autocomplete", item)
+         	.append("<a>"+item.label+" "+item.id+"</a><small>DOB:"+item.dob+", Status:"+item.status+"</small>")
+ 			.appendTo(ul);
+     };
+});
+</script>[/raw]
+ 		</div>
+ 	[/one_third]<hr/>');
 	
 	$races = $BHAA->registration->getNextRaces();
 	$selectRaces = '';
@@ -215,7 +216,7 @@ else
 			Firstname<input type="text" id="firstname" name="firstname" value="'.$firstname.'"/><br/>
 			Surname<input type="text" id="lastname" name="lastname" value="'.$lastname.'"/><br/>
 			Gender<input type="radio" name="gender" value="M" id="gendermale">M</input><input type="radio" name="gender" value="W" id="genderfemale">W</input><br/> 
-			DOB<input type="text" placeholder="DD/MM/YYYY" name="dateofbirth" id="dateofbirth" value="'.$dateofbirth.'"/><br/>
+			DOB<input type="text" value="'.$dateofbirth.'" name="dateofbirth" id="dateofbirth"/><br/>
 			RaceNumber<input type="text" name="number" id="number" value="'.$number.'"/><br/>
 			Race'.$selectRaces.'<br/>
 			<input type="submit" value="Register New Runner"/>
