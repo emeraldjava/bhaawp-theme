@@ -51,9 +51,9 @@ $racetec = $BHAA->registration->listRegisteredRunners();
 
 echo '<h2>BHAA RACE DAY ADMIN</h2>';
 echo '<h3>Actions</h3>';
-echo sprintf('<h3><a href="/raceday-admin/?action=preregimport&booking=%d&raceid=%d">Import PRE_REG</a></h3>',113,2598);
-echo sprintf('<h3><a href="/raceday-admin/?action=preregexport&booking=%d&raceid=%d">Export PRE_REG</a></h3>',113,2598);
-echo sprintf('<h3><a href="/raceday-admin/?action=deleteall&booking=%d&raceid=%d">Delete All RACE_REG</a></h3>',113,2598);
+echo sprintf('<h3><a href="/raceday-admin/?action=preregimport&booking=%d&raceid=%d">Import PRE_REG</a></h3>',117,2846);
+echo sprintf('<h3><a href="/raceday-admin/?action=preregexport&booking=%d&raceid=%d">Export PRE_REG</a></h3>',117,2846);
+echo sprintf('<h3><a href="/raceday-admin/?action=deleteall&booking=%d&raceid=%d">Delete All RACE_REG</a></h3>',117,2846);
 echo '<hr/>';
 
 echo '<table id="raceteclist" >
