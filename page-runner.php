@@ -12,12 +12,16 @@ if(isset($_REQUEST['user_nicename']))
 else
 	$user = get_user_by('id', $_REQUEST['id']);
 
-//if(!$user) {
-	//error_log(get_site_url());
-//	require_once( ABSPATH . 'wp-includes/pluggable.php');
-//	wp_redirect(get_site_url().'/',301); 
-//	die;
-//}
+if(isset($_POST['std-form']))
+{
+	if(trim($_POST['std']) === '') {
+		$runnerError = 'Please enter a runner ID.';
+		$hasError = true;
+	} else {
+		$std = trim($_POST['std']);
+		update_user_meta($user->ID,'bhaa_runner_standard',$std);
+	}
+}
 
 if(isset($_REQUEST['merge'])&&current_user_can('edit_users')) {
 	$BHAA->getRunner()->mergeRunner($_REQUEST['id'],$_REQUEST['merge']);
@@ -26,7 +30,6 @@ if(isset($_REQUEST['merge'])&&current_user_can('edit_users')) {
 $metadata = get_user_meta($user->ID);
 $status = $metadata['bhaa_runner_status'][0];
 $company = $metadata['bhaa_runner_company'][0];
-
 
 echo '<h1>'.$user->display_name.'</h1>';
 
@@ -69,11 +72,12 @@ if(current_user_can('edit_users'))
 		'the_content',
 		'[one_third last="yes"]'.
 		'<h2>Admin Details</h2>'.
-		'<ul>'.
-		'<li>Status : '.$metadata['bhaa_runner_status'][0].'</li>'.
-		'<li>dateofrenewal : '.$metadata['bhaa_runner_dateofrenewal'][0].'</li>'.
-		'<li><a href="'.get_site_url().'/wp-admin/edit.php?post_type=event&action=bhaa_runner_renew&id='.$user->ID.'">Renew</a></li>'.
-		'[/one_third]');
+		'<div>'.
+		'<div><form action="" method="POST"><input type="text" size=2 name="std" id="std"/><input type="hidden" name="std-form" value="true"/><input type="submit" value="Update Standard"/></form></div>'.
+		'<div>Status : '.$metadata['bhaa_runner_status'][0].'</div>'.
+		'<div>dateofrenewal : '.$metadata['bhaa_runner_dateofrenewal'][0].'</div>'.
+		'<div><a href="'.get_site_url().'/wp-admin/edit.php?post_type=event&action=bhaa_runner_renew&id='.$user->ID.'">Renew</a></div>'.
+		'</div>[/one_third]');
 	echo $content;
 
 	// get current users details
