@@ -171,7 +171,7 @@ echo '</tr>';
 
 echo '<tr>';
 echo '<td>Online Day Member</td>';
-echo '<td>'.$runnerCount[6]->count.'</td>';
+echo '<td>'.($runnerCount[6]->count).'</td>';
 echo '<td>15</td>';
 echo '<td>10</td>';
 echo '<td>5</td>';
@@ -182,7 +182,7 @@ echo '</tr>';
 
 echo '<tr>';
 echo '<td>Online Member</td>';
-echo '<td>'.$runnerCount[7]->count.'</td>';
+echo '<td>'.($runnerCount[7]->count).'</td>';
 echo '<td>10</td>';
 echo '<td>10</td>';
 echo '<td>0</td>';
