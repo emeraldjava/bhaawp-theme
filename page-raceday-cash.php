@@ -33,46 +33,56 @@ $ro=0;
 $bhaa=0;
 $online=0;
 foreach($runnerCount as $runner){
+	error_log($runner->type.' '.$runner->count);
 	switch($runner->type){
 		case(1):{
 			$member=$runner->count;
 			$total = $total + ($member*10);
 			$ro = $ro + ($member*10);
+			break;
 		}
 		case(2):{
 			$inactive_day=$runner->count;
 			$total = $total + ($inactive_day*15);
 			$ro = $ro + ($inactive_day*10);
 			$bhaa = $bhaa + ($inactive_day*5);
+			break;
 		}
 		case(3):{
 			$renew=$runner->count;
 			$total = $total + ($renew*25);
 			$ro = $ro + ($renew*10);
 			$bhaa = $bhaa + ($renew*15);
+			break;
 		}
 		case(4):{
 			$day=$runner->count;
 			$total = $total + ($day*15);
 			$ro = $ro + ($day*10);
 			$bhaa = $bhaa + ($day*5);
+			break;
 		}
 		case(5):{
 			$new=$runner->count;
 			$total = $total + ($new*25);
 			$ro = $ro + ($new*10);
 			$bhaa = $bhaa + ($new*15);
+			break;
 		}
 		case(6):{
 			$online_day=$runner->count;
+			$total = $total + ($online_day*10);
 			$online = $online + ($online_day*15);
+			$bhaa = $bhaa + ($online_day*5);
 			$ro = $ro + ($online_day*10);
-			//$bhaa = $bhaa + ($online_day*5);
+			break;
 		}
 		case(7):{
 			$online_member=$runner->count;
-			$online = $online + ($online_day*10);
+			$total = $total + ($online_member*15);
+			$online = $online + ($online_member*10);
 			$ro = $ro + ($online_member*10);
+			break;
 		}
 	}
 }
