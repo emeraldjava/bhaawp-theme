@@ -30,6 +30,13 @@ if(isset($_POST['form-submitted']))
 	} else {
 		$raceid = trim($_POST['raceid']);
 	}
+	
+	if(trim($_POST['money']) === '')  {
+		$moneyError = 'Please select a money.';
+		$hasError = true;
+	} else {
+		$money = trim($_POST['money']);
+	}
 
 	//$standard = trim($_POST['standard']);
 	//error_log('pre-reg:'.$raceid.' '.$runner.' '.$number);
@@ -60,6 +67,8 @@ if(isset($hasError) && $hasError==true)
 		$errorMessages .=$runnerError.'</br>';
 	if(isset($numberError))
 		$errorMessages .=$numberError.'</br>';
+	if(isset($moneyError))
+		$errorMessages .=$moneyError.'</br>';
 	if(isset($duplicateError))
 		$errorMessages .=$duplicateError.'</br>';
 	if(isset($raceError))
@@ -84,7 +93,7 @@ foreach($racetec as $racetec) :
 
 // online day default
 $money=6;
-if($racetec->status='M')
+if($racetec->status=='M')
 	$money=7;
 ?>
 <tr class="row">
