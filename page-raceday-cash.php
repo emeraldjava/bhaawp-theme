@@ -87,6 +87,30 @@ foreach($runnerCount as $runner){
 	}
 }
 
+echo '<table width=90%>';
+echo '<tr>';
+echo '<th>Type</th>';
+echo '<th>Number</th>';
+echo '<th>Rate</th>';
+echo '<th>RO</th>';
+echo '<th>BHAA</th>';
+echo '<th>Total</th>';
+echo '<th>RO</th>';
+echo '<th>BHAA</th>';
+echo '</tr>';
+
+echo '<tr>';
+echo '<td>BHAA Member</td>';
+echo '<td>'.$runnerCount[1]->count.'</td>';
+echo '<td>10</td>';
+echo '<td>10</td>';
+echo '<td>0</td>';
+echo '<td>'.($runnerCount[1]->count*10).'</td>';
+echo '<td>'.($runnerCount[1]->count*10).'</td>';
+echo '<td>0</td>';
+echo '</tr>';
+echo '</table>';
+
 echo 'member '.$member.'<br/>';
 echo 'inactive_day '.$inactive_day.'<br/>';
 echo 'renew '.$renew.'<br/>';
@@ -98,6 +122,7 @@ echo '<hr/>Total '.$total.'<br/>';
 echo 'Race organiser '.$ro.'<br/>';
 echo 'BHAA '.$bhaa.'<br/>';
 echo 'Online '.$online.'<br/>';
+
 
 get_footer(); 
 ?>
