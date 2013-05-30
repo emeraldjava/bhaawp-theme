@@ -35,8 +35,11 @@ $bhaa=0;
 $online=0;
 $online_ro=0;
 $online_bhaa=0;
+
+//var_dump($runnerCount);
+
 foreach($runnerCount as $runner){
-	error_log($runner->type.' '.$runner->count);
+	//error_log($runner->type.' '.$runner->count);
 	switch($runner->type){
 		case(1):{
 			$member=$runner->count;
@@ -82,6 +85,7 @@ foreach($runnerCount as $runner){
 		}
 		case(7):{
 			$online_member=$runner->count;
+			error_log('online member '.$online_member);
 			//$total = $total + ($online_member*15);
 			$online = $online + ($online_member*10);
 			$online_ro = $online_ro + ($online_member*10);
@@ -171,7 +175,7 @@ echo '</tr>';
 
 echo '<tr>';
 echo '<td>Online Day Member</td>';
-echo '<td>'.($runnerCount[6]->count).'</td>';
+echo '<td>'.($online_day).'</td>';
 echo '<td>15</td>';
 echo '<td>10</td>';
 echo '<td>5</td>';
@@ -182,7 +186,7 @@ echo '</tr>';
 
 echo '<tr>';
 echo '<td>Online Member</td>';
-echo '<td>'.($runnerCount[7]->count).'</td>';
+echo '<td>'.($online_member).'</td>';
 echo '<td>10</td>';
 echo '<td>10</td>';
 echo '<td>0</td>';
