@@ -18,6 +18,19 @@ http://docs.jquery.com/UI/API/1.9/Menu
 */
 global $EM_Event;
 /* @var $EM_Event EM_Event */
+//error_log("start");
+//error_log(print_r($_GET));
+//error_log(print_r($_POST));
+//echo "<pre>GET "; print_r($_GET); echo "</pre>";
+//echo "<pre>POST "; print_r($_POST); echo "</pre>";
+
+if(isset($_POST['editracetime'])) {
+	$id = trim($_POST['id']);
+	$racetime = trim($_POST['racetime']);
+	//error_log('edit race time '.$id.' '.$racetime);	
+	global $BHAA;
+	$BHAA->getRaceResult()->editRaceTime($id,$racetime);
+}
 
 get_header();
 
@@ -66,11 +79,13 @@ else
 			'connected_items' => get_queried_object(),
 			'nopaging' => true,
 	));
+	//error_log("Last SQL-Query ".$connected->request);
+	//error_log("found_posts ".$connected->found_posts);
 	
 	$results = '';
 	$teams = '';
 	if ( $connected->have_posts() ) :
-		while ( $connected->have_posts() ) :
+		while ( $connected->have_posts() ) : 
 			$connected->the_post();
 			$results .= $BHAA->getIndividualResultTable()->renderTable(get_the_ID());
 			$teams .= $BHAA->getTeamResultTable(get_the_ID());
@@ -80,6 +95,8 @@ else
 	else :
 		$results = "No races have been linked to this event yet.";
 	endif;
+	
+	//error_log("results ".sizeof($results));
 	
 	// past event
 	echo $EM_Event->output(
@@ -110,6 +127,7 @@ else
 				'.$standardTable.'
 			[/tab]
 		[/tabs]');
+	//);
 	
 // 	// teams
 // 	echo '<div id="teams">';
@@ -127,4 +145,5 @@ else
 // 	echo '</div><div class="clearboth"></div>';
 }
 echo '</section>';
+//error_log("end");
 ?>
