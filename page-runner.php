@@ -12,8 +12,7 @@ if(isset($_REQUEST['user_nicename']))
 else
 	$user = get_user_by('id', $_REQUEST['id']);
 
-if(isset($_POST['std-form']))
-{
+if(isset($_POST['std-form'])) {
 	if(trim($_POST['std']) === '') {
 		$runnerError = 'Please enter a runner ID.';
 		$hasError = true;
@@ -22,14 +21,29 @@ if(isset($_POST['std-form']))
 		update_user_meta($user->ID,'bhaa_runner_standard',$std);
 	}
 }
-if(isset($_POST['dob-form']))
-{
+if(isset($_POST['dob-form'])) {
 	if(trim($_POST['dob']) === '') {
 		$runnerError = 'Please enter a runner ID.';
 		$hasError = true;
 	} else {
 		$dob = trim($_POST['dob']);
 		update_user_meta($user->ID,'bhaa_runner_dateofbirth',$dob);
+	}
+}
+if(isset($_POST['email-form'])) {
+	if(trim($_POST['email']) === '') {
+		$runnerError = 'Please enter a runner ID.';
+		$hasError = true;
+	} else {
+		$email = trim($_POST['email']);
+		wp_update_user( array ( 'ID' => $user->ID, 'user_email' => $email ) ) ;
+	}
+}
+if(isset($_POST['gender-form'])) {
+	if(trim($_POST['gender']) === '') {
+	} else {
+		$gender = trim($_POST['gender']);
+		update_user_meta($user->ID,'bhaa_runner_gender',$gender);
 	}
 }
 
@@ -85,6 +99,8 @@ if(current_user_can('edit_users'))
 		'<div>'.
 		'<div><form action="" method="POST"><input type="text" size=2 name="std" id="std" placeholder="std" value="'.$metadata['bhaa_runner_standard'][0].'"/><input type="hidden" name="std-form" value="true"/><input type="submit" value="Update Std"/></form></div>'.
 		'<div><form action="" method="POST"><input type="text" size=10 name="dob" id="dob" placeholder="dob" value="'.$metadata['bhaa_runner_dateofbirth'][0].'"/><input type="hidden" name="dob-form" value="true"/><input type="submit" value="Update DOB"/></form></div>'.
+		'<div><form action="" method="POST"><input type="text" size=30 name="email" id="email" value="'.$user->user_email.'"/><input type="hidden" name="email-form" value="true"/><input type="submit" value="Update Email"/></form></div>'.
+		'<div><form action="" method="POST"><input type="text" size=2 name="gender" id="gender" value="'.$metadata['bhaa_runner_gender'][0].'"/><input type="hidden" name="gender-form" value="true"/><input type="submit" value="Update Gender"/></form></div>'.
 		'<div>Status : '.$metadata['bhaa_runner_status'][0].'</div>'.
 		'<div>dateofrenewal : '.$metadata['bhaa_runner_dateofrenewal'][0].'</div>'.
 		'<div><a href="'.get_site_url().'/wp-admin/edit.php?post_type=event&action=bhaa_runner_renew&id='.$user->ID.'">Renew</a></div>'.
