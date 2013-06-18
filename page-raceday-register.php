@@ -75,11 +75,12 @@ get_header();
 //echo "<pre>GET "; print_r($_GET); echo "</pre>";
 //echo "<pre>POST "; print_r($_POST); echo "</pre>";
 ?>
-
-<div id="container">
 	
 <?php 
+echo '<div id="container">';
 include_once 'page-raceday-header.php';
+echo "<h3>BHAA Member</h3>";
+	echo '<div class="main">';
 
 if(isset($registrationSubmitted) && $registrationSubmitted == true) 
 {
@@ -94,7 +95,8 @@ else
 	echo apply_filters('the_content',
 		'[one_half last="no"]
 			<div class="navbar-search pull-left" align="left">
-			BHAA Member : <input size="20" type="text" placeholder="Search by Name OR ID" id="memberfilter"/>
+			<input size="35" type="text" placeholder="Search BHAA Member by Name OR ID" id="memberfilter"/>
+			</div>
 			[raw]<script type="text/javascript">
 jQuery(document).ready( 
 	function($){
@@ -134,9 +136,7 @@ jQuery(document).ready(
     };
 });
 </script>[/raw]
-		</div>
-	[/one_half]
- 	[one_half last="yes"]Status=M means 10e member. Status=I means 25e renewal or 15e day member.[/one_half]<hr/>');
+ 	[/one_half]');
 	
 	$races = $BHAA->registration->getNextRaces();
 	$selectRaces = '';
@@ -164,7 +164,7 @@ jQuery(document).ready(
 			$errorMessages .=$moneyError.'</br>';
 		if(isset($raceError))
 			$errorMessages .=$raceError.'</br>';
-		echo apply_filters('the_content','[alert type="error"]'.$errorMessages.'[/alert]');
+		echo apply_filters('the_content','[one_half last="no"][alert type="error"]'.$errorMessages.'[/alert][/one_half]');
 	}
 
 	echo apply_filters('the_content','
@@ -192,6 +192,8 @@ jQuery(document).ready(
 			<input type="hidden" name="form-submitted" value="true" />
 		</form>');
 }
+	echo '</div>';
 echo '</div>';
 ?>
+
 <?php get_footer(); ?>
