@@ -124,7 +124,7 @@ else
  	echo apply_filters('the_content',
  			'[one_half last="no"]
  			<div class="navbar-search pull-left" align="left">
- 				<input size="30" type="text" placeholder="Search Day Members by Name OR ID" id="memberfilter"/>
+ 				<input size="35" type="text" placeholder="Search Day Members by Name OR ID" id="memberfilter"/>
  			</div>
  			[raw]<script type="text/javascript">
 jQuery(document).ready(
@@ -220,32 +220,45 @@ jQuery(document).ready(
 	// http://jqueryui.com/autocomplete/#custom-data
 	// http://stackoverflow.com/questions/11349205/jqueryui-autocomplete-custom-data-and-display
 	echo apply_filters('the_content','
-		<form action="" id="bhaa-raceday-newmember" name="bhaa-raceday-newmember" method="POST">
-			[one_half last="no"]
-			<b>Firstname:</b><input type="text" id="firstname" name="firstname" value="'.$firstname.'"/><br/>
-			[/one_half]			
-			[one_half last="yes"]
-			<b>Surname:</b><input type="text" id="lastname" name="lastname" value="'.$lastname.'"/>
-			[/one_half]
-			[one_half last="no"]
-			<b>Gender:</b><input type="radio" name="gender" value="M" id="gendermale">M</input><input type="radio" name="gender" value="W" id="genderfemale">W</input>
-			[/one_half]			
-			[one_half last="yes"]
-			<b>DOB:</b><input type="text" value="'.$dateofbirth.'" name="dateofbirth" id="dateofbirth"/>
-			[/one_half]
-			[one_half last="no"]
-			<b>RaceNumber:</b><input type="text" name="number" id="number" value="'.$number.'"/><br/>
-			[/one_half]			
-			[one_half last="yes"]
-			<b>Race:</b>'.$selectRaces.'
-			[/one_half]
-			[one_half last="no"]
-			<b>Money:</b><input type="radio" name="money" value="4">Day Member 15e</input><input type="radio" name="money" value="5">New Member 25e</input>
-			[/one_half]
-			[one_half last="no"]
- 			<input type="submit" value="Register New Runner"/>
-			[/one_half]
- 			<input type="hidden" name="form-submitted" value="true" /></form>');
+<form action="" id="bhaa-raceday-newmember" name="bhaa-raceday-newmember" method="POST">
+[one_half last="no"]
+<b>Race Details</b>
+[/one_half]			
+[one_half last="yes"]
+<b>Runner Details</b>
+[/one_half]
+
+[one_half last="no"]
+<b>RaceNumber:</b><input type="text" name="number" id="number" value="'.$number.'"/>
+[/one_half]			
+[one_half last="yes"]
+<b>Firstname:</b><input type="text" id="firstname" name="firstname" value="'.$firstname.'"/>
+[/one_half]			
+
+[one_half last="no"]
+<b>Race:</b>'.$selectRaces.'
+[/one_half]
+[one_half last="yes"]
+<b>Surname:</b><input type="text" id="lastname" name="lastname" value="'.$lastname.'"/>
+[/one_half]
+
+[one_half last="no"]
+<b>Money:</b><input type="radio" name="money" value="4">Day Member 15e</input><input type="radio" name="money" value="5">New Member 25e</input>
+[/one_half]
+[one_half last="yes"]
+<b>DOB:</b><input type="text" value="'.$dateofbirth.'" placeholder="DD/MM/19YY" name="dateofbirth" id="dateofbirth"/>
+[/one_half]
+         			
+[one_half last="no"]
+<input type="hidden" name="form-submitted" value="true" />
+[/one_half]		
+[one_half last="yes"]
+<b>Gender:</b><input type="radio" name="gender" value="M" id="gendermale">M</input><input type="radio" name="gender" value="W" id="genderfemale">W</input>
+[/one_half]			
+[one_half last="no"]
+<input type="submit" value="Register New Runner"/>
+[/one_half]
+</form>');
 // [one_half last="yes"]
 // <b>Extra Details</b><br/>
 // Email<input type="text" name="email"/><br/>

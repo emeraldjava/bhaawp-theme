@@ -95,7 +95,7 @@ else
 	echo apply_filters('the_content',
 		'[one_half last="no"]
 			<div class="navbar-search pull-left" align="left">
-			<input size="35" type="text" placeholder="Search BHAA Member by Name OR ID" id="memberfilter"/>
+				<input size="35" type="text" placeholder="Search BHAA Member by Name OR ID" id="memberfilter"/>
 			</div>
 			[raw]<script type="text/javascript">
 jQuery(document).ready( 
@@ -136,7 +136,7 @@ jQuery(document).ready(
     };
 });
 </script>[/raw]
- 	[/one_half]');
+ 	[/one_half][one_half last="yes"][/one_half]');
 	
 	$races = $BHAA->registration->getNextRaces();
 	$selectRaces = '';
@@ -168,29 +168,65 @@ jQuery(document).ready(
 	}
 
 	echo apply_filters('the_content','
-		<form action="" id="bhaa-registration-form" method="POST">
-			[one_third last="no"]
-			<b>Race Details</b><br/>
-			RaceNumber<input type="text" name="number" id="number" value="'.$number.'"/><br/>
-			Race'.$selectRaces.'<br/>
-			Money <input type="radio" name="money" value="1">10e</input><input type="radio" name="money" value="2">15e</input><input type="radio" name="money" value="3">25e</input><br/>
-			<input id="bhaa-raceday-register-submit" type="submit" value="Register Runner"/>
-			[/one_third]
-			[one_third]
-			<b>Runner Details</b><br/>
-			Firstname<input type="text" name="firstname" id="firstname" value="'.$firstname.'"/><br/>
-			Surname<input type="text" name="lastname" id="lastname" value="'.$lastname.'"/><br/>
-			Gender<input type="radio" name="gender" value="M" id="gendermale">M</input><input type="radio" name="gender" value="W" id="genderfemale">W</input><br/> 
-			DOB<input type="text" value="'.$dateofbirth.'" name="dateofbirth" id="dateofbirth"/><br/>
-			[/one_third]
-			[one_third last="yes"]
-			<b>BHAA Details</b><br/>
-			ID<input type="text" name="runner" id="runner" readonly=true value="'.$runner.'"/><br/>
-			Standard<input type="text" name="standard" id="standard" readonly=true value="'.$standard.'"/><br/>
-			Company<input type="text" name="company" id="company" readonly=true/><br/>
-			[/one_third]
-			<input type="hidden" name="form-submitted" value="true" />
-		</form>');
+<form action="" id="bhaa-registration-form" name="bhaa-registration-form" method="POST">
+[one_third last="no"]
+<b>Race Details</b>
+[/one_third]
+[one_third last="no"]
+<b>Runner Details</b>
+[/one_third]
+[one_third last="yes"]
+<b>BHAA Details</b>
+[/one_third]
+
+[one_third last="no"]
+<b>RaceNumber:</b><input type="text" name="number" id="number" value="'.$number.'"/>
+[/one_third]
+[one_third last="no"]
+<b>Firstname:</b><input type="text" name="firstname" id="firstname" value="'.$firstname.'"/>
+[/one_third]
+[one_third last="yes"]
+<b>ID:</b><input type="text" name="runner" id="runner" readonly=true value="'.$runner.'"/>
+[/one_third]
+			
+[one_third last="no"]
+<b>Race:</b>'.$selectRaces.'
+[/one_third]
+[one_third last="no"]
+<b>Surname:</b><input type="text" name="lastname" id="lastname" value="'.$lastname.'"/>
+[/one_third]
+[one_third last="yes"]
+<b>Standard:</b><input type="text" name="standard" id="standard" readonly=true value="'.$standard.'"/>
+[/one_third]
+	
+[one_third last="no"]
+<b>Money:</b><input type="radio" name="money" value="1">10e Member</input><input type="radio" name="money" value="3">25e Renewal</input><input type="radio" name="money" value="2">15e Inactive</input>
+[/one_third]
+[one_third last="no"]
+<b>Gender:</b><input type="radio" name="gender" value="M" id="gendermale">M</input><input type="radio" name="gender" value="W" id="genderfemale">W</input>
+[/one_third]
+[one_third last="yes"]
+<b>Company:</b><input type="text" name="company" id="company" readonly=true/>
+[/one_third]
+
+[one_third last="no"]
+[/one_third]
+[one_third last="no"]
+<b>DOB:</b><input type="text" value="'.$dateofbirth.'" name="dateofbirth" id="dateofbirth"/>
+[/one_third]
+[one_third last="yes"]
+[/one_third]
+			
+[one_third last="no"]
+<input id="bhaa-raceday-register-submit" type="submit" value="Register Runner"/>
+[/one_third]
+[one_third last="no"]
+<input type="hidden" name="form-submitted" value="true" />
+[/one_third]
+[one_third last="yes"]
+[/one_third]
+
+</form>');
 }
 	echo '</div>';
 echo '</div>';
