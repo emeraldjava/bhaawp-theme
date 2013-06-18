@@ -33,7 +33,7 @@ if(isset($_POST['form-submitted']))
  		$gender = trim($_POST['gender']);
  	}
  	
- 	$mysql_dob;
+ 	$mysql_dob = '';
  	if(trim($_POST['dateofbirth']) === '')  {
  		$dobError = 'Please enter dateofbirth.';
  		$hasError = true;
@@ -109,6 +109,7 @@ get_header();
 include_once 'page-raceday-header.php';
 
 echo "<h3>BHAA New Member</h3>";
+echo '<div class="main">';
 
 if(isset($registrationSubmitted) && $registrationSubmitted == true) 
 {
@@ -121,9 +122,10 @@ if(isset($registrationSubmitted) && $registrationSubmitted == true)
 else
 {
  	echo apply_filters('the_content',
- 			'[one_third last="yes"]
+ 			'[one_half last="no"]
  			<div class="navbar-search pull-left" align="left">
- 			Check for an existing day members : <input size="20" type="text" placeholder="Search by Name OR ID" id="memberfilter"/>
+ 				<input size="30" type="text" placeholder="Search Day Members by Name OR ID" id="memberfilter"/>
+ 			</div>
  			[raw]<script type="text/javascript">
 jQuery(document).ready(
  	function($){
@@ -178,8 +180,7 @@ jQuery(document).ready(
      };
 });
 </script>[/raw]
- 		</div>
- 	[/one_third]<hr/>');
+ 	[/one_half]');
 	
 	$races = $BHAA->registration->getNextRaces();
 	$selectRaces = '';
@@ -213,7 +214,7 @@ jQuery(document).ready(
 			$errorMessages .=$duplicateError.'</br>';
 		if(isset($raceError))
 			$errorMessages .=$raceError.'</br>';
-		echo apply_filters('the_content','[alert type="error"]'.$errorMessages.'[/alert]');
+		echo apply_filters('the_content','[one_half last="no"][alert type="error"]'.$errorMessages.'[/alert][/one_half]');
 	}
 	
 	// http://jqueryui.com/autocomplete/#custom-data
@@ -221,18 +222,30 @@ jQuery(document).ready(
 	echo apply_filters('the_content','
 		<form action="" id="bhaa-raceday-newmember" name="bhaa-raceday-newmember" method="POST">
 			[one_half last="no"]
-			<b>15e Day or 25e New Member</b><br/>
-			Firstname<input type="text" id="firstname" name="firstname" value="'.$firstname.'"/><br/>
-			Surname<input type="text" id="lastname" name="lastname" value="'.$lastname.'"/><br/>
-			Gender<input type="radio" name="gender" value="M" id="gendermale">M</input><input type="radio" name="gender" value="W" id="genderfemale">W</input><br/> 
-			DOB<input type="text" value="'.$dateofbirth.'" name="dateofbirth" id="dateofbirth"/><br/>
-			RaceNumber<input type="text" name="number" id="number" value="'.$number.'"/><br/>
-			Race'.$selectRaces.'<br/>
-			Money <input type="radio" name="money" value="4">15e</input><input type="radio" name="money" value="5">25e</input><br/>
-			<input type="submit" value="Register New Runner"/>
+			<b>Firstname:</b><input type="text" id="firstname" name="firstname" value="'.$firstname.'"/><br/>
+			[/one_half]			
+			[one_half last="yes"]
+			<b>Surname:</b><input type="text" id="lastname" name="lastname" value="'.$lastname.'"/>
 			[/one_half]
-			<input type="hidden" name="form-submitted" value="true" />
-		</form>');
+			[one_half last="no"]
+			<b>Gender:</b><input type="radio" name="gender" value="M" id="gendermale">M</input><input type="radio" name="gender" value="W" id="genderfemale">W</input>
+			[/one_half]			
+			[one_half last="yes"]
+			<b>DOB:</b><input type="text" value="'.$dateofbirth.'" name="dateofbirth" id="dateofbirth"/>
+			[/one_half]
+			[one_half last="no"]
+			<b>RaceNumber:</b><input type="text" name="number" id="number" value="'.$number.'"/><br/>
+			[/one_half]			
+			[one_half last="yes"]
+			<b>Race:</b>'.$selectRaces.'
+			[/one_half]
+			[one_half last="no"]
+			<b>Money:</b><input type="radio" name="money" value="4">Day Member 15e</input><input type="radio" name="money" value="5">New Member 25e</input>
+			[/one_half]
+			[one_half last="no"]
+ 			<input type="submit" value="Register New Runner"/>
+			[/one_half]
+ 			<input type="hidden" name="form-submitted" value="true" /></form>');
 // [one_half last="yes"]
 // <b>Extra Details</b><br/>
 // Email<input type="text" name="email"/><br/>
@@ -240,6 +253,7 @@ jQuery(document).ready(
 // Company<input type="text" name="company"/><br/>
 // [/one_half]
 }
+	echo '</div>';
 echo '</div>';
 ?>
 <?php get_footer(); ?>
