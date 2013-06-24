@@ -109,7 +109,7 @@ echo '<th>BHAA</th>';
 echo '</tr>';
 
 echo '<tr>';
-echo '<td>BHAA Member</td>';
+echo '<td>1 BHAA Member</td>';
 echo '<td>'.$member.'</td>';
 echo '<td>10</td>';
 echo '<td>10</td>';
@@ -120,7 +120,29 @@ echo '<td>0</td>';
 echo '</tr>';
 
 echo '<tr>';
-echo '<td>Day Member</td>';
+echo '<td>2 Non-Renewing Member</td>';
+echo '<td>'.$inactive_day.'</td>';
+echo '<td>15</td>';
+echo '<td>10</td>';
+echo '<td>5</td>';
+echo '<td>'.($inactive_day*15).'</td>';
+echo '<td>'.($inactive_day*10).'</td>';
+echo '<td>'.($inactive_day*5).'</td>';
+echo '</tr>';
+
+echo '<tr>';
+echo '<td>3 Renewed Member</td>';
+echo '<td>'.$renew.'</td>';
+echo '<td>25</td>';
+echo '<td>10</td>';
+echo '<td>15</td>';
+echo '<td>'.($renew*25).'</td>';
+echo '<td>'.($renew*10).'</td>';
+echo '<td>'.($renew*15).'</td>';
+echo '</tr>';
+
+echo '<tr>';
+echo '<td>4 Day Member</td>';
 echo '<td>'.$day.'</td>';
 echo '<td>15</td>';
 echo '<td>10</td>';
@@ -131,7 +153,7 @@ echo '<td>'.($day*5).'</td>';
 echo '</tr>';
 
 echo '<tr>';
-echo '<td>New Member</td>';
+echo '<td>5 New Member</td>';
 echo '<td>'.$new.'</td>';
 echo '<td>25</td>';
 echo '<td>10</td>';
@@ -139,29 +161,6 @@ echo '<td>15</td>';
 echo '<td>'.($new*25).'</td>';
 echo '<td>'.($new*10).'</td>';
 echo '<td>'.($new*15).'</td>';
-echo '</tr>';
-
-echo '<tr>';
-echo '<td>Renewed Member</td>';
-echo '<td>'.$renew.'</td>';
-echo '<td>25</td>';
-echo '<td>10</td>';
-echo '<td>15</td>';
-echo '<td>'.($renew*25).'</td>';
-echo '<td>'.($renew*10).'</td>';
-echo '<td>'.($renew*15).'</td>';
-echo '</tr>';
-
-
-echo '<tr>';
-echo '<td>Non-Renewing Member</td>';
-echo '<td>'.$inactive_day.'</td>';
-echo '<td>15</td>';
-echo '<td>10</td>';
-echo '<td>5</td>';
-echo '<td>'.($inactive_day*15).'</td>';
-echo '<td>'.($inactive_day*10).'</td>';
-echo '<td>'.($inactive_day*5).'</td>';
 echo '</tr>';
 
 echo '<tr>';
@@ -176,7 +175,7 @@ echo '<td><h3>'.($bhaa).'</h3></td>';
 echo '</tr>';
 
 echo '<tr>';
-echo '<td>Online Day Member</td>';
+echo '<td>6 Online Day Member</td>';
 echo '<td>'.($online_day).'</td>';
 echo '<td>15</td>';
 echo '<td>10</td>';
@@ -187,7 +186,7 @@ echo '<td>'.($online_day*5).'</td>';
 echo '</tr>';
 
 echo '<tr>';
-echo '<td>Online Member</td>';
+echo '<td>7 Online Member</td>';
 echo '<td>'.($online_member).'</td>';
 echo '<td>10</td>';
 echo '<td>10</td>';
@@ -221,18 +220,26 @@ echo '</tr>';
 
 echo '</table>';
 
-//echo 'member '.$member.'<br/>';
-//echo 'inactive_day '.$inactive_day.'<br/>';
-//echo 'renew '.$renew.'<br/>';
-//echo 'day '.$day.'<br/>';
-//echo 'new '.$new.'<br/>';
-//echo 'online_day '.$online_day.'<br/>';
-//echo 'online_member '.$online_member.'<br/>';
-//echo '<hr/>Total '.$total.'<br/>';
-//echo 'Race organiser '.$ro.'<br/>';
-//echo 'BHAA '.$bhaa.'<br/>';
-//echo 'Online '.$online.'<br/>';
+echo '<hr/>';
 
+$registeredRunners = $BHAA->registration->listRegisteredRunners(
+	0,'RACE_REG','wp_bhaa_raceresult.standardscoringset asc, wp_bhaa_raceresult.id desc');
+
+echo '<table id="raceteclist">
+<tr class="row">
+<th class="cell">ID</th>
+<th class="cell">Name</th>
+<th class="cell">Type</th>
+</tr>';
+
+foreach($registeredRunners as $registered) :
+echo '<tr class="row">';
+echo '<td class="cell">'.$registered->runner.'</td>';
+echo '<td class="cell">'.$registered->firstname.' '.$registered->lastname.'</td>';
+echo '<td class="cell">'.$registered->standardscoringset.'</td>';
+echo '</tr>';
+endforeach;
+echo '</table>';
 
 get_footer(); 
 ?>
