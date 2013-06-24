@@ -9,7 +9,8 @@ if ( !current_user_can( 'edit_users' ) )  {
 get_header();
 
 global $BHAA;
-$runnerCount = $BHAA->registration->getRegistrationTypes(2849);
+$event = $BHAA->registration->getEvent();
+$runnerCount = $BHAA->registration->getRegistrationTypes($event->race);
 
 /**
  * 1 - member - 10e
@@ -38,8 +39,8 @@ $online_bhaa=0;
 
 //var_dump($runnerCount);
 
-foreach($runnerCount as $runner){
-	//error_log($runner->type.' '.$runner->count);
+foreach($runnerCount as $runner) {
+	error_log($runner->type.' '.$runner->count);
 	switch($runner->type){
 		case(1):{
 			$member=$runner->count;
@@ -85,7 +86,7 @@ foreach($runnerCount as $runner){
 		}
 		case(7):{
 			$online_member=$runner->count;
-			error_log('online member '.$online_member);
+			//error_log('online member '.$online_member);
 			//$total = $total + ($online_member*15);
 			$online = $online + ($online_member*10);
 			$online_ro = $online_ro + ($online_member*10);
@@ -94,6 +95,7 @@ foreach($runnerCount as $runner){
 	}
 }
 
+echo '<h1>BHAA '.$event->event_slug.' Cash</h1>';
 echo '<table width=90%>';
 echo '<tr align="left">';
 echo '<th>Type</th>';
@@ -108,58 +110,58 @@ echo '</tr>';
 
 echo '<tr>';
 echo '<td>BHAA Member</td>';
-echo '<td>'.$runnerCount[1]->count.'</td>';
+echo '<td>'.$member.'</td>';
 echo '<td>10</td>';
 echo '<td>10</td>';
 echo '<td>0</td>';
-echo '<td>'.($runnerCount[1]->count*10).'</td>';
-echo '<td>'.($runnerCount[1]->count*10).'</td>';
+echo '<td>'.($member*10).'</td>';
+echo '<td>'.($member*10).'</td>';
 echo '<td>0</td>';
 echo '</tr>';
 
 echo '<tr>';
 echo '<td>Day Member</td>';
-echo '<td>'.$runnerCount[4]->count.'</td>';
+echo '<td>'.$day.'</td>';
 echo '<td>15</td>';
 echo '<td>10</td>';
 echo '<td>5</td>';
-echo '<td>'.($runnerCount[4]->count*15).'</td>';
-echo '<td>'.($runnerCount[4]->count*10).'</td>';
-echo '<td>'.($runnerCount[4]->count*5).'</td>';
+echo '<td>'.($day*15).'</td>';
+echo '<td>'.($day*10).'</td>';
+echo '<td>'.($day*5).'</td>';
 echo '</tr>';
 
 echo '<tr>';
 echo '<td>New Member</td>';
-echo '<td>'.$runnerCount[5]->count.'</td>';
+echo '<td>'.$new.'</td>';
 echo '<td>25</td>';
 echo '<td>10</td>';
 echo '<td>15</td>';
-echo '<td>'.($runnerCount[5]->count*25).'</td>';
-echo '<td>'.($runnerCount[5]->count*10).'</td>';
-echo '<td>'.($runnerCount[5]->count*15).'</td>';
+echo '<td>'.($new*25).'</td>';
+echo '<td>'.($new*10).'</td>';
+echo '<td>'.($new*15).'</td>';
 echo '</tr>';
 
 echo '<tr>';
 echo '<td>Renewed Member</td>';
-echo '<td>'.$runnerCount[3]->count.'</td>';
+echo '<td>'.$renew.'</td>';
 echo '<td>25</td>';
 echo '<td>10</td>';
 echo '<td>15</td>';
-echo '<td>'.($runnerCount[3]->count*25).'</td>';
-echo '<td>'.($runnerCount[3]->count*10).'</td>';
-echo '<td>'.($runnerCount[3]->count*15).'</td>';
+echo '<td>'.($renew*25).'</td>';
+echo '<td>'.($renew*10).'</td>';
+echo '<td>'.($renew*15).'</td>';
 echo '</tr>';
 
 
 echo '<tr>';
 echo '<td>Non-Renewing Member</td>';
-echo '<td>'.$runnerCount[2]->count.'</td>';
+echo '<td>'.$inactive_day.'</td>';
 echo '<td>15</td>';
 echo '<td>10</td>';
 echo '<td>5</td>';
-echo '<td>'.($runnerCount[2]->count*15).'</td>';
-echo '<td>'.($runnerCount[2]->count*10).'</td>';
-echo '<td>'.($runnerCount[2]->count*5).'</td>';
+echo '<td>'.($inactive_day*15).'</td>';
+echo '<td>'.($inactive_day*10).'</td>';
+echo '<td>'.($inactive_day*5).'</td>';
 echo '</tr>';
 
 echo '<tr>';
@@ -179,9 +181,9 @@ echo '<td>'.($online_day).'</td>';
 echo '<td>15</td>';
 echo '<td>10</td>';
 echo '<td>5</td>';
-echo '<td>'.($runnerCount[6]->count*15).'</td>';
-echo '<td>'.($runnerCount[6]->count*10).'</td>';
-echo '<td>'.($runnerCount[6]->count*5).'</td>';
+echo '<td>'.($online_day*15).'</td>';
+echo '<td>'.($online_day*10).'</td>';
+echo '<td>'.($online_day*5).'</td>';
 echo '</tr>';
 
 echo '<tr>';
@@ -190,9 +192,9 @@ echo '<td>'.($online_member).'</td>';
 echo '<td>10</td>';
 echo '<td>10</td>';
 echo '<td>0</td>';
-echo '<td>'.($runnerCount[7]->count*10).'</td>';
-echo '<td>'.($runnerCount[7]->count*10).'</td>';
-echo '<td>'.($runnerCount[7]->count*0).'</td>';
+echo '<td>'.($online_member*10).'</td>';
+echo '<td>'.($online_member*10).'</td>';
+echo '<td>'.($online_member*0).'</td>';
 echo '</tr>';
 
 echo '<tr>';
