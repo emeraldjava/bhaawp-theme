@@ -165,14 +165,14 @@ echo '<td>'.($inactive_day*5).'</td>';
 echo '</tr>';
 
 echo '<tr>';
-echo '<td><b>Total Cash</b></td>';
+echo '<td><h3>Total Cash</h3></td>';
 echo '<td> </td>';
 echo '<td> </td>';
 echo '<td> </td>';
 echo '<td> </td>';
-echo '<td><b>'.($total).'</b></td>';
-echo '<td><b>'.($ro).'</b></td>';
-echo '<td><b>'.($bhaa).'</b></td>';
+echo '<td><h3>'.($total).'</h3></td>';
+echo '<td><h3>'.($ro).'</h3></td>';
+echo '<td><h3>'.($bhaa).'</h3></td>';
 echo '</tr>';
 
 echo '<tr>';
@@ -198,14 +198,25 @@ echo '<td>'.($online_member*0).'</td>';
 echo '</tr>';
 
 echo '<tr>';
-echo '<td><b>Total Online</b></td>';
+echo '<td><h3>Total Online</h3></td>';
 echo '<td> </td>';
 echo '<td> </td>';
 echo '<td> </td>';
 echo '<td> </td>';
-echo '<td><b>'.$online.'</b></td>';
-echo '<td><b>'.($online_ro).'</b></td>';
-echo '<td><b>'.($online_bhaa).'</b></td>';
+echo '<td><h3>'.$online.'</h3></td>';
+echo '<td><h3>'.($online_ro).'</h3></td>';
+echo '<td><h3>'.($online_bhaa).'</h3></td>';
+echo '</tr>';
+
+echo '<tr>';
+echo '<td><h2>Total</h2></td>';
+echo '<td> </td>';
+echo '<td> </td>';
+echo '<td> </td>';
+echo '<td> </td>';
+echo '<td><h2>'.($total+$online).'</h2></td>';
+echo '<td><h2>'.($ro+$online_ro).'</h2></td>';
+echo '<td><h2>'.($bhaa+$online_bhaa).'</h2></td>';
 echo '</tr>';
 
 echo '</table>';
