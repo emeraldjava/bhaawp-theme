@@ -10,11 +10,11 @@ global $BHAA;
 
 get_header();
 
-//include_once 'page-raceday-header.php';
+include_once 'page-raceday-header.php';
 
 $racetec = $BHAA->registration->listRegisteredRunners(10);
 
-echo '<h2>Latest Runner Total '.sizeof($racetec).'</h2>';
+echo '<h2>Latest Runners</h2>';
 echo '<table width="90%" id="raceteclist" >
 <tr>
 <th>Number</th>
