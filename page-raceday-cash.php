@@ -214,9 +214,9 @@ echo '<td> </td>';
 echo '<td> </td>';
 echo '<td> </td>';
 echo '<td> </td>';
-echo '<td><h2>'.($total+$online).'</h2></td>';
+echo '<td> </td>';
 echo '<td><h2>'.($ro+$online_ro).'</h2></td>';
-echo '<td><h2>'.($bhaa+$online_bhaa).'</h2></td>';
+echo '<td><h2>'.($bhaa-$online_ro).'</h2></td>';
 echo '</tr>';
 
 echo '</table>';
