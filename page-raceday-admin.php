@@ -10,7 +10,7 @@ global $BHAA;
 
 if(isset($_GET['action'])){
 	$race = trim($_GET['raceid']);
-	$booking = trim($_GET['booking']);
+	$event = trim($_GET['event']);
 	
 	global $wpdb;
 	
@@ -19,12 +19,12 @@ if(isset($_GET['action'])){
 		error_log("deleterunner ".$runner.' '.$race);
 		$BHAA->registration->deleteRunner($runner,$race);
 	} elseif($_GET['action']=='deleteall') {
-		error_log("deleteall ".$booking.' '.$race);
+		error_log("deleteall ".$event.' '.$race);
 		$wpdb->query(
 			$wpdb->prepare('delete from wp_bhaa_raceresult where class="RACE_REG" and race=%d',$race)
 		);
 	} elseif($_GET['action']=='preregimport') {
-		error_log("preregimport ".$booking.' '.$race);
+		error_log("preregimport ".$event.' '.$race);
 		$wpdb->query(
 			$wpdb->prepare('delete from wp_bhaa_raceresult where class="PRE_REG" and race=%d',$race)
 		);
@@ -35,11 +35,11 @@ if(isset($_GET['action'])){
 				join wp_users on wp_users.id=wp_em_bookings.person_id
 				where event_id=%d
 				and booking_status=1
-				order by display_name desc',$race,$booking)		
+				order by display_name desc',$race,$event)		
 		);
 
 	} elseif($_GET['action']=='preregexport') {
-		error_log("preregexport ".$booking.' '.$race);
+		error_log("preregexport ".$event.' '.$race);
 	}
 }
 
@@ -47,13 +47,14 @@ get_header();
 
 include_once 'page-raceday-header.php';
 
-$racetec = $BHAA->registration->listRegisteredRunners();
+$event = $BHAA->registration->getEvent();
+$registeredRunners = $BHAA->registration->listRegisteredRunners();
 
 echo '<h2>BHAA RACE DAY ADMIN</h2>';
 echo '<h3>Actions</h3>';
-echo sprintf('<h3><a href="/raceday-admin/?action=preregimport&booking=%d&raceid=%d">Import PRE_REG</a></h3>',119,2851);
-echo sprintf('<h3><a href="/raceday-admin/?action=preregexport&booking=%d&raceid=%d">Export PRE_REG</a></h3>',119,2851);
-echo sprintf('<h3><a href="/raceday-admin/?action=deleteall&booking=%d&raceid=%d">Delete All RACE_REG</a></h3>',119,2851);
+echo sprintf('<h3><a href="/raceday-admin/?action=preregimport&event=%d&raceid=%d">Import PRE_REG</a></h3>',$event->event_id,$event->race);
+echo sprintf('<h3><a href="/raceday-admin/?action=preregexport&event=%d&raceid=%d">Export PRE_REG</a></h3>',$event->event_id,$event->race);//119,2851);
+echo sprintf('<h3><a href="/raceday-admin/?action=deleteall&event=%d&raceid=%d">Delete All RACE_REG</a></h3>',$event->event_id,$event->race);//119,2851);
 echo '<hr/>';
 
 echo '<table id="raceteclist" >
@@ -63,11 +64,11 @@ echo '<table id="raceteclist" >
 <th class="cell">DELETE</th>
 </tr>';
 
-foreach($racetec as $racetec) : ?>
+foreach($registeredRunners as $registered) : ?>
 <tr class="row">
-<td class="cell"><?php echo $racetec->firstname;?> <?php echo $racetec->lastname;?></td>
-<td class="cell"><?php echo $racetec->racenumber;?></td>
-<td class="cell"><?php echo sprintf('<a href="/raceday-admin/?action=deleterunner&runner=%d&raceid=%d">%d</a>',$racetec->runner,$racetec->race,$racetec->runner);?></td>
+<td class="cell"><?php echo $registered->firstname;?> <?php echo $registered->lastname;?></td>
+<td class="cell"><?php echo $registered->racenumber;?></td>
+<td class="cell"><?php echo sprintf('<a href="/raceday-admin/?action=deleterunner&runner=%d&raceid=%d">%d</a>',$registered->runner,$registered->race,$registered->runner);?></td>
 </tr>
 <?php endforeach;?>
 </table>
