@@ -13,6 +13,7 @@ else
 //error_log("league ".get_the_ID());
 
 $leagueSummary = new LeagueSummary(get_the_ID());
+//var_dump($leagueSummary);
 if(!isset($wp_query->query_vars['division']))
 {	
 
@@ -157,13 +158,15 @@ else
 						if($event->eid==$result[0])
 						{
 							$r = $result[1];//$point->leaguepoints;
-							if($r!=0)
-							{
+							if($r!=0 && sizeof($result)==3) {
+								echo '<td>'.$r.'RO</td>';
+								$match=true;
+								break;
+							} else if($r!=0) {
 								echo '<td>'.$r.'</td>';
 								$match=true;
 								break;
 							}
-							//break;
 						}
 					}
 					//if($r!=0)
