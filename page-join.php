@@ -13,17 +13,14 @@ echo '<section id="primary">';
 		while ( $your_query->have_posts() ) : $your_query->the_post();
 		echo the_content();
 		endwhile;
-		//
-
+	
 		/**
 		 * check the status of the runner - determine options
-		 */
-		/**
 		 * display the annual booking ticket and registration form.
 		 */
 		$bhaa_annual_event_id = get_option( 'bhaa_annual_event_id');
 		$event = em_get_event($bhaa_annual_event_id,'post_id');
-		if(!is_user_logged_in())
+		if(!is_user_logged_in()) 
 		{
 			//echo '<p>Your not LOGGED in.</p>';
 			echo $event->output(
@@ -32,8 +29,8 @@ echo '<section id="primary">';
 					#_BOOKINGFORM
 					{/has_bookings}
 					</div>');
-		}
-		else
+		} 
+		else 
 		{
 			global $current_user;
 			get_currentuserinfo();

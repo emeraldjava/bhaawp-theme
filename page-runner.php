@@ -5,7 +5,11 @@
 ?>
 <?php get_header();?>
 
+
 <?php 
+//echo "<pre>GET "; print_r($_GET); echo "</pre>";
+//echo "<pre>POST "; print_r($_POST); echo "</pre>";
+
 //echo 'BHAA Runner Page : Name = '.$_REQUEST['user_nicename'];
 if(isset($_REQUEST['user_nicename']))
 	$user = get_user_by('slug', $_REQUEST['user_nicename']);

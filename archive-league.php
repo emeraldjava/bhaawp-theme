@@ -14,13 +14,13 @@
 	<div id="content" style="<?php echo $content_css; ?>">
 		<?php if (have_posts()) : ?>
 		<?php while(have_posts()): the_post(); ?>
-		<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+		<div id="post-<?php the_ID(); ?>" <?php post_class('post'); ?>>
 			<?php
 			if($data['featured_images']):
 			if($data['legacy_posts_slideshow']) {
-				include('legacy-slideshow.php');
+				get_template_part('legacy-slideshow');
 			} else {
-				include('new-slideshow.php');
+				get_template_part('new-slideshow');
 			}
 			endif;
 			?>
@@ -28,23 +28,27 @@
 			<div class="post-content">
 				<?php
 				if($data['content_length'] == 'Excerpt') {
-					the_excerpt('');
+					$stripped_content = tf_content( $data['excerpt_length_blog'], $data['strip_html_excerpt'] );
+					echo $stripped_content; 
 				} else {
 					the_content('');
 				}
 				?>
 			</div>
+			<div style="clear:both;"></div>
+			<?php if($data['post_meta']): ?>
 			<div class="meta-info">
 				<div class="alignleft">
-					<?php echo __('By', 'Avada'); ?> <?php the_author_posts_link(); ?><span class="sep">|</span><?php the_time('F jS, Y'); ?><span class="sep">|</span><?php the_category(', '); ?><span class="sep">|</span><?php comments_popup_link(__('0 Comments', 'Avada'), __('1 Comment', 'Avada'), '% '.__('Comments', 'Avada')); ?>
+					<?php echo __('By', 'Avada'); ?> <?php the_author_posts_link(); ?><span class="sep">|</span><?php the_time($data['date_format']); ?><span class="sep">|</span><?php the_category(', '); ?><span class="sep">|</span><?php comments_popup_link(__('0 Comments', 'Avada'), __('1 Comment', 'Avada'), '% '.__('Comments', 'Avada')); ?>
 				</div>
 				<div class="alignright">
 					<a href="<?php the_permalink(); ?>" class="read-more"><?php echo __('Read More', 'Avada'); ?></a>
 				</div>
 			</div>
+			<?php endif; ?>
 		</div>
 		<?php endwhile; ?>
-		<?php kriesi_pagination($pages = '', $range = 2); ?>
+		<?php themefusion_pagination($pages = '', $range = 2); ?>
 		<?php else: ?>
 		<?php endif; ?>
 	</div>

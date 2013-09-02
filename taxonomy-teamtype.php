@@ -20,7 +20,7 @@
 		<?php endwhile; ?>
 		<?php 
 		// http://www.kriesi.at/archives/how-to-build-a-wordpress-post-pagination-without-plugin
-		kriesi_pagination($pages = '', $range = 2); 
+		//kriesi_pagination($pages = '', $range = 2); 
 		?>
 		<?php else: ?>
 		<?php endif; ?>
