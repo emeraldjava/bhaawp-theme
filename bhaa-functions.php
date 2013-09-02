@@ -2,6 +2,8 @@
 
 // bhaa custom
 remove_action('wp_head','wp_generator');
+remove_action('wp_head','wp_shortlink_wp_head' );
+remove_action('wp_head','adjacent_posts_rel_link_wp_head' );
 
 // update logo on the login page
 add_action("login_head", "bhaa_login_head");
