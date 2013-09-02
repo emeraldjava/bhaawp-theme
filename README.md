@@ -3,6 +3,10 @@ bhaawp-theme
 
 An avada extended theme with events-manager tweaks
 
+# Avada Theme
+
+Add 'require_once('bhaa-functions.php');' to functions.php
+
 # Events Manager
 
 Details of the tweaks we need to do.
@@ -43,3 +47,12 @@ Events > Settings > Formatting
 	
 http://daringfireball.net/projects/markdown/syntax#code
 
+# Avada 3 Upgrade
+
+http://wordpress.org/support/topic/25-visual-editortinymce-problems?replies=53
+https://www.transifex.com/projects/p/tinymce/language/en_US/
+http://www.tinymce.com/i18n/
+
+^[1-2][0-9][0-9][0-9]-[0-1][0-9]-[0-3][0-9]$
+
+YYYY-MM-DD
