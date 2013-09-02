@@ -17,8 +17,12 @@ th.event-description {
 	text-align:left;
 }
 
-table, tr, td, th {margin:0;border:0;padding:0;}
-tr.rowhighlight {background-color:#B0C4DE;}
+/* table, tr, td, th {margin:0;border:0;padding:0;} */
+tr.rowhighlight {
+	box-shadow: 2px 2px 1px #888888;
+	border: 1px solid #000000;
+	background-color:#B0C4DE;
+}
 
 .bhaatables {
 	margin: 0px;
