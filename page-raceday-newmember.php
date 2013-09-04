@@ -121,12 +121,12 @@ if(isset($registrationSubmitted) && $registrationSubmitted == true)
 }
 else
 {
+	// 	<input size="35" type="text" placeholder="Search Day Members by Name OR ID" id="memberfilter"/>
  	echo apply_filters('the_content',
  			'[one_half last="no"]
  			<div class="navbar-search pull-left" align="left">
- 				<input size="35" type="text" placeholder="Search Day Members by Name OR ID" id="memberfilter"/>
  			</div>
- 			[raw]<script type="text/javascript">
+ 			<script type="text/javascript">
 jQuery(document).ready(
  	function($){
 	
@@ -179,7 +179,7 @@ jQuery(document).ready(
  			.appendTo(ul);
      };
 });
-</script>[/raw]
+</script>
  	[/one_half]');
 	
 	$races = $BHAA->registration->getNextRaces();

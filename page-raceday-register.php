@@ -97,45 +97,6 @@ else
 			<div class="navbar-search pull-left" align="left">
 				<input size="35" type="text" placeholder="Search BHAA Member by Name OR ID" id="memberfilter"/>
 			</div>
-			[raw]<script type="text/javascript">
-jQuery(document).ready( 
-	function($){
-	$("#memberfilter").autocomplete({
-		source: bhaa_members,
-		minLength: 3,
-		source: function (request, response) {
-		    var matcher = new RegExp($.ui.autocomplete.escapeRegex(request.term), "i");
-		    response($.grep(bhaa_members, function(value) {
-		        return matcher.test(value.label) || matcher.test(value.value);
-		    }));
-		},
-		focus: function( event, ui ) {
-        	$("#memberfilter").val(ui.item.label);
-        	return false;
-      	},
-		select: function(event, ui) {
-			$("#runner").val( ui.item.id );
-			$("#firstname").val( ui.item.firstname );
-			$("#lastname").val( ui.item.lastname );
-			$("#dateofbirth").val( ui.item.dob );
-			$("#company").val( ui.item.companyname );
-			$("#standard").val( ui.item.standard );
-			if(ui.item.gender=="M") {
-				$("#gendermale").prop("checked",true);
-			} else {
-				$("#genderfemale").prop("checked",true);
-			}
-			return true;	
-		}
-	})
-	.data( "ui-autocomplete" )._renderItem = function( ul, item ) {
-		return $("<li></li>")
-        	.data("item.autocomplete", item)
-        	.append("<a>"+item.label+" "+item.id+"</a><small>DOB:"+item.dob+", Status:"+item.status+", Company:"+item.companyname+"</small>")
-			.appendTo(ul);
-    };
-});
-</script>[/raw]
  	[/one_half][one_half last="yes"][/one_half]');
 	
 	$races = $BHAA->registration->getNextRaces();
