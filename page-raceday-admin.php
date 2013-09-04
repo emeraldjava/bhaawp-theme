@@ -10,12 +10,12 @@ global $BHAA;
 
 get_header();
 
-//echo "<pre>GET "; print_r($_GET); echo "</pre>";
-//echo "<pre>POST "; print_r($_POST); echo "</pre>";
+echo "<pre>GET "; print_r($_GET); echo "</pre>";
+echo "<pre>POST "; print_r($_POST); echo "</pre>";
 
 if(isset($_GET['action'])){
 	$race = trim($_GET['raceid']);
-	$event = trim($_GET['event']);
+	$event = trim($_GET['eventid']);
 	
 	global $wpdb;
 	
@@ -57,9 +57,9 @@ $registeredRunners = $BHAA->registration->listRegisteredRunners();
 
 echo '<h2>BHAA RACE DAY ADMIN</h2>';
 echo '<h3>Actions</h3>';
-echo sprintf('<h3><a href="/raceday-admin?action=preregimport&event=%d&raceid=%d">Import PRE_REG</a></h3>',$event->event_id,$event->race);
-echo sprintf('<h3><a href="/raceday-admin?action=preregexport&event=%d&raceid=%d">Export PRE_REG</a></h3>',$event->event_id,$event->race);//119,2851);
-echo sprintf('<h3><a href="/raceday-admin?action=deleteall&event=%d&raceid=%d">Delete All RACE_REG</a></h3>',$event->event_id,$event->race);//119,2851);
+echo sprintf('<h3><a href="/raceday-admin?action=preregimport&eventid=%d&raceid=%d">Import PRE_REG</a></h3>',$event->event_id,$event->race);
+echo sprintf('<h3><a href="/raceday-admin?action=preregexport&eventid=%d&raceid=%d">Export PRE_REG</a></h3>',$event->event_id,$event->race);//119,2851);
+echo sprintf('<h3><a href="/raceday-admin?action=deleteall&eventid=%d&raceid=%d">Delete All RACE_REG</a></h3>',$event->event_id,$event->race);//119,2851);
 echo '<hr/>';
 
 echo '<table id="raceteclist" >
