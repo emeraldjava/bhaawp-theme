@@ -85,7 +85,7 @@ echo "<h3>BHAA Member</h3>";
 if(isset($registrationSubmitted) && $registrationSubmitted == true) 
 {
 	// redirect to registration page
-	echo '<div class="thanks"><h2>BHAA Runner <b>'.htmlspecialchars($firstname.' '.$lastname).'</b> with ID <b>'.trim($_POST['runner']).'</b> has been registered with number <b>'.$number.'</b></h2></div>';
+	echo '<div class="thanks"><h2>BHAA Runner <b>'.stripslashes($firstname.' '.$lastname).'</b> with ID <b>'.trim($_POST['runner']).'</b> has been registered with number <b>'.$number.'</b></h2></div>';
 }
 else
 {
