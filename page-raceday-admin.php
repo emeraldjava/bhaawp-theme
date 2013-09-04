@@ -10,8 +10,8 @@ global $BHAA;
 
 get_header();
 
-echo "<pre>GET "; print_r($_GET); echo "</pre>";
-echo "<pre>POST "; print_r($_POST); echo "</pre>";
+//echo "<pre>GET "; print_r($_GET); echo "</pre>";
+//echo "<pre>POST "; print_r($_POST); echo "</pre>";
 
 if(isset($_GET['action'])){
 	$race = trim($_GET['raceid']);
