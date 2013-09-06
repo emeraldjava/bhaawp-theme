@@ -71,6 +71,11 @@ wp_register_script(
 	content_url().'/bhaa_members.js');
 wp_enqueue_script('bhaa_members');
 
+wp_register_script(
+	'bhaa-raceday',
+	content_url().'/plugins/bhaawp-master/assets/js/bhaa-raceday.js');
+wp_enqueue_script('bhaa-raceday');
+
 get_header();
 //echo "<pre>GET "; print_r($_GET); echo "</pre>";
 //echo "<pre>POST "; print_r($_POST); echo "</pre>";
