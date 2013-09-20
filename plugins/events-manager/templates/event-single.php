@@ -77,27 +77,27 @@ else
 	$connected = new WP_Query( array(
 			'connected_type' => 'event_to_race',
 			'connected_items' => get_queried_object(),
-			'nopaging' => true,
+			'nopaging' => true
 	));
-	//error_log("Last SQL-Query ".$connected->request);
-	//error_log("found_posts ".$connected->found_posts);
 	
 	$results = '';
 	$teams = '';
 	if ( $connected->have_posts() ) :
 		while ( $connected->have_posts() ) : 
 			$connected->the_post();
-			$results .= $BHAA->getIndividualResultTable()->renderTable(get_the_ID());
-			$teams .= $BHAA->getTeamResultTable(get_the_ID());
+			$bhaa_race_type = get_post_meta( get_the_ID(), 'bhaa_race_type', true );
+			$results .= '<h3>'.get_the_title().'</h3>';
+			if($bhaa_race_type!='S') {
+				$results .= $BHAA->getIndividualResultTable()->renderTable(get_the_ID());
+				$teams .= $BHAA->getTeamResultTable(get_the_ID());
+			}
 		endwhile;
 		// Prevent weirdness
 		wp_reset_postdata();
 	else :
 		$results = "No races have been linked to this event yet.";
 	endif;
-	
-	//error_log("results ".sizeof($results));
-	
+		
 	// past event
 	echo $EM_Event->output(
 		'[tabs tabresults="Results" tabteams="Teams" tabdetails="Details" tabstandards="Standards"]
