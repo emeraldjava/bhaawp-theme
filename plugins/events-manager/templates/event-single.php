@@ -57,7 +57,7 @@ if( $EM_Event->end >= time() )
 						#_LOCATIONCOUNTRY<br/>
 					[/one_third]
 					[two_third last="yes"]
-						<div id="map" style="float:right; margin:0px 0px 15px 15px;">#_MAP</div>
+			<div id="map" style="float:right; margin:0px 0px 15px 15px;">#_MAP</div>
 					[/two_third]
 				{/has_location}
 			[/tab]
@@ -71,7 +71,7 @@ if( $EM_Event->end >= time() )
 				'.$standardTable.'
 			[/tab]
 		[/tabs]');
-}
+} // [map address="https://maps.google.com/?q=#_LOCATIONLATITUDE,#_LOCATIONLONGITUDE" type="hybrid" width="100%" height="300px" zoom="4" scrollwheel="no" scale="no" zoom_pancontrol="yes"][/map]
 else
 {
 	$connected = new WP_Query( array(
