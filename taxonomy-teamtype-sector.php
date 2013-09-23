@@ -29,12 +29,20 @@
 				'order' => 'ASC' 
 			)
 		);
-		//	var_dump($the_query->request);
-		
 		if ($the_query->have_posts()) : ?>
 		<?php while($the_query->have_posts()): $the_query->the_post(); ?>
 		<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 			<h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+			<h5><?php
+			$users = get_users( array(
+				'connected_type' => 'team_contact',
+				'connected_items' => get_the_ID(),
+				'suppress_filters' => false,
+				'nopaging' => true
+			));
+			$user = get_user_by('id', $users[0]->ID);
+			echo 'Team Contact : '.$user->display_name;
+			?></h5>
 		</div>
 		<?php endwhile; ?>
 		<?php 
