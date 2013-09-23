@@ -28,9 +28,10 @@ get_header();
 <?php 
 if ( has_post_thumbnail() ) 
 { // check if the post has a Post Thumbnail assigned to it.
-	echo '<a href="'.get_post_meta(get_the_ID(),'bhaa_company_website',true).'" title="'.the_title_attribute().'" >';
- 	the_post_thumbnail('thumbnail');
-   	echo '</a>';
+	//echo '<a href="'.get_post_meta(get_the_ID(),'bhaa_company_website',true).'" title="'.the_title_attribute().'" >';
+	//echo get_the_post_thumbnail(get_the_ID(), 'thumbnail');
+ 	//the_post_thumbnail('thumbnail');
+   	//echo '</a>';
 }
 
 $content = apply_filters('the_content', 
@@ -38,8 +39,8 @@ $content = apply_filters('the_content',
 	'<p>'.get_the_term_list(get_the_ID(), 'sector', 'Sector : ', ', ', '').'</p>'.
 	//'<p>'.get_the_term_list(get_the_ID(), 'teamtype', 'TeamType : ', ', ', '').'</p>'.
 	'[/one_third]'.
-	'[one_third last="yes"]<a href="'.get_post_meta(get_the_ID(),'bhaa_company_website',true).'">website</a>[/one_third]');
-	//'[one_third last="yes"]'.the_post_thumbnail().'[/one_third]');
+	'[one_third last="no"]<a target="new" href="'.get_post_meta(get_the_ID(),'bhaa_company_website',true).'">'.get_the_title().' Website</a>[/one_third]'.
+	'[one_third last="yes"]'.get_the_post_thumbnail(get_the_ID(), 'thumbnail').'[/one_third]');
 //	'[one_third last="yes"]'.isset(has_post_thumbnail())?the_post_thumbnail():''.'[/one_third]');
 echo $content;
 ?>
@@ -63,13 +64,14 @@ echo $content;
 	$users = get_users( array(
 			'connected_type' => $connected_type,
 			'connected_items' => $post,
+			'fields' => 'all_with_meta',
 			'orderby' => 'display_name',
 			'order' => 'ASC'
 	));
 
 ?>
 <h4>Runners</h4>
-<table border="1">
+<table class="table-1">
 	<tr>
 		<th>Name</th>
 		<th>Gender</th>
