@@ -15,7 +15,7 @@
 						)
 				),
 				'orderby' => 'title',
-				'order' => 'ASC' 
+				'order' => 'ASC'
 			)
 		);
 		?>
@@ -34,8 +34,8 @@
 					echo '<h4><i>Team Contact :</i> '.$user->display_name.'</h5>';
 					
 					$runners = get_users( array(
-							'connected_type' => 'sectorteam_to_runner',
-							'connected_items' => get_the_ID()
+						'connected_type' => 'sectorteam_to_runner',
+						'connected_items' => get_the_ID()
 					));
 					echo '<h5><i>Number of Runners :</i> '.sizeof($runners).'</h5>';	
 					?>
@@ -62,6 +62,6 @@
 				//    'link'                      => 'view',
 				'taxonomy'                  => 'teamtype',
 				'echo'                      => true );
-		wp_tag_cloud($args);
+		//wp_tag_cloud($args);
 	?>
 <?php get_footer(); ?>

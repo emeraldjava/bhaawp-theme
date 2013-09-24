@@ -1,5 +1,5 @@
 <?php get_header(); ?>
-	<div id="content" class="portfolio portfolio-three portfolio-three-text" style="width:100%">
+	<div id="content" class="portfolio portfolio-four portfolio-four-text" style="width:100%">
 		<div class="portfolio-wrapper">
 		<?php
 		// http://stackoverflow.com/questions/7688591/query-posts-by-custom-taxonomy-id
@@ -63,6 +63,6 @@
 				//    'link'                      => 'view',
 				'taxonomy'                  => 'teamtype',
 				'echo'                      => true );
-		wp_tag_cloud($args);
+		//wp_tag_cloud($args);
 	?>
 <?php get_footer(); ?>
