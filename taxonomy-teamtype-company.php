@@ -23,7 +23,7 @@
 		<div class="portfolio-item">
 			<div id="post-<?php the_ID(); ?>" class="portfolio-content" >
 				<div class="image">
-					<?php the_post_thumbnail('portfolio-three'); ?>
+					<?php the_post_thumbnail('thumbnail'); ?>
 				</div>
 				<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
 				<?php
