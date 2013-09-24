@@ -11,7 +11,8 @@
 		$sidebar_css = 'float:right;';
 	}
 	?>
-	<div id="content" style="<?php echo $content_css; ?>">
+	<div id="content" class="portfolio portfolio-three portfolio-three-text" style="width:100%">
+		<div class="portfolio-wrapper">
 		<?php
 		// http://stackoverflow.com/questions/7688591/query-posts-by-custom-taxonomy-id
 		$the_query = new WP_Query(array(
@@ -29,28 +30,34 @@
 				'order' => 'ASC' 
 			)
 		);
-		if ($the_query->have_posts()) : ?>
-		<?php while($the_query->have_posts()): $the_query->the_post(); ?>
-		<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-			<h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
-			<h5><?php
-			$users = get_users( array(
-				'connected_type' => 'team_contact',
-				'connected_items' => get_the_ID(),
-				'suppress_filters' => false,
-				'nopaging' => true
-			));
-			$user = get_user_by('id', $users[0]->ID);
-			echo 'Team Contact : '.$user->display_name;
-			?></h5>
-		</div>
-		<?php endwhile; ?>
-		<?php 
-		// http://www.kriesi.at/archives/how-to-build-a-wordpress-post-pagination-without-plugin
-		//kriesi_pagination($pages = '', $range = 2); 
+		//if ($the_query->have_posts()) : 
 		?>
-		<?php else: ?>
-		<?php endif; ?>
+		<?php while($the_query->have_posts()): $the_query->the_post(); ?>
+		<div class="portfolio-item">
+			<div id="post-<?php the_ID(); ?>" class="portfolio-content" >
+				<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+				<?php
+					$users = get_users( array(
+						'connected_type' => 'team_contact',
+						'connected_items' => get_the_ID(),
+						'suppress_filters' => false,
+						'nopaging' => true
+					));
+					$user = get_user_by('id', $users[0]->ID);
+					echo '<h4><i>Team Contact :</i> '.$user->display_name.'</h5>';
+					
+					$runners = get_users( array(
+							'connected_type' => 'sectorteam_to_runner',
+							'connected_items' => get_the_ID()
+					));
+					echo '<h5><i>Number of Runners :</i> '.sizeof($runners).'</h5>';	
+					?>
+
+				<div class="post-content"><?php the_excerpt(); ?></div>
+			</div><!-- portfolio-content -->
+		</div><!-- portfolio-item -->
+		<?php endwhile; ?>
+		</div> <!-- portfolio-wrapper -->
 	</div>
 	<?php 
 		$args = array(
