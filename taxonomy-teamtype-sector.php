@@ -1,16 +1,4 @@
 <?php get_header(); ?>
-	<?php
-	if($data['blog_full_width']) {
-		$content_css = 'width:100%';
-		$sidebar_css = 'display:none';
-	} elseif($data['blog_sidebar_position'] == 'Left') {
-		$content_css = 'float:right;';
-		$sidebar_css = 'float:left;';
-	} elseif($data['blog_sidebar_position'] == 'Right') {
-		$content_css = 'float:left;';
-		$sidebar_css = 'float:right;';
-	}
-	?>
 	<div id="content" class="portfolio portfolio-three portfolio-three-text" style="width:100%">
 		<div class="portfolio-wrapper">
 		<?php
@@ -30,7 +18,6 @@
 				'order' => 'ASC' 
 			)
 		);
-		//if ($the_query->have_posts()) : 
 		?>
 		<?php while($the_query->have_posts()): $the_query->the_post(); ?>
 		<div class="portfolio-item">

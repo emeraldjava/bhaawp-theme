@@ -1,17 +1,6 @@
 <?php get_header(); ?>
-	<?php
-	if($data['blog_full_width']) {
-		$content_css = 'width:100%';
-		$sidebar_css = 'display:none';
-	} elseif($data['blog_sidebar_position'] == 'Left') {
-		$content_css = 'float:right;';
-		$sidebar_css = 'float:left;';
-	} elseif($data['blog_sidebar_position'] == 'Right') {
-		$content_css = 'float:left;';
-		$sidebar_css = 'float:right;';
-	}
-	?>
-	<div id="content" style="<?php echo $content_css; ?>">
+	<div id="content" class="portfolio portfolio-three portfolio-three-text" style="width:100%">
+		<div class="portfolio-wrapper">
 		<?php
 		// http://stackoverflow.com/questions/7688591/query-posts-by-custom-taxonomy-id
 		$the_query = new WP_Query(array(
@@ -29,20 +18,34 @@
 				'order' => 'ASC' 
 			)
 		);
-		//	var_dump($the_query->request);
-		
-		if ($the_query->have_posts()) : ?>
-		<?php while($the_query->have_posts()): $the_query->the_post(); ?>
-		<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-			<h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
-		</div>
-		<?php endwhile; ?>
-		<?php 
-		// http://www.kriesi.at/archives/how-to-build-a-wordpress-post-pagination-without-plugin
-		//kriesi_pagination($pages = '', $range = 2); 
 		?>
-		<?php else: ?>
-		<?php endif; ?>
+		<?php while($the_query->have_posts()): $the_query->the_post(); ?>
+		<div class="portfolio-item">
+			<div id="post-<?php the_ID(); ?>" class="portfolio-content" >
+				<div class="image">
+					<?php the_post_thumbnail('portfolio-three'); ?>
+				</div>
+				<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+				<?php
+					$users = get_users( array(
+						'connected_type' => 'team_contact',
+						'connected_items' => get_the_ID(),
+						'suppress_filters' => false,
+						'nopaging' => true
+					));
+					$user = get_user_by('id', $users[0]->ID);
+					echo '<h4><i>Team Contact :</i> '.$user->display_name.'</h5>';
+					
+					$runners = get_users( array(
+							'connected_type' => 'house_to_runner',
+							'connected_items' => get_the_ID()
+					));
+					echo '<h5><i>Number of Runners :</i> '.sizeof($runners).'</h5>';	
+					?>
+			</div><!-- portfolio-content -->
+		</div><!-- portfolio-item -->
+		<?php endwhile; ?>
+		</div> <!-- portfolio-wrapper -->
 	</div>
 	<?php 
 		$args = array(
