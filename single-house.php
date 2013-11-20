@@ -96,10 +96,7 @@ echo $content;
 </table>
 
 <?php 
-//do_shortcode('[p2p_connected type="house_to_runner"]');
-// Prevent weirdness
-//wp_reset_postdata();
-//endforeach;
+echo $BHAA->getTeamResultsForHouse(get_the_ID());
 ?>
 <?php endwhile; // end of the loop. ?>
 </section>
