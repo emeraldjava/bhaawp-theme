@@ -74,7 +74,7 @@ if( $EM_Event->end >= time() )
 } // [map address="https://maps.google.com/?q=#_LOCATIONLATITUDE,#_LOCATIONLONGITUDE" type="hybrid" width="100%" height="300px" zoom="4" scrollwheel="no" scale="no" zoom_pancontrol="yes"][/map]
 else
 {
-	$connected = new WP_Query( array(
+	$races = new WP_Query( array(
 			'connected_type' => 'event_to_race',
 			'connected_items' => get_queried_object(),
 			'nopaging' => true
@@ -82,14 +82,15 @@ else
 	
 	$results = '';
 	$teams = '';
-	if ( $connected->have_posts() ) :
-		while ( $connected->have_posts() ) : 
-			$connected->the_post();
-			$bhaa_race_type = get_post_meta( get_the_ID(), 'bhaa_race_type', true );
+	if ( $races->have_posts() ) :
+		while ( $races->have_posts() ) : 
+			$races->the_post();
+			$raceId = get_the_ID();
+			$bhaa_race_type = get_post_meta( $raceId, 'bhaa_race_type', true );
 			$results .= '<h3>'.get_the_title().'</h3>';
 			if($bhaa_race_type!='S') {
-				$results .= $BHAA->getIndividualResultTable()->renderTable(get_the_ID());
-				$teams .= $BHAA->getTeamResultTable(get_the_ID());
+				$results .= $BHAA->getIndividualResultTable()->renderTable($raceId);
+				$teams .= $BHAA->getRaceTeamResultTable($raceId);
 			}
 		endwhile;
 		// Prevent weirdness
