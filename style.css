@@ -1612,10 +1612,14 @@ body .post-content .image-extras .link-icon{margin-right:3px !important;}
 	background-position: center center;
 	right: 0;
 }
+.comments-container li{
+	margin:1;
+	padding:5px;
+}
 .commentlist{
 	list-style:none;
-	margin:0;
-	padding:0;
+	margin:1;
+	padding:5px;
 	margin-bottom:65px;
 }
 .commentlist li{
@@ -1636,11 +1640,15 @@ body .post-content .image-extras .link-icon{margin-right:3px !important;}
 }
 .commentlist .comment-text p{
 	margin:1;
+	padding:8px;
+	line-height: 11px;
 }
 .commentlist .comment-author strong{
 	padding-right:5px;
 }
-#respond { margin-bottom: 40px; }
+#respond { 
+	margin-bottom: 40px; 
+}
 #comment-input{
 	overflow:hidden;
 	margin-bottom:13px;
