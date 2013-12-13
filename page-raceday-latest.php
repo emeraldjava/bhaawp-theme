@@ -6,13 +6,11 @@ if ( !current_user_can( 'edit_users' ) )  {
 	wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
 }
 
-global $BHAA;
-
 get_header();
 
 include_once 'page-raceday-header.php';
 
-$racetec = $BHAA->registration->listRegisteredRunners(10);
+$racetec = BHAA::get_instance()->registration->listRegisteredRunners(10);
 
 echo '<h2>Latest Runners</h2>';
 echo '<table width="90%" id="raceteclist" >

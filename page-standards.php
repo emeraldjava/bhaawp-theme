@@ -42,9 +42,7 @@ $distance['km'] = 42.2;
 $distance['title'] = 'Marathon';
 $distances[6]= $distance;
 
-global $BHAA;
-
-$standardTable = $BHAA->standardCalculator->generateTableForDistances($distances);
+$standardTable = BHAA::get_instance()->standardCalculator->generateTableForDistances($distances);
 
 echo apply_filters(
 		'the_content','

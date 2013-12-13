@@ -6,8 +6,5 @@
 if ( !current_user_can( 'edit_users' ) )  {
 	wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
 }
-
-global $BHAA;
-
-$BHAA->registration->export();
+BHAA::get_instance()->registration->export();
 ?>

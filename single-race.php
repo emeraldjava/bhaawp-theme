@@ -57,9 +57,9 @@ if ( $connected->have_posts() ) :
 				<?php //the_meta(); ?>
 
 				<?php 
-				echo $BHAA->getTeamResultTable(get_the_ID());
+				echo BHAA::get_instance()->getTeamResultTable(get_the_ID());
 				
-				echo $BHAA->getIndividualResultTable()->renderTable(get_the_ID());
+				echo BHAA::get_instance()->getIndividualResultTable()->renderTable(get_the_ID());
 				
 
 				

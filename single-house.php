@@ -96,7 +96,7 @@ echo $content;
 </table>
 
 <?php 
-echo $BHAA->getTeamResultsForHouse(get_the_ID());
+echo BHAA::get_instance()->getTeamResultsForHouse(get_the_ID());
 ?>
 <?php endwhile; // end of the loop. ?>
 </section>

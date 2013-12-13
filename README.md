@@ -3,6 +3,8 @@ bhaawp-theme
 
 An avada extended theme with events-manager tweaks
 
+http://theme-fusion.com/avada-shortcodes/#table
+
 # Avada Theme
 
 Add 'require_once('bhaa-functions.php');' to functions.php

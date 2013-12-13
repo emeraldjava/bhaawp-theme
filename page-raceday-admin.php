@@ -6,8 +6,6 @@ if ( !current_user_can( 'manage_options' ) )  {
 	wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
 }
 
-global $BHAA;
-
 get_header();
 
 //echo "<pre>GET "; print_r($_GET); echo "</pre>";
@@ -22,7 +20,7 @@ if(isset($_GET['action'])){
 	if($_GET['action']=='deleterunner') {
 		$runner = trim($_GET['runner']);
 		error_log("deleterunner ".$runner.' '.$race);
-		$BHAA->registration->deleteRunner($runner,$race);
+		BHAA::get_instance()->registration->deleteRunner($runner,$race);
 	} elseif($_GET['action']=='deleteall') {
 		error_log("deleteall ".$event.' '.$race);
 		$wpdb->query(
@@ -52,8 +50,8 @@ if(isset($_GET['action'])){
 
 include_once 'page-raceday-header.php';
 
-$event = $BHAA->registration->getEvent();
-$registeredRunners = $BHAA->registration->listRegisteredRunners();
+$event = BHAA::get_instance()->registration->getEvent();
+$registeredRunners = BHAA::get_instance()->registration->listRegisteredRunners();
 
 echo '<h2>BHAA RACE DAY ADMIN</h2>';
 echo '<h3>Actions</h3>';

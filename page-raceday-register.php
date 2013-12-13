@@ -7,8 +7,6 @@ if ( !current_user_can( 'edit_users' ) )  {
 	wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
 }
 
-global $BHAA;
-
 if(isset($_POST['form-submitted'])) 
 {
  	if(trim($_POST['runner']) === '') {
@@ -46,7 +44,7 @@ if(isset($_POST['form-submitted']))
 	if(!isset($hasError))
 	{
  		error_log($raceid.' '.$runner.' '.$number);
- 		$res = $BHAA->registration->registerRunner($raceid,$runner,$number,$standard,$money);
+ 		$res = BHAA::get_instance()->registration->registerRunner($raceid,$runner,$number,$standard,$money);
  		if(gettype($res)=='string')
  		{
  			$hasError = true;
@@ -104,7 +102,7 @@ else
 			</div>
  	[/one_half][one_half last="yes"][/one_half]');
 	
-	$races = $BHAA->registration->getNextRaces();
+	$races = BHAA::get_instance()->registration->getNextRaces();
 	$selectRaces = '';
 	$i=0;
 	foreach($races as $race)

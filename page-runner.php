@@ -61,7 +61,7 @@ if(isset($_POST['gender-form'])) {
 }
 
 if(isset($_REQUEST['merge'])&&current_user_can('edit_users')) {
-	$BHAA->getRunner()->mergeRunner($_REQUEST['id'],$_REQUEST['merge']);
+	BHAA::get_instance()->getRunner()->mergeRunner($_REQUEST['id'],$_REQUEST['merge']);
 }
 
 $metadata = get_user_meta($user->ID);
@@ -198,7 +198,7 @@ if( current_user_can('manage_options') )
 	//var_dump(get_user_meta($user->ID));
 }
 
-echo $BHAA->getIndividualResultTable()->renderRunnerTable($user->ID);
+echo BHAA::get_instance()->getIndividualResultTable()->renderRunnerTable($user->ID);
 
 get_footer();
 ?>

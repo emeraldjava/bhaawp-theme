@@ -28,8 +28,8 @@ if(isset($_POST['editracetime'])) {
 	$id = trim($_POST['id']);
 	$racetime = trim($_POST['racetime']);
 	//error_log('edit race time '.$id.' '.$racetime);	
-	global $BHAA;
-	$BHAA->getRaceResult()->editRaceTime($id,$racetime);
+	//global $BHAA;
+	BHAA::get_instance()->getRaceResult()->editRaceTime($id,$racetime);
 }
 
 get_header();
@@ -38,7 +38,7 @@ global $BHAA;
 
 echo '<section id="primary">';
 
-$standardTable = $BHAA->standardCalculator->getEventStandardTable(get_the_ID());
+$standardTable = BHAA::get_instance()->standardCalculator->getEventStandardTable(get_the_ID());
 if( $EM_Event->end >= time() )
 {
 	echo $EM_Event->output(
@@ -67,6 +67,7 @@ if( $EM_Event->end >= time() )
 			[/tab]
 			[tab id=standards]
 				<h3>BHAA Standard Table</h3>
+				<p>new shortcode</p> #_BHAASTANDARDS 
 				<p>Like a golf handicap the BHAA standard table gives a runner a target time for the race distance</p>
 				'.$standardTable.'
 			[/tab]
@@ -89,8 +90,8 @@ else
 			$bhaa_race_type = get_post_meta( $raceId, 'bhaa_race_type', true );
 			$results .= '<h3>'.get_the_title().'</h3>';
 			if($bhaa_race_type!='S') {
-				$results .= $BHAA->getIndividualResultTable()->renderTable($raceId);
-				$teams .= $BHAA->getRaceTeamResultTable($raceId);
+				$results .= BHAA::get_instance()->getIndividualResultTable()->renderTable($raceId);
+				$teams .= BHAA::get_instance()->getRaceTeamResultTable($raceId);
 			}
 		endwhile;
 		// Prevent weirdness
@@ -124,6 +125,8 @@ else
 			[/tab]
 			[tab id=standards]
 				<h3>BHAA Standard Table</h3>
+				<div>#_BHAA_STANDARDS</div>
+				<hr/>
 				<p>Like a golf handicap the BHAA standard table gives a runner a target time for the race distance</p>
 				'.$standardTable.'
 			[/tab]
@@ -133,7 +136,7 @@ else
 // 	// teams
 // 	echo '<div id="teams">';
 // 	echo '<h3>Teams</h3>';
-// 	echo $BHAA->getTeamResultTable()->renderTable(get_the_ID());
+// 	echo BHAA::get_instance()->getTeamResultTable()->renderTable(get_the_ID());
 // 	echo '</div>';
 	
 	// photo / media links
