@@ -198,7 +198,7 @@ if( current_user_can('manage_options') )
 	//var_dump(get_user_meta($user->ID));
 }
 
-echo BHAA::get_instance()->getIndividualResultTable()->renderRunnerTable($user->ID);
+//echo BHAA::get_instance()->getIndividualResultTable()->renderRunnerTable($user->ID);
 
 get_footer();
 ?>
