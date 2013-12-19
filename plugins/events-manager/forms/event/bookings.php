@@ -11,12 +11,12 @@ global $wpdb, $EM_Event, $post;
 	<?php do_action('em_events_admin_bookings_header', $EM_Event); ?>
 	<?php
 	//get tickets here and if there are none, create a blank ticket
-	//$EM_Tickets = $EM_Event->get_tickets();
-	//if( count($EM_Tickets->tickets) == 0 ){
-	//	$EM_Tickets->tickets[] = new EM_Ticket();
-	//	$delete_temp_ticket = true;
-	//}
-	$BHAA_Payments = $wpdb->get_var($wpdb->prepare( "SELECT option_value FROM $wpdb->options WHERE option_name = 'bhaa_payments_default_values'") );
+	$EM_Tickets = $EM_Event->get_tickets();
+	if( count($EM_Tickets->tickets) == 0 ){
+		$EM_Tickets->tickets[] = new EM_Ticket();
+		$delete_temp_ticket = true;
+	}
+	/*$BHAA_Payments = $wpdb->get_var($wpdb->prepare( "SELECT option_value FROM $wpdb->options WHERE option_name = 'bhaa_payments_default_values'") );
 	$BHAA_Payments=unserialize($BHAA_Payments);
 	//get tickets here and if there are none, create a BHAA default tickets
 	$EM_Tickets = $EM_Event->get_tickets();
@@ -48,10 +48,10 @@ global $wpdb, $EM_Event, $post;
 
 		// Add default tickets to the list
 		$EM_Tickets->tickets=array(
-				0=>$BHAA_tickets[0],
-				1=>$BHAA_tickets[1]
+			//	0=>$BHAA_tickets[0],
+				//1=>$BHAA_tickets[1]
 		);
-	}
+	}*/
 
 	if( get_option('dbem_bookings_tickets_single') && count($EM_Tickets->tickets) == 1 ){
 		$EM_Ticket = $EM_Tickets->get_first();
