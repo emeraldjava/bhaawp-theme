@@ -38,7 +38,7 @@ global $BHAA;
 
 echo '<section id="primary">';
 
-$standardTable = BHAA::get_instance()->standardCalculator->getEventStandardTable(get_the_ID());
+$standardTable = StandardCalculator::get_instance()->getEventStandardTable(get_the_ID());
 if( $EM_Event->end >= time() )
 {
 	echo $EM_Event->output(
