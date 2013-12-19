@@ -38,7 +38,6 @@ global $BHAA;
 
 echo '<section id="primary">';
 
-$standardTable = StandardCalculator::get_instance()->getEventStandardTable(get_the_ID());
 if( $EM_Event->end >= time() )
 {
 	echo $EM_Event->output(
@@ -67,9 +66,8 @@ if( $EM_Event->end >= time() )
 			[/tab]
 			[tab id=standards]
 				<h3>BHAA Standard Table</h3>
-				<p>new shortcode</p> #_BHAASTANDARDS 
 				<p>Like a golf handicap the BHAA standard table gives a runner a target time for the race distance</p>
-				'.$standardTable.'
+				<p>#_BHAASTANDARDS</p>
 			[/tab]
 		[/tabs]');
 } // [map address="https://maps.google.com/?q=#_LOCATIONLATITUDE,#_LOCATIONLONGITUDE" type="hybrid" width="100%" height="300px" zoom="4" scrollwheel="no" scale="no" zoom_pancontrol="yes"][/map]
@@ -125,10 +123,8 @@ else
 			[/tab]
 			[tab id=standards]
 				<h3>BHAA Standard Table</h3>
-				<div>#_BHAA_STANDARDS</div>
-				<hr/>
 				<p>Like a golf handicap the BHAA standard table gives a runner a target time for the race distance</p>
-				'.$standardTable.'
+				<p>#_BHAASTANDARDS</p>
 			[/tab]
 		[/tabs]');
 	//);
