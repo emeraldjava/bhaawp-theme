@@ -29,7 +29,7 @@ if(isset($_POST['editracetime'])) {
 	$racetime = trim($_POST['racetime']);
 	//error_log('edit race time '.$id.' '.$racetime);	
 	//global $BHAA;
-	BHAA::get_instance()->getRaceResult()->editRaceTime($id,$racetime);
+	//BHAA::get_instance()->getRaceResult()->editRaceTime($id,$racetime);
 }
 
 get_header();
@@ -73,7 +73,7 @@ if( $EM_Event->end >= time() )
 } // [map address="https://maps.google.com/?q=#_LOCATIONLATITUDE,#_LOCATIONLONGITUDE" type="hybrid" width="100%" height="300px" zoom="4" scrollwheel="no" scale="no" zoom_pancontrol="yes"][/map]
 else
 {
-	$races = new WP_Query( array(
+/* 	$races = new WP_Query( array(
 			'connected_type' => 'event_to_race',
 			'connected_items' => get_queried_object(),
 			'nopaging' => true
@@ -89,20 +89,20 @@ else
 			$results .= '<h3>'.get_the_title().'</h3>';
 			if($bhaa_race_type!='S') {
 				//$results .= BHAA::get_instance()->getIndividualResultTable()->renderTable($raceId);
-				$teams .= BHAA::get_instance()->getRaceTeamResultTable($raceId);
+				//$teams .= BHAA::get_instance()->getRaceTeamResultTable($raceId);
 			}
 		endwhile;
 		// Prevent weirdness
 		wp_reset_postdata();
 	else :
 		$results = "No races have been linked to this event yet.";
-	endif;
+	endif; */
 		
 	// past event
 	echo $EM_Event->output(
 		'[tabs tabresults="Results" tabteams="Teams" tabdetails="Details" tabstandards="Standards"]
 			[tab id=results]#_BHAARACERESULTS[/tab]
-			[tab id=teams]'.$teams.'[/tab]
+			[tab id=teams]#_BHAATEAMRESULTS[/tab]
 			[tab id=details]
 				[one_half last="no"]<p>#_EVENTEXCERPT</p>[/one_half]
 				[one_half last="yes"]<strong>Date/Time</strong><br/>Date - #_EVENTDATES<br/><i>#_EVENTTIMES</i>[/one_half]
