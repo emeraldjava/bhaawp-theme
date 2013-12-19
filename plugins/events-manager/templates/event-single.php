@@ -88,7 +88,7 @@ else
 			$bhaa_race_type = get_post_meta( $raceId, 'bhaa_race_type', true );
 			$results .= '<h3>'.get_the_title().'</h3>';
 			if($bhaa_race_type!='S') {
-				$results .= BHAA::get_instance()->getIndividualResultTable()->renderTable($raceId);
+				//$results .= BHAA::get_instance()->getIndividualResultTable()->renderTable($raceId);
 				$teams .= BHAA::get_instance()->getRaceTeamResultTable($raceId);
 			}
 		endwhile;
@@ -101,7 +101,7 @@ else
 	// past event
 	echo $EM_Event->output(
 		'[tabs tabresults="Results" tabteams="Teams" tabdetails="Details" tabstandards="Standards"]
-			[tab id=results]'.$results.'[/tab]
+			[tab id=results]#_BHAARACERESULTS[/tab]
 			[tab id=teams]'.$teams.'[/tab]
 			[tab id=details]
 				[one_half last="no"]<p>#_EVENTEXCERPT</p>[/one_half]
