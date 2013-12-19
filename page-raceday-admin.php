@@ -20,7 +20,7 @@ if(isset($_GET['action'])){
 	if($_GET['action']=='deleterunner') {
 		$runner = trim($_GET['runner']);
 		error_log("deleterunner ".$runner.' '.$race);
-		BHAA::get_instance()->registration->deleteRunner($runner,$race);
+		Registration::get_instance()->deleteRunner($runner,$race);
 	} elseif($_GET['action']=='deleteall') {
 		error_log("deleteall ".$event.' '.$race);
 		$wpdb->query(
@@ -50,8 +50,8 @@ if(isset($_GET['action'])){
 
 include_once 'page-raceday-header.php';
 
-$event = BHAA::get_instance()->registration->getEvent();
-$registeredRunners = BHAA::get_instance()->registration->listRegisteredRunners();
+$event = Registration::get_instance()->getEvent();
+$registeredRunners = Registration::get_instance()->listRegisteredRunners();
 
 echo '<h2>BHAA RACE DAY ADMIN</h2>';
 echo '<h3>Actions</h3>';

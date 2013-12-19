@@ -41,7 +41,7 @@ if(isset($_POST['form-submitted']))
 	if(!isset($hasError))
 	{
 		
-		$res = BHAA::get_instance()->registration->preRegisterRunner($raceid,$runner,$number,$money);
+		$res = Registration::get_instance()->preRegisterRunner($raceid,$runner,$number,$money);
 		if(gettype($res)=='string')
 		{
 			$hasError = true;
@@ -74,7 +74,7 @@ if(isset($hasError) && $hasError==true)
 	echo apply_filters('the_content','[alert type="error"]'.$errorMessages.'[/alert]');
 }
 
-$racetec = BHAA::get_instance()->registration->listPreRegisteredRunners();
+$racetec = Registration::get_instance()->listPreRegisteredRunners();
 
 echo '<table id="raceteclist" width="95%">
 <tr class="row">

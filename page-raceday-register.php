@@ -44,7 +44,7 @@ if(isset($_POST['form-submitted']))
 	if(!isset($hasError))
 	{
  		error_log($raceid.' '.$runner.' '.$number);
- 		$res = BHAA::get_instance()->registration->registerRunner($raceid,$runner,$number,$standard,$money);
+ 		$res = Registration::get_instance()->registerRunner($raceid,$runner,$number,$standard,$money);
  		if(gettype($res)=='string')
  		{
  			$hasError = true;
@@ -102,7 +102,7 @@ else
 			</div>
  	[/one_half][one_half last="yes"][/one_half]');
 	
-	$races = BHAA::get_instance()->registration->getNextRaces();
+	$races = Registration::get_instance()->getNextRaces();
 	$selectRaces = '';
 	$i=0;
 	foreach($races as $race)

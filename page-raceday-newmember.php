@@ -78,10 +78,10 @@ if(isset($_POST['form-submitted']))
 		error_log('runner '.isset($runner).' $'.$runner.'$ '.$mysql_dob);
 		if($runner=='')
 		{
-	 		$runner = BHAA::get_instance()->registration->addNewMember($firstname,$lastname,$gender,$mysql_dob,$email);
+	 		$runner = Registration::get_instance()->addNewMember($firstname,$lastname,$gender,$mysql_dob,$email);
 		}
 		// register new runner		
-		$res = BHAA::get_instance()->registration->registerRunner($raceid,$runner,$number,$standard,$money);
+		$res = Registration::get_instance()->registerRunner($raceid,$runner,$number,$standard,$money);
 		if(gettype($res)=='string')
 		{
 			$hasError = true;
@@ -180,7 +180,7 @@ jQuery(document).ready(
 </script>
  	[/one_half]');
 	
-	$races = BHAA::get_instance()->registration->getNextRaces();
+	$races = Registration::get_instance()->getNextRaces();
 	$selectRaces = '';
 	$i=0;
 	foreach($races as $race)

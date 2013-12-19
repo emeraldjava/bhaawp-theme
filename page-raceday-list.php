@@ -10,7 +10,7 @@ get_header();
 
 include_once 'page-raceday-header.php';
 
-$list = BHAA::get_instance()->registration->listRegisteredRunners();
+$list = Registration::get_instance()->listRegisteredRunners();
 
 echo '<h2>Total Runners '.sizeof($list).'</h2>';
 echo '<table width="90%" id="raceteclist" >

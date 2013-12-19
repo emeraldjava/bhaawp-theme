@@ -8,8 +8,8 @@ if ( !current_user_can( 'edit_users' ) )  {
 
 get_header();
 
-$event = BHAA::get_instance()->registration->getEvent();
-$runnerCount = BHAA::get_instance()->registration->getRegistrationTypes($event->race);
+$event = Registration::get_instance()->getEvent();
+$runnerCount = Registration::get_instance()->getRegistrationTypes($event->race);
 
 /**
  * 1 - member - 10e
@@ -221,7 +221,7 @@ echo '</table>';
 
 echo '<hr/>';
 
-$registeredRunners = BHAA::get_instance()->registration->listRegisteredRunners(
+$registeredRunners = Registration::get_instance()->listRegisteredRunners(
 	0,'RACE_REG','wp_bhaa_raceresult.standardscoringset asc, wp_bhaa_raceresult.id desc');
 
 echo '<table id="raceteclist">
