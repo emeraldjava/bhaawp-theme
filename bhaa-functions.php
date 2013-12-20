@@ -5,20 +5,6 @@ remove_action('wp_head','wp_generator');
 remove_action('wp_head','wp_shortlink_wp_head' );
 remove_action('wp_head','adjacent_posts_rel_link_wp_head' );
 
-// update logo on the login page
-add_action("login_head", "bhaa_login_head");
-function bhaa_login_head() {
-	echo "
-<style>
-	body.login #login h1 a {
-	background: url('http://bhaa.ie/wp-content/uploads/2012/11/headerlogo.jpg') no-repeat center top transparent;
-	height: 120px;
-	width: 400px;
-}
-</style>
-";
-}
-
 // http://stackoverflow.com/questions/9326315/wordpress-change-default-display-name-publicy-as-for-all-existing-users
 function bhaa_force_pretty_displaynames($user_login, $user) {
 	$outcome = trim(get_user_meta($user->ID, 'first_name', true) . " " . get_user_meta($user->ID, 'last_name', true));
@@ -26,7 +12,7 @@ function bhaa_force_pretty_displaynames($user_login, $user) {
 		wp_update_user( array ('ID' => $user->ID, 'display_name' => $outcome));
 	}
 }
-add_action('wp_login','bhaa_force_pretty_displaynames',10,2);
+//add_action('wp_login','bhaa_force_pretty_displaynames',10,2);
 
 function bhaa_lost_password_message() {
 	$action = $_REQUEST['action'];
@@ -35,7 +21,7 @@ function bhaa_lost_password_message() {
 		return $message;
 	}
 }
-add_filter('login_message', 'bhaa_lost_password_message');
+//add_filter('login_message', 'bhaa_lost_password_message');
 
 // [pdf href="xx"]
 function pdf_shortcode( $atts ) {
@@ -47,7 +33,7 @@ function pdf_shortcode( $atts ) {
     			<embed src="'.$href.'" width="95%" height="675" type="application/pdf" />
 			</object>';
 }
-add_shortcode( 'pdf', 'pdf_shortcode' );
+//add_shortcode( 'pdf', 'pdf_shortcode' );
 
 
 function count_team_runners( $query ) {
@@ -77,6 +63,6 @@ function ml_custom_image_choose( $args ) {
 	}
 	return array_merge( $args, $custom );
 }
-add_filter('image_size_names_choose','ml_custom_image_choose');
+//add_filter('image_size_names_choose','ml_custom_image_choose');
 
 ?>
