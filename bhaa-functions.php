@@ -1,18 +1,9 @@
 <?php 
 
 // bhaa custom
-remove_action('wp_head','wp_generator');
-remove_action('wp_head','wp_shortlink_wp_head' );
-remove_action('wp_head','adjacent_posts_rel_link_wp_head' );
-
-// http://stackoverflow.com/questions/9326315/wordpress-change-default-display-name-publicy-as-for-all-existing-users
-function bhaa_force_pretty_displaynames($user_login, $user) {
-	$outcome = trim(get_user_meta($user->ID, 'first_name', true) . " " . get_user_meta($user->ID, 'last_name', true));
-	if (!empty($outcome) && ($user->data->display_name!=$outcome)) {
-		wp_update_user( array ('ID' => $user->ID, 'display_name' => $outcome));
-	}
-}
-//add_action('wp_login','bhaa_force_pretty_displaynames',10,2);
+//remove_action('wp_head','wp_generator');
+//remove_action('wp_head','wp_shortlink_wp_head' );
+//remove_action('wp_head','adjacent_posts_rel_link_wp_head' );
 
 // [pdf href="xx"]
 function pdf_shortcode( $atts ) {
