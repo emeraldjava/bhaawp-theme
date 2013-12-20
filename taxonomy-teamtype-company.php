@@ -23,7 +23,10 @@
 		<div class="portfolio-item">
 			<div id="post-<?php the_ID(); ?>" class="portfolio-content" >
 				<div class="image">
-					<?php the_post_thumbnail('thumbnail'); ?>
+					<?php 
+					the_post_thumbnail(array(220,161), array("class" => "alignleft post_thumbnail"));
+					//the_post_thumbnail('portfolio-four'); 
+					?>
 				</div>
 				<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
 				<?php
