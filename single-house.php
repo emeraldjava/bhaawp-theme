@@ -51,7 +51,7 @@ echo $content;
 	// http://scribu.net/wordpress/the-magic-of-wp_user.html
 	// http://mattvarone.com/wordpress/list-users-with-wp_user_query/
 	$teamtype = wp_get_post_terms($post->ID,'teamtype');
-	$connected_type = Connection::HOUSE_TO_RUNNER;
+	$connected_type = Connections::HOUSE_TO_RUNNER;
 	if($teamtype[0]->name=='sector')
 	{
 		echo '<h2>Sector Team</h2>';
@@ -96,7 +96,7 @@ echo $content;
 </table>
 
 <?php 
-echo BHAA::get_instance()->getTeamResultsForHouse(get_the_ID());
+//echo BHAA::get_instance()->getTeamResultsForHouse(get_the_ID());
 ?>
 <?php endwhile; // end of the loop. ?>
 </section>
