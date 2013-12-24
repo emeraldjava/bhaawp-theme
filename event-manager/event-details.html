@@ -1,9 +1,21 @@
-<p>
+<p eventid="#_EVENTID" postid="#_EVENTPOSTID">
 #_EVENTNAME
-#_EVENTNOTES
-{is_past}event is in the past{/is_past}
 
 {is_future}event is in the future{/is_future}
+
+{is_past}event is in the past
+[tabs tabresults="Results" tabteams="Teams" tabstandards="Standards"]
+[tab id="results"]#_BHAARACERESULTS[/tab]
+[tab id="teams"]#_BHAATEAMRESULTS[/tab]
+[tab id="standards"]
+[tab id="standards"]
+<h3>BHAA Standard Table</h3>
+<p>Like a golf handicap the BHAA standard table gives a runner a target time for the race distance</p>
+<p>#_BHAASTANDARDS</p>
+[/tab]
+[/tab]
+[/tabs]
+{/is_past}			
 </p>
 
 <div style="float:right; margin:0px 0px 15px 15px;">#_LOCATIONMAP</div>

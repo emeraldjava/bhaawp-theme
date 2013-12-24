@@ -1,0 +1,144 @@
+Event Conditional Placeholders
+
+These placeholders can be used anywhere normal event placeholders can be used. Content will only be displayed if the condition is met, otherwise the whole placeholder will be omitted.
+
+General
+
+{has_image}content{/has_image}
+
+event has a featured image.
+
+{no_image}content{/no_image}
+
+event does not have a featured image.
+
+{is_recurrence}content{/is_recurrence}
+
+event is part of a recurring set
+
+{not_recurrence}content{/not_recurrence}
+
+event is not part of a recurring set, meaning it is a single, normal event
+
+{is_private}content{/is_private}
+
+event is marked as private
+
+{not_private}content{/not_private}
+
+event is not marked as private
+
+Event Times
+
+{has_time}content{/has_time}
+
+event is not an all-day event and does not have the same start/end times.
+
+{no_time}content{/no_time}
+
+event is not an all-day event and does have the same start/end times.
+
+{all_day}content{/all_day}
+
+event is an all-day event (regardless of start/end times).
+
+{is_long}content{/is_long}
+
+event lasts longer than one day (i.e. ends on different dates).
+
+{not_long}content{/not_long}
+
+event does not last longer than one day (i.e. same day events).
+
+{is_past}content{/is_past}
+
+event is in the past
+
+{is_future}content{/is_future}
+
+event is in the future
+
+Bookings
+
+{has_bookings}content{/has_bookings}
+
+event has bookings enabled (regardless of space availability)
+
+{no_bookings}content{/no_bookings}
+
+event does not have bookings enabled (will not show for events with bookings enabled but not availalbe for booking, e.g. if fully booked or bookings are closed
+
+{fully_booked}content{/fully_booked}
+
+event has bookings enabled and spaces are not available.
+
+{has_spaces}content{/has_spaces}
+
+event has bookings enabled and spaces are available.
+
+{is_free}content{/is_free}
+
+event is free, meaning there is no ticket with a price greater than 0
+
+{not_free}content{/not_free}
+
+event is not free, meaning there is a ticket with a price greater than 0
+
+{is_free_now}content{/is_free_now}
+
+event is free at the time of viewing, meaning there is no available ticket with a price greater than 0 at that specific time
+
+{not_free_now}content{/not_free_now}
+
+event is not free at the time of viewing, meaning there is an available ticket with a price greater than 0 at that specific time
+
+Categories/Tags
+
+{has_category_X}content{/has_category_X}
+
+event has a category with a term name, id or slug of value ‘X’. Replace X with whatever category you are searching for.
+
+{no_category_X}content{/no_category_X}
+
+event does not have a category with a term name, id or slug of value ‘X’. Replace X with whatever category you are searching for.
+
+{has_tag_X}content{/has_tag_X}
+
+event has a tag with a term name, id or slug of value ‘X’. Replace X with whatever tag you are searching for.
+
+{no_tag_X}content{/no_tag_X}
+
+event does not have a tag with a term name, id or slug of value ‘X’. Replace X with whatever tag you are searching for.
+
+Locations
+
+{has_location}content{/has_location}
+
+event has a location.
+
+{no_location}content{/no_location}
+
+event does not have a location.
+
+Other
+
+{logged_in}content{/logged_in}
+
+user is logged in.
+
+{not_logged_in}content{/not_logged_in}
+
+user is not logged in.
+
+Nesting Conditional Placeholders
+
+It is possible to use conditional placeholders within each other. However, by default Events Manager will only go one level deep, 
+meaning it won’t check conditional placeholders within conditional placeholders. This is due to the extra processing required to
+ acheive such behaviour.
+
+In order to enable further levels of nesting, you need to add a line of PHP to your wp-config.php file:
+
+define('EM_CONDITIONAL_RECURSIONS',2);
+
+The example above will go 2 levels down, meaning you could nest conditional placeholders within another conditional placeholder.
+ If you wanted to nest one inside the nested placeholder, then you need to increase that number to 3.
